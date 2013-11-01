@@ -12,7 +12,7 @@ script:
   - bundle exec rake
 
 before_script:
-  - mysql -e 'create database coleta-seletiva_test;'
+  - mysql -e 'create database coleta_seletiva_test;'
 
 env:
   - RAILS_ENV=test
