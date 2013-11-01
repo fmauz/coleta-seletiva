@@ -1,2 +1,4 @@
 coleta-seletiva
 ===============
+
+Travis
