@@ -5,5 +5,7 @@ class CreateRoles < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    Role.create( name: "Desenvolvedor" )
   end
 end
