@@ -43,3 +43,11 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Flexible authentication solution for Rails with Warden. Read More: https://github.com/plataformatec/devise
+gem 'devise'
+
+group :test do
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+end
