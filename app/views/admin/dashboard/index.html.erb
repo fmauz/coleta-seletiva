@@ -1,2 +1,343 @@
-<h1>Admin::Dashboard#index</h1>
-<p>Find me in app/views/admin/dashboard/index.html.erb</p>
+<h1>Table <small>Secondary Text</small></h1>
+
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+<div class="cf">
+  <div class="btn-group pull-right">
+    <button type="button" class="btn btn-success">
+      Novo Registro
+    </button>
+  </div>
+</div>
+
+
+<table class="table table-hover table-bordered table-margin">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Coluna 1</th>
+      <th>Coluna 2</th>
+      <th>Coluna 3</th>
+      <th>Coluna 4</th>
+      <th class="table-action"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% 3.times.each do |index|%>
+    <tr>
+      <td><%= index+1%></td>
+      <td>Texto 1</td>
+      <td>Texto 2</td>
+      <td>Texto 3</td>
+      <td>Texto 4</td>
+      <td>
+        <a href="" class="glyphicon glyphicon-pencil table-icon"><span></span></a>
+        <a href="" class="glyphicon glyphicon-remove-circle table-icon table-remove"></a>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="cb">
+  <ul class="pagination">
+    <li class="disabled"><a href="#">&laquo;</a></li>
+    <% 5.times.each do |page|%>
+    <li class="<%= page == 0 ? "active" : "" %>"><a href="#"><%= page+1%> <span class="sr-only">(current)</span></a></li>
+    <% end %>
+    <li ><a href="#">&raquo;</a></li>
+  </ul>
+</div>
+
+<h1>Form <small>Secondary Text</small></h1>
+
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+<form role="form" class="form-horizontal">
+  <fieldset>
+    <legend></legend>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Role</label>
+      <div class="col-sm-10">
+        <input disabled type="email" class="form-control" id="inputEmail3" placeholder="Disabled input">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputPassword3" class="col-sm-2 control-label">Estado</label>
+      <div class="col-sm-10">
+        <select class="form-control">
+          <option>Rio de Janeiro</option>
+          <option>São Paulo</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputPassword3" class="col-sm-2 control-label">Opções Checks</label>
+      <div class="col-sm-10">
+        <%4.times.each do |a|%>
+        <div class="checkbox">
+          <label><input type="checkbox"> Opção <%=a+1%></label>
+        </div>
+        <%end%>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputPassword3" class="col-sm-2 control-label">Opções Radios</label>
+      <div class="col-sm-10">
+        <%4.times.each do |a|%>
+        <div class="radio">
+          <label><input type="radio" name="opcao"> Opção <%=a+1%></label>
+        </div>
+        <%end%>
+      </div>
+    </div>
+
+  </fieldset>
+
+  <fieldset>
+    <legend></legend>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-success">Salvar</button> ou <a href="#">cancelar</a>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+<h1>Perguntas <small>Secondary Text</small></h1>
+
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+<form role="form" class="form-horizontal">
+  <div class="cf cb section-question">
+    <h2>Nome da seção da pergunta <small>secondary text</small></h2>
+  </div>
+
+  <div class="cf col-md-12">
+    <h4>1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua ?</h4>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="input">
+      </div>
+    </div>
+  </div>
+
+  <div class="cf col-md-12">
+    <h4>2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua ?</h4>
+
+    <% 3.times.each do |i|%>
+    <div class="form-group">
+      <div class="col-sm-2">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="input">
+      </div>
+      <div class="col-sm-4">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="input">
+      </div>
+      <div class="col-sm-4">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="input">
+      </div>
+
+      <% if i > 0 %>
+      <div class="col-sm-1">
+        <a href="" class="glyphicon glyphicon-remove-circle add-remove-icon"></a>
+      </div>
+      <% end %>
+
+    </div>
+    <% end %>
+    <div class="cf">
+      <div class="btn-group">
+        <button type="button" class="btn btn-warning">
+          Add More
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cf cb section-question">
+    <h2>Nome da seção da pergunta <small>secondary text</small></h2>
+  </div>
+
+  <div class="cf col-md-4">
+    <h4>3. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="input">
+      </div>
+    </div>
+  </div>
+
+  <div class="cf col-md-8">
+    <h4>4. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.</h4>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="input">
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="cf col-md-12">
+    <h4>5. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua ?</h4>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="input">
+        <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cf col-md-4 has-error">
+    <h4>6. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="input">
+      </div>
+    </div>
+  </div>
+
+  <div class="cf col-md-4">
+    <h4>7. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="input">
+      </div>
+    </div>
+  </div>
+
+  <div class="cf col-md-4">
+    <h4>8. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="input">
+      </div>
+    </div>
+  </div>
+
+  <div class="cf cb section-question">
+    <h2>Nome da seção da pergunta <small>secondary text</small></h2>
+  </div>
+
+  <div class="cf col-md-12">
+    <h4>9. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua ?</h4>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <select class="form-control"><option>Selecione</option></select>
+      </div>
+    </div>
+  </div>
+
+  <div class="cf col-md-6">
+    <h4>10. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua ?</h4>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <%4.times.each do |a|%>
+        <div class="checkbox">
+          <label><input type="checkbox"> Opção <%=a+1%></label>
+        </div>
+        <%end%>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-3">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="Outros">
+      </div>
+    </div>
+  </div>
+
+  <div class="cf col-md-6">
+    <h4>11. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua ?</h4>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <%4.times.each do |a|%>
+        <div class="radio">
+          <label><input type="radio" name="radio1"> Opção <%=a+1%></label>
+        </div>
+        <%end%>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-3">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="Outros">
+      </div>
+    </div>
+  </div>
+
+
+
+  <fieldset class="cf col-md-12">
+    <legend></legend>
+    <div class="form-group">
+      <div class="col-md-offset-11 col-md-2">
+        <button type="submit" class="btn btn-lg btn-success">Salvar</button>
+      </div>
+    </div>
+  </fieldset>
+
+</form>
+
+<div id="footer">
+  <div class="container">
+    <p class="text-muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
+  </div>
+</div>
