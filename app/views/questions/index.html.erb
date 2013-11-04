@@ -1,0 +1,37 @@
+<h1>Listing questions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Section</th>
+      <th>Multiple answer</th>
+      <th>Code</th>
+      <th>Content</th>
+      <th>Help block</th>
+      <th>Css class</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.section %></td>
+        <td><%= question.multiple_answer %></td>
+        <td><%= question.code %></td>
+        <td><%= question.content %></td>
+        <td><%= question.help_block %></td>
+        <td><%= question.css_class %></td>
+        <td><%= link_to 'Show', question %></td>
+        <td><%= link_to 'Edit', edit_question_path(question) %></td>
+        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Question', new_question_path %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Answer type:</strong>
+  <%= @answer.answer_type %>
+</p>
+
+<p>
+  <strong>Placeholder:</strong>
+  <%= @answer.placeholder %>
+</p>
+
+<p>
+  <strong>Label text:</strong>
+  <%= @answer.label_text %>
+</p>
+
+<p>
+  <strong>Help block:</strong>
+  <%= @answer.help_block %>
+</p>
+
+<%= link_to 'Edit', edit_answer_path(@answer) %> |
+<%= link_to 'Back', answers_path %>

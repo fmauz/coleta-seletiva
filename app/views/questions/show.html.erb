@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Section:</strong>
+  <%= @question.section %>
+</p>
+
+<p>
+  <strong>Multiple answer:</strong>
+  <%= @question.multiple_answer %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @question.code %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @question.content %>
+</p>
+
+<p>
+  <strong>Help block:</strong>
+  <%= @question.help_block %>
+</p>
+
+<p>
+  <strong>Css class:</strong>
+  <%= @question.css_class %>
+</p>
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

@@ -9,7 +9,7 @@ Bundler.require(:default, Rails.env)
 module ColetaSeletiva
   class Application < Rails::Application
     config.generators do |g|
-        g.test_framework false
+        g.test_framework :rspec
         g.assets false
     end
     
