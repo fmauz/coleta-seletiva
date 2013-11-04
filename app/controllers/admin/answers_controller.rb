@@ -1,64 +1,51 @@
-class AnswersController < ApplicationController
+class Admin::AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-
+  respond_to :html
+  
   # GET /answers
   # GET /answers.json
   def index
     @answers = Answer.all
+    respond_with( @answers )
   end
 
   # GET /answers/1
   # GET /answers/1.json
   def show
+    respond_with( @answer )
   end
 
   # GET /answers/new
   def new
     @answer = Answer.new
+    respond_with( @answer )
   end
 
   # GET /answers/1/edit
   def edit
+    respond_with( @answer )
   end
 
   # POST /answers
   # POST /answers.json
   def create
     @answer = Answer.new(answer_params)
-
-    respond_to do |format|
-      if @answer.save
-        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @answer }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
-      end
-    end
+    @answer.save
+    respond_with( @answer )
   end
 
   # PATCH/PUT /answers/1
   # PATCH/PUT /answers/1.json
   def update
-    respond_to do |format|
-      if @answer.update(answer_params)
-        format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
-      end
-    end
+    @answer.update(answer_params)
+    respond_with( @answer )
   end
 
   # DELETE /answers/1
   # DELETE /answers/1.json
   def destroy
     @answer.destroy
-    respond_to do |format|
-      format.html { redirect_to answers_url }
-      format.json { head :no_content }
-    end
+    respond_with( @answer )
   end
 
   private

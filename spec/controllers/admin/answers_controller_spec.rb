@@ -18,7 +18,7 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe AnswersController do
+describe Admin::AnswersController do
 
   # This should return the minimal set of attributes required to create a valid
   # Answer. As you add validations to Answer, be sure to
@@ -77,7 +77,7 @@ describe AnswersController do
 
       it "redirects to the created answer" do
         post :create, {:answer => valid_attributes}, valid_session
-        response.should redirect_to(Answer.last)
+        response.should redirect_to( [ :admin, Answer.last ])
       end
     end
 
@@ -119,7 +119,7 @@ describe AnswersController do
       it "redirects to the answer" do
         answer = Answer.create! valid_attributes
         put :update, {:id => answer.to_param, :answer => valid_attributes}, valid_session
-        response.should redirect_to(answer)
+        response.should redirect_to([:admin, answer])
       end
     end
 
@@ -153,7 +153,7 @@ describe AnswersController do
     it "redirects to the answers list" do
       answer = Answer.create! valid_attributes
       delete :destroy, {:id => answer.to_param}, valid_session
-      response.should redirect_to(answers_url)
+      response.should redirect_to( admin_answers_url )
     end
   end
 

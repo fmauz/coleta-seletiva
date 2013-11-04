@@ -1,64 +1,51 @@
-class SectionsController < ApplicationController
+class Admin::SectionsController < ApplicationController
   before_action :set_section, only: [:show, :edit, :update, :destroy]
+  respond_to :html
 
   # GET /sections
   # GET /sections.json
   def index
     @sections = Section.all
+    respond_with( @sections )
   end
 
   # GET /sections/1
   # GET /sections/1.json
   def show
+    respond_with( @section )
   end
 
   # GET /sections/new
   def new
     @section = Section.new
+    respond_with( @section )
   end
 
   # GET /sections/1/edit
   def edit
+    respond_with( @section )
   end
 
   # POST /sections
   # POST /sections.json
   def create
     @section = Section.new(section_params)
-
-    respond_to do |format|
-      if @section.save
-        format.html { redirect_to @section, notice: 'Section was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @section }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @section.errors, status: :unprocessable_entity }
-      end
-    end
+    @section.save
+    respond_with( @section )
   end
 
   # PATCH/PUT /sections/1
   # PATCH/PUT /sections/1.json
   def update
-    respond_to do |format|
-      if @section.update(section_params)
-        format.html { redirect_to @section, notice: 'Section was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @section.errors, status: :unprocessable_entity }
-      end
-    end
+    @section.update(section_params)
+    respond_with( @section )
   end
 
   # DELETE /sections/1
   # DELETE /sections/1.json
   def destroy
     @section.destroy
-    respond_to do |format|
-      format.html { redirect_to sections_url }
-      format.json { head :no_content }
-    end
+    respond_with( @section )
   end
 
   private

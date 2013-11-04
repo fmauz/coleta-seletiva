@@ -11,9 +11,106 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131102133703) do
+ActiveRecord::Schema.define(version: 20131104175534) do
+
+  create_table "answer_collections", force: true do |t|
+    t.integer  "answer_id"
+    t.string   "text"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answer_collections", ["answer_id"], name: "index_answer_collections_on_answer_id", using: :btree
+
+  create_table "answer_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "answers", force: true do |t|
+    t.integer  "answer_type_id"
+    t.integer  "question_id"
+    t.string   "placeholder"
+    t.string   "label_text"
+    t.string   "help_block"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answers", ["answer_type_id"], name: "index_answers_on_answer_type_id", using: :btree
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+
+  create_table "card_answers", force: true do |t|
+    t.string   "value"
+    t.integer  "card_question_id"
+    t.integer  "answer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "card_answers", ["answer_id"], name: "index_card_answers_on_answer_id", using: :btree
+  add_index "card_answers", ["card_question_id"], name: "index_card_answers_on_card_question_id", using: :btree
+
+  create_table "card_questions", force: true do |t|
+    t.integer  "card_id"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "card_questions", ["card_id"], name: "index_card_questions_on_card_id", using: :btree
+  add_index "card_questions", ["question_id"], name: "index_card_questions_on_question_id", using: :btree
+
+  create_table "cards", force: true do |t|
+    t.integer  "survey_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cards", ["person_id"], name: "index_cards_on_person_id", using: :btree
+  add_index "cards", ["survey_id"], name: "index_cards_on_survey_id", using: :btree
+
+  create_table "people", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "people", ["user_id"], name: "index_people_on_user_id", using: :btree
+
+  create_table "questions", force: true do |t|
+    t.integer  "section_id"
+    t.boolean  "multiple_answer"
+    t.string   "code"
+    t.string   "content"
+    t.string   "help_block"
+    t.string   "css_class"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "questions", ["section_id"], name: "index_questions_on_section_id", using: :btree
 
   create_table "roles", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sections", force: true do |t|
+    t.integer  "survey_id"
+    t.string   "name"
+    t.string   "help_block"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sections", ["survey_id"], name: "index_sections_on_survey_id", using: :btree
+
+  create_table "surveys", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

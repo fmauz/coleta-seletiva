@@ -47,6 +47,8 @@ end
 # Flexible authentication solution for Rails with Warden. Read More: https://github.com/plataformatec/devise
 gem 'devise'
 
+gem 'responders'
+
 group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
