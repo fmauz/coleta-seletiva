@@ -1,5 +1,5 @@
 class AnswerType < ActiveRecord::Base
-  has_many :anwers
+  has_many :answers
 
   validates :name,
             :presence => true

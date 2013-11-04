@@ -77,7 +77,7 @@ describe Admin::SurveysController do
 
       it "redirects to the created survey" do
         post :create, {:survey => valid_attributes}, valid_session
-        response.should redirect_to(Survey.last)
+        response.should redirect_to([ :admin, Survey.last ])
       end
     end
 
@@ -119,7 +119,7 @@ describe Admin::SurveysController do
       it "redirects to the survey" do
         survey = Survey.create! valid_attributes
         put :update, {:id => survey.to_param, :survey => valid_attributes}, valid_session
-        response.should redirect_to(survey)
+        response.should redirect_to([ :admin, survey ])
       end
     end
 
@@ -153,7 +153,7 @@ describe Admin::SurveysController do
     it "redirects to the surveys list" do
       survey = Survey.create! valid_attributes
       delete :destroy, {:id => survey.to_param}, valid_session
-      response.should redirect_to(surveys_url)
+      response.should redirect_to( admin_surveys_url )
     end
   end
 

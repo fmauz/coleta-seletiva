@@ -1,4 +1,5 @@
 class Admin::SectionsController < ApplicationController
+  before_action :set_survey
   before_action :set_section, only: [:show, :edit, :update, :destroy]
   respond_to :html
 
@@ -51,7 +52,11 @@ class Admin::SectionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_section
-      @section = Section.find(params[:id])
+      @section = @survey.sections.find(params[:id])
+    end
+
+    def set_survey
+      @survey = Survey.find( params[:survey_id] )
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

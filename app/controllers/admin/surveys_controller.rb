@@ -31,21 +31,21 @@ class Admin::SurveysController < ApplicationController
   def create
     @survey = Survey.new(survey_params)
     @survey.save
-    respond_with( @survey )
+    respond_with( [ :admin, @survey] )
   end
 
   # PATCH/PUT /surveys/1
   # PATCH/PUT /surveys/1.json
   def update
     @survey.update(survey_params)
-    respond_with( @survey )
+    respond_with( [ :admin, @survey] )
   end
 
   # DELETE /surveys/1
   # DELETE /surveys/1.json
   def destroy
     @survey.destroy
-    respond_with( @survey )
+    respond_with( [ :admin, @survey] )
   end
 
   private
