@@ -4,7 +4,7 @@ ColetaSeletiva::Application.routes.draw do
   devise_for :users
 
   namespace :admin do
-    get "dashboard" => "dashboard#index"
+    root :to => "dashboard#index"
 
     resources :surveys do
       resources :sections do

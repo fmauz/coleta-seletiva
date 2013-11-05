@@ -1,9 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h1><%= I18n.t("resource.#{@section.class.name.downcase}")%></h1>
 
-<p>
-  <strong>Survey:</strong>
-  <%= @section.survey %>
-</p>
+<%= flash_notice_render %>
 
 <p>
   <strong>Name:</strong>
@@ -15,5 +12,5 @@
   <%= @section.help_block %>
 </p>
 
-<%= link_to 'Edit', edit_section_path(@section) %> |
-<%= link_to 'Back', sections_path %>
+<%= link_to 'Editar', edit_admin_survey_section_path( @survey, @section ), class: "btn btn-lg btn-warning" %> ou
+<%= link_to 'voltar', admin_survey_sections_path( @survey ) %>

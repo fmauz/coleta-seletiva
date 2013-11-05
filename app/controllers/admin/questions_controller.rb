@@ -1,11 +1,13 @@
-class Admin::QuestionsController < ApplicationController
+class Admin::QuestionsController < Admin::AdminController
+  before_action :set_survey
+  before_action :set_section
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   respond_to :html
 
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @questions = @section.questions
     respond_with( @questions )
   end
 
@@ -17,7 +19,7 @@ class Admin::QuestionsController < ApplicationController
 
   # GET /questions/new
   def new
-    @question = Question.new
+    @question = @section.questions.build
     respond_with( @question )
   end
 
@@ -29,29 +31,37 @@ class Admin::QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    @question = Question.new(question_params)
+    @question = @section.questions.build(question_params)
     @question.save
-    respond_with( @question )
+    respond_with( [ :admin, @survey, @section, @question ] )
   end
 
   # PATCH/PUT /questions/1
   # PATCH/PUT /questions/1.json
   def update
     @question.update(question_params)
-    respond_with( @question )
+    respond_with( [ :admin, @survey, @section, @question ] )
   end
 
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
     @question.destroy
-    respond_with( @question )
+    respond_with( [ :admin, @survey, @section, @question ] )
   end
 
   private
+    def set_survey
+      @survey = Survey.find( params[:survey_id] )
+    end
+
+    def set_section
+      @section = @survey.sections.find( params[:section_id] )
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_question
-      @question = Question.find(params[:id])
+      @question = @section.questions.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

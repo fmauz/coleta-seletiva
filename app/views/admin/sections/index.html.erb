@@ -1,31 +1,32 @@
-<h1>Listing sections</h1>
+<h1>Listagem de Seções </h1>
 
-<table>
+<%= button_to_new new_admin_survey_section_path( @survey ) %>
+
+<%= flash_notice_render %>
+
+<table class="table table-hover table-bordered <%= "hide" if @sections.empty? %>">
   <thead>
     <tr>
-      <th>Survey</th>
+      <th>Id</th>
       <th>Name</th>
-      <th>Help block</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Seções</th>
+      <th class="table-action"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @sections.each do |section| %>
       <tr>
-        <td><%= section.survey %></td>
+        <td><%= section.id %></td>
         <td><%= section.name %></td>
-        <td><%= section.help_block %></td>
-        <td><%= link_to 'Show', section %></td>
-        <td><%= link_to 'Edit', edit_section_path(section) %></td>
-        <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= section.link_to_questions %></td>
+        <td>
+          <%= link_to '', [ :admin, @survey, section], class: "glyphicon glyphicon-eye-open table-icon" %>
+          <%= link_to '', edit_admin_survey_section_path( @survey, section ), class: "glyphicon glyphicon-pencil table-icon" %>
+          <%= link_to '', [ :admin, @survey, section ], method: :delete, data: { confirm: 'Tem certeza?' }, class: "glyphicon glyphicon-remove-circle table-icon table-remove" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Section', new_section_path %>
+<%= empty_array_message @sections %>

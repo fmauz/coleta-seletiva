@@ -1,34 +1,34 @@
 require "spec_helper"
 
-describe SurveysController do
+describe Admin::SurveysController do
   describe "routing" do
 
     it "routes to #index" do
-      get("/surveys").should route_to("surveys#index")
+      get("/admin/surveys").should route_to("admin/surveys#index")
     end
 
     it "routes to #new" do
-      get("/surveys/new").should route_to("surveys#new")
+      get("/admin/surveys/new").should route_to("admin/surveys#new")
     end
 
     it "routes to #show" do
-      get("/surveys/1").should route_to("surveys#show", :id => "1")
+      get("/admin/surveys/1").should route_to("admin/surveys#show", :id => "1")
     end
 
     it "routes to #edit" do
-      get("/surveys/1/edit").should route_to("surveys#edit", :id => "1")
+      get("/admin/surveys/1/edit").should route_to("admin/surveys#edit", :id => "1")
     end
 
     it "routes to #create" do
-      post("/surveys").should route_to("surveys#create")
+      post("/admin/surveys").should route_to("admin/surveys#create")
     end
 
     it "routes to #update" do
-      put("/surveys/1").should route_to("surveys#update", :id => "1")
+      put("/admin/surveys/1").should route_to("admin/surveys#update", :id => "1")
     end
 
     it "routes to #destroy" do
-      delete("/surveys/1").should route_to("surveys#destroy", :id => "1")
+      delete("/admin/surveys/1").should route_to("admin/surveys#destroy", :id => "1")
     end
 
   end

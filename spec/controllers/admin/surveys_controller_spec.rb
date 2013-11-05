@@ -55,15 +55,14 @@ describe Admin::SurveysController do
     end
 
     describe "with invalid params" do
+
       it "assigns a newly created but unsaved survey as @survey" do
-        Survey.any_instance.stub(:save).and_return(false)
-        post :create, {:survey => { "name" => "invalid value" }}, valid_session
+        post :create, {:survey => { "name" => "" }}, valid_session
         assigns(:survey).should be_a_new(Survey)
       end
 
-      it "re-renders the 'new' template" do
-        Survey.any_instance.stub(:save).and_return(false)
-        post :create, {:survey => { "name" => "invalid value" }}, valid_session
+      it "should render template new" do
+        post :create, {:survey => { "name" => "" }}, valid_session
         response.should render_template("new")
       end
     end
@@ -89,14 +88,12 @@ describe Admin::SurveysController do
 
     describe "with invalid params" do
       it "assigns the survey as @survey" do
-        Survey.any_instance.stub(:save).and_return(false)
-        put :update, {:id => survey.to_param, :survey => { "name" => "invalid value" }}, valid_session
+        put :update, {:id => survey.to_param, :survey => { "name" => "" }}, valid_session
         assigns(:survey).should eq(survey)
       end
 
-      it "re-renders the 'edit' template" do
-        Survey.any_instance.stub(:save).and_return(false)
-        put :update, {:id => survey.to_param, :survey => { "name" => "invalid value" }}, valid_session
+      it "should render template edit" do
+        put :update, {:id => survey.to_param, :survey => { "name" => "" }}, valid_session
         response.should render_template("edit")
       end
     end

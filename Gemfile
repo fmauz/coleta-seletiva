@@ -49,7 +49,10 @@ gem 'devise'
 
 gem 'responders'
 
+gem 'active_decorator'
+
 group :test do
+  gem 'pry'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'

@@ -1,34 +1,33 @@
-<p id="notice"><%= notice %></p>
+<h1><%= I18n.t("resource.#{@question.class.name.downcase}")%></h1>
+
+<%= flash_notice_render %>
+
 
 <p>
-  <strong>Section:</strong>
-  <%= @question.section %>
-</p>
-
-<p>
-  <strong>Multiple answer:</strong>
-  <%= @question.multiple_answer %>
-</p>
-
-<p>
-  <strong>Code:</strong>
+  <strong>Código:</strong>
   <%= @question.code %>
 </p>
 
 <p>
-  <strong>Content:</strong>
+  <strong>Texto da pergunta:</strong>
   <%= @question.content %>
 </p>
 
 <p>
-  <strong>Help block:</strong>
+  <strong>Texto de ajuda:</strong>
   <%= @question.help_block %>
 </p>
 
 <p>
-  <strong>Css class:</strong>
+  <strong>CSS Class:</strong>
   <%= @question.css_class %>
 </p>
 
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
+<p>
+  <strong>Multiplas Respostas ?:</strong>
+  <%= @question.multiple_answer ? "Sim" : "False" %>
+</p>
+
+
+<%= link_to 'Editar', edit_admin_survey_section_question_path(@survey, @section, @question), class: "btn btn-lg btn-warning" %> ou
+<%= link_to 'voltar', admin_survey_section_questions_path( @survey, @section ) %>

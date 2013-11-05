@@ -1,33 +1,59 @@
-<%= form_for(@answer) do |f| %>
-  <% if @answer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+<%= form_for([:admin, @survey, @section, @question, @answer], html: { role: "form", class: "form-horizontal"}) do |f| %>
+<fieldset>
+  <legend>Dados Básicos</legend>
 
-      <ul>
-      <% @answer.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <div class="form-group">
+    <%= f.label :answer_type_id, "Tipo", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.select :answer_type_id, f.object.answer_type_collection, {}, class: "form-control" %>
     </div>
-  <% end %>
+  </div>
 
-  <div class="field">
-    <%= f.label :answer_type %><br>
-    <%= f.text_field :answer_type %>
+  <div class="form-group">
+    <%= f.label :placeholder, "Placeholder", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :placeholder, class: "form-control", placeholder: "Placeholder" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :placeholder %><br>
-    <%= f.text_field :placeholder %>
+
+  <div class="form-group">
+    <%= f.label :label_text, "Label", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :label_text, class: "form-control", placeholder: "Label text" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :label_text %><br>
-    <%= f.text_field :label_text %>
+
+  <div class="form-group">
+    <%= f.label :help_block, "Texto de Ajuda", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :help_block, class: "form-control", placeholder: "Help Block" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :help_block %><br>
-    <%= f.text_field :help_block %>
+</fieldset>
+
+<fieldset class="margin-bottom">
+  <legend>Collection</legend>
+  <div id="answer_collections" class="cf margin-bottom">
+    <%= f.fields_for :answer_collections do |ac| %>
+      <%= render :partial => "answer_collection_fields", :locals => { :f => ac }%>
+    <% end %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="cf">
+    <div class="btn-group">
+      <%= link_to_add_fields "Add Question", f, :answer_collections, class: "btn btn-info" %>
+    </div>
   </div>
+
+</fieldset>
+
+<fieldset>
+  <legend></legend>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-success">Salvar</button> ou 
+      <a href="<%= admin_survey_section_question_answers_path( @survey, @section, @question )%>">cancelar</a>
+    </div>
+  </div>
+</fieldset>
 <% end %>

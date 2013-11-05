@@ -14,3 +14,14 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+
+function remove_fields(link) {
+  $(link).siblings("input[type=hidden]").value = "1";
+  $(link).parents(".fields").hide();
+}
+
+function add_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g");
+  $("#" + association).append( content.replace(regexp, new_id) );
+}

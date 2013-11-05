@@ -1,9 +1,10 @@
-<p id="notice"><%= notice %></p>
+<h1><%= I18n.t("resource.#{@survey.class.name.downcase}")%></h1>
+
+<%= flash_notice_render %>
 
 <p>
-  <strong>Name:</strong>
-  <%= @survey.name %>
+  <strong>Nome:</strong> <%= @survey.name %>
 </p>
 
-<%= link_to 'Edit', edit_survey_path(@survey) %> |
-<%= link_to 'Back', surveys_path %>
+<%= link_to 'Editar', edit_admin_survey_path(@survey), class: "btn btn-lg btn-warning" %> ou
+<%= link_to 'voltar', admin_surveys_path %>

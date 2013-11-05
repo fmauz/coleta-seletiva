@@ -1,34 +1,34 @@
 require "spec_helper"
 
-describe SectionsController do
+describe Admin::SectionsController do
   describe "routing" do
 
     it "routes to #index" do
-      get("/sections").should route_to("sections#index")
+      get("/admin/surveys/1/sections").should route_to("admin/sections#index", :survey_id => "1")
     end
 
     it "routes to #new" do
-      get("/sections/new").should route_to("sections#new")
+      get("/admin/surveys/1/sections/new").should route_to("admin/sections#new", :survey_id => "1")
     end
 
     it "routes to #show" do
-      get("/sections/1").should route_to("sections#show", :id => "1")
+      get("/admin/surveys/1/sections/1").should route_to("admin/sections#show", :survey_id => "1", :id => "1")
     end
 
     it "routes to #edit" do
-      get("/sections/1/edit").should route_to("sections#edit", :id => "1")
+      get("/admin/surveys/1/sections/1/edit").should route_to("admin/sections#edit", :survey_id => "1", :id => "1")
     end
 
     it "routes to #create" do
-      post("/sections").should route_to("sections#create")
+      post("/admin/surveys/1/sections").should route_to("admin/sections#create", :survey_id => "1")
     end
 
     it "routes to #update" do
-      put("/sections/1").should route_to("sections#update", :id => "1")
+      put("/admin/surveys/1/sections/1").should route_to("admin/sections#update", :survey_id => "1", :id => "1")
     end
 
     it "routes to #destroy" do
-      delete("/sections/1").should route_to("sections#destroy", :id => "1")
+      delete("/admin/surveys/1/sections/1").should route_to("admin/sections#destroy", :survey_id => "1", :id => "1")
     end
 
   end

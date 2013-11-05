@@ -1,4 +1,4 @@
-class Admin::SurveysController < ApplicationController
+class Admin::SurveysController < Admin::AdminController
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
   respond_to :html
 

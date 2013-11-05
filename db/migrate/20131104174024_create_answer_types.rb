@@ -5,5 +5,10 @@ class CreateAnswerTypes < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    AnswerType.create name: "Input Text"
+    AnswerType.create name: "CheckBoxes"
+    AnswerType.create name: "Radios"
+    AnswerType.create name: "Select"
   end
 end

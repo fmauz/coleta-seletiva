@@ -1,4 +1,4 @@
-class Admin::SectionsController < ApplicationController
+class Admin::SectionsController < Admin::AdminController
   before_action :set_survey
   before_action :set_section, only: [:show, :edit, :update, :destroy]
   respond_to :html
@@ -6,7 +6,7 @@ class Admin::SectionsController < ApplicationController
   # GET /sections
   # GET /sections.json
   def index
-    @sections = Section.all
+    @sections = @survey.sections
     respond_with( @sections )
   end
 
@@ -18,7 +18,7 @@ class Admin::SectionsController < ApplicationController
 
   # GET /sections/new
   def new
-    @section = Section.new
+    @section = @survey.sections.build
     respond_with( @section )
   end
 
@@ -30,23 +30,23 @@ class Admin::SectionsController < ApplicationController
   # POST /sections
   # POST /sections.json
   def create
-    @section = Section.new(section_params)
+    @section = @survey.sections.build(section_params)
     @section.save
-    respond_with( @section )
+    respond_with( [ :admin, @survey, @section ] )
   end
 
   # PATCH/PUT /sections/1
   # PATCH/PUT /sections/1.json
   def update
-    @section.update(section_params)
-    respond_with( @section )
+    @section.update( section_params )
+    respond_with( [ :admin, @survey, @section] )
   end
 
   # DELETE /sections/1
   # DELETE /sections/1.json
   def destroy
     @section.destroy
-    respond_with( @section )
+    respond_with( [ :admin, @survey, @section] )
   end
 
   private

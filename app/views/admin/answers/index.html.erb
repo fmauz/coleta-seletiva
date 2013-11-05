@@ -1,33 +1,33 @@
-<h1>Listing answers</h1>
+<h1>Listagem de <%= I18n.t("resource.answer")%>s </h1>
 
-<table>
+<%= button_to_new new_admin_survey_section_question_answer_path( @survey, @section, @question ) %>
+
+<%= flash_notice_render %>
+
+<table class="table table-hover table-bordered <%= "hide" if @answers.empty? %>">
   <thead>
     <tr>
-      <th>Answer type</th>
-      <th>Placeholder</th>
-      <th>Label text</th>
-      <th>Help block</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Id</th>
+      <th>Tipo</th>
+      <th>Label</th>
+      <th class="table-action"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @answers.each do |answer| %>
       <tr>
-        <td><%= answer.answer_type %></td>
-        <td><%= answer.placeholder %></td>
+        <td><%= answer.id %></td>
+        <td><%= answer.answer_type.name %></td>
         <td><%= answer.label_text %></td>
-        <td><%= answer.help_block %></td>
-        <td><%= link_to 'Show', answer %></td>
-        <td><%= link_to 'Edit', edit_answer_path(answer) %></td>
-        <td><%= link_to 'Destroy', answer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to '', [ :admin, @survey, @section, @question, answer], class: "glyphicon glyphicon-eye-open table-icon" %>
+          <%= link_to '', edit_admin_survey_section_question_answer_path(@survey, @section, @question, answer), class: "glyphicon glyphicon-pencil table-icon" %>
+          <%= link_to '', [ :admin, @survey, @section, @question, answer ], method: :delete, data: { confirm: 'Tem certeza?' }, class: "glyphicon glyphicon-remove-circle table-icon table-remove" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<%= empty_array_message @answers %>
 
-<%= link_to 'New Answer', new_answer_path %>

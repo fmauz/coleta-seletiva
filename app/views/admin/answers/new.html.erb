@@ -1,5 +1,3 @@
-<h1>New answer</h1>
+<h1>Nova <%= I18n.t("resource.#{@answer.class.name.downcase}")%></h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Back', answers_path %>

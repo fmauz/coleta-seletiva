@@ -1,27 +1,32 @@
-<h1>Listing surveys</h1>
+<h1>Listagem de <%= I18n.t("resource.survey")%>s </h1>
 
-<table>
+<%= button_to_new new_admin_survey_path %>
+
+<%= flash_notice_render %>
+
+<table class="table table-hover table-bordered <%= "hide" if @surveys.empty? %>">
   <thead>
     <tr>
+      <th>Id</th>
       <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Seções</th>
+      <th class="table-action"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @surveys.each do |survey| %>
       <tr>
+        <td><%= survey.id %></td>
         <td><%= survey.name %></td>
-        <td><%= link_to 'Show', survey %></td>
-        <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-        <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= survey.link_to_sections %></td>
+        <td>
+          <%= link_to '', [ :admin, survey], class: "glyphicon glyphicon-eye-open table-icon" %>
+          <%= link_to '', edit_admin_survey_path(survey), class: "glyphicon glyphicon-pencil table-icon" %>
+          <%= link_to '', [ :admin, survey ], method: :delete, data: { confirm: 'Tem certeza?' }, class: "glyphicon glyphicon-remove-circle table-icon table-remove" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Survey', new_survey_path %>
+<%= empty_array_message @surveys %>

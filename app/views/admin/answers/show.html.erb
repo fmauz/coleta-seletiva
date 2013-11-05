@@ -1,8 +1,10 @@
-<p id="notice"><%= notice %></p>
+<h1><%= I18n.t("resource.#{@answer.class.name.downcase}")%></h1>
+
+<%= flash_notice_render %>
 
 <p>
   <strong>Answer type:</strong>
-  <%= @answer.answer_type %>
+  <%= @answer.answer_type.name %>
 </p>
 
 <p>
@@ -20,5 +22,5 @@
   <%= @answer.help_block %>
 </p>
 
-<%= link_to 'Edit', edit_answer_path(@answer) %> |
-<%= link_to 'Back', answers_path %>
+<%= link_to 'Editar', edit_admin_survey_section_question_answer_path(@survey, @section, @question, @answer), class: "btn btn-lg btn-warning" %> ou
+<%= link_to 'voltar', admin_survey_section_question_answers_path( @survey, @section, @question ) %>
