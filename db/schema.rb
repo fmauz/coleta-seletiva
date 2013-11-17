@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131104175534) do
+ActiveRecord::Schema.define(version: 20131105164542) do
 
   create_table "answer_collections", force: true do |t|
     t.integer  "answer_id"
@@ -35,6 +35,10 @@ ActiveRecord::Schema.define(version: 20131104175534) do
     t.string   "placeholder"
     t.string   "label_text"
     t.string   "help_block"
+    t.string   "css_class"
+    t.string   "query_string"
+    t.string   "element_ajax"
+    t.string   "ajax_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -66,12 +70,22 @@ ActiveRecord::Schema.define(version: 20131104175534) do
   create_table "cards", force: true do |t|
     t.integer  "survey_id"
     t.integer  "person_id"
+    t.integer  "county_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "cards", ["county_id"], name: "index_cards_on_county_id", using: :btree
   add_index "cards", ["person_id"], name: "index_cards_on_person_id", using: :btree
   add_index "cards", ["survey_id"], name: "index_cards_on_survey_id", using: :btree
+
+  create_table "counties", force: true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.string   "cnpj"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "people", force: true do |t|
     t.integer  "user_id"

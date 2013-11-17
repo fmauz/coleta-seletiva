@@ -3,6 +3,5 @@ class AnswerCollection < ActiveRecord::Base
 
   validates :text,
             :value,
-            :answer,
             :presence => true
 end

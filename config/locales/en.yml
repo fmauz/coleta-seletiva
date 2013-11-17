@@ -8,6 +8,7 @@ en:
     section: "Seção"
     question: "Pergunta"
     answer: "Resposta"
+    county: "Município"
     messages:
       empty: "Nenhum <strong>Registro</strong> encontrado."
     buttons:

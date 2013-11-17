@@ -6,7 +6,6 @@ describe AnswerCollection do
 
   it { should belong_to :answer }
 
-  it { should validate_presence_of :answer }
   it { should validate_presence_of :text }
   it { should validate_presence_of :value }
 

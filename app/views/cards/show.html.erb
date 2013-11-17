@@ -1,0 +1,45 @@
+<h1><%= @card.survey.name %></h1>
+
+<%section = nil%>
+
+<%@card.card_questions.each do |cq|%>
+
+  <%if cq.question.section != section %>
+    <% section = cq.question.section %>
+    <div class='cf cb section-question'><h3><%= section.name%></h3></div>
+  <%end%>
+
+<div class="cf <%= cq.question.css_class %>">
+  <%unless cq.question.multiple_answer %>
+  <h4><%= cq.question.code%>. <%= cq.question.content %></h4>
+  <%end%>
+
+  <% cq.card_answers.each do |ca|%>
+
+    <%if cq.question.multiple_answer && cq.card_answers.index( ca ) == 0 %>
+      <div class="form-group cf <%= "multiple" if cq.question.multiple_answer %> ">
+    <%end%>
+
+      <div class="<%= ca.answer.css_class %>">
+        <% value = nil%>
+        <%if ca.answer.answer_collections.length > 0 %>
+          <% value = ca.answer.answer_collections.select{|a| a.value == ca.value }.first.text %>
+        <%else%>
+          <% value = ca.value %>
+        <%end%>
+        <input type="text" value="<%= value%>" class="form-control" readonly="readonly" />
+      </div>
+
+    <%if cq.question.multiple_answer && (cq.card_answers.index( ca ) == cq.card_answers.length - 1) %>
+      </div>
+    <%end%>
+
+  <% end %>
+
+</div>
+
+<% end %>
+
+<div class="cf marginTop">
+  <a href="<%= cards_path %>" class="btn btn-lg btn-info">Inserir Novo</a>
+</div>

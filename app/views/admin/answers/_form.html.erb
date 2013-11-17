@@ -29,6 +29,77 @@
       <%= f.text_field :help_block, class: "form-control", placeholder: "Help Block" %>
     </div>
   </div>
+
+  <div class="form-group">
+    <%= f.label :css_class, "Css Class", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :css_class, class: "form-control", placeholder: "Css Class" %>
+    </div>
+  </div>
+
+    <div class="form-group">
+    <%= f.label :query_string, "Query String", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :query_string, class: "form-control", placeholder: "Query String" %>
+    </div>
+  </div>
+
+    <div class="form-group">
+    <%= f.label :ajax_url, "Ajax URL", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :ajax_url, class: "form-control", placeholder: "Ajax URL" %>
+    </div>
+  </div>
+
+    <div class="form-group">
+    <%= f.label :element_ajax, "Element Ajax", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :element_ajax, class: "form-control", placeholder: "Element Ajax" %>
+    </div>
+
+  </div>
+  
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-12">
+        <div class="checkbox">
+          <label><%= f.check_box :disabled  %> Desabilitado ?</label>
+        </div>
+      </div>
+    </div>
+
+
+
+</fieldset>
+
+<fieldset class="margin-bottom">
+  <legend>Validações</legend>
+  
+
+
+  <div class="form-group">
+    <%= f.label :min_length, "Comprimento Minimo", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :min_length, class: "form-control", placeholder: "" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :max_length, "Comprimento Máximo", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :max_length, class: "form-control", placeholder: "" %>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-12">
+        <div class="checkbox">
+          <label><%= f.check_box :required  %> Obrigatório ?</label>
+        </div>
+      </div>
+    </div>
+
 </fieldset>
 
 <fieldset class="margin-bottom">

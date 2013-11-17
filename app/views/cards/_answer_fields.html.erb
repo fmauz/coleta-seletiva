@@ -1,0 +1,17 @@
+<% question.answers.each do |answer|%>
+
+  <%if question.multiple_answer && question.answers.index( answer ) == 0 %>
+    <div class="form-group <%= "multiple" if question.multiple_answer %> ">
+  <%end%>
+
+  <%= f.fields_for :card_answers, CardAnswer.new do |ca|%>
+    <%= ca.hidden_field :answer_id, value: answer.id %>
+      <div class="<%= answer.css_class %>">
+        <%= render_answer( answer, ca, f ) %>
+      </div>
+  <% end %>
+
+  <%if question.multiple_answer && (question.answers.index( answer ) == question.answers.length - 1) %>
+    </div>
+  <%end%>
+<% end %>

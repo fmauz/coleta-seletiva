@@ -1,0 +1,21 @@
+<h1><%= I18n.t("resource.#{@county.class.name.downcase}")%></h1>
+
+<%= flash_notice_render %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @county.name %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @county.code %>
+</p>
+
+<p>
+  <strong>Cnpj:</strong>
+  <%= @county.cnpj %>
+</p>
+
+<%= link_to 'Editar', edit_admin_county_path(@county), class: "btn btn-lg btn-warning" %> ou
+<%= link_to 'voltar', admin_counties_path %>

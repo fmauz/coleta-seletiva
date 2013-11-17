@@ -72,6 +72,6 @@ class Admin::AnswersController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.require(:answer).permit(:answer_type_id, :placeholder, :label_text, :help_block, answer_collections_attributes: [ :text, :value, :_destroy ])
+      params.require(:answer).permit(:answer_type_id, :placeholder, :label_text, :help_block, :css_class, :disabled, :query_string, :element_ajax, :ajax_url, answer_collections_attributes: [ :text, :value, :_destroy ])
     end
 end

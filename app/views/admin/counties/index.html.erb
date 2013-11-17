@@ -1,0 +1,34 @@
+<h1>Listagem de <%= I18n.t("resource.county")%>s </h1>
+
+<%= button_to_new new_admin_county_path %>
+
+<%= flash_notice_render %>
+
+<table class="table table-hover table-bordered <%= "hide" if @counties.empty? %>">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Código</th>
+      <th>Nome</th>
+      <th>CNPJ</th>
+      <th class="table-action"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @counties.each do |county| %>
+      <tr>
+        <td><%= county.id %></td>
+        <td><%= county.code %></td>
+        <td><%= county.name %></td>
+        <td><%= county.cnpj %></td>
+        <td>
+          <%= link_to '', [ :admin, county], class: "glyphicon glyphicon-eye-open table-icon" %>
+          <%= link_to '', edit_admin_county_path(county), class: "glyphicon glyphicon-pencil table-icon" %>
+          <%= link_to '', [ :admin, county ], method: :delete, data: { confirm: 'Tem certeza?' }, class: "glyphicon glyphicon-remove-circle table-icon table-remove" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= empty_array_message @counties %>

@@ -7,17 +7,40 @@
  *
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
- *
+*/
+
+/*
  *= require bootstrap
  *= require bootstrap-theme
  *= require bootstrap-responsive
  *= require clearfix
  *= require_self
- */
+*/
 
- body {
-  padding-top: 50px;
+@media all{
+  body {
+    padding-top:50px;
+  }
 }
+
+@media (max-width: 979px){
+  body{
+    padding-top: 0px;
+  }
+
+  .navbar-brand {
+    padding-left:50px;
+  }
+
+  .navbar-nav li {
+    padding-left:40px;
+  }
+
+  .login { 
+    padding-top:50px;
+  }
+}
+
 
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -32,6 +55,8 @@
 .table-icon:hover { text-decoration: none; }
 .table-margin { margin-top:10px;}
 .margin-bottom { margin-bottom: 10px;}
+.multiple { border-bottom:solid 1px #e5e5e5; padding-bottom:10px; }
+
 .cb {
   display: block;
   text-align: center;
@@ -40,7 +65,11 @@
 .add-remove-icon,
 .add-remove-icon:hover { font-size: 30px;  color:#c00; text-decoration: none}
 
-.section-question h2 { background: #aa9955; padding:10px;}
-.section-question h2 small { color:#FFF; }
+.section-question h3 { background: #aa9955; padding:10px;}
+.section-question h3 small { color:#FFF; }
 
 .has-error h4 { color: #b94a48; }
+.marginTop { margin-top:10px; }
+
+input.error { border-color:#cc0000;}
+label.error { display: none !important;}

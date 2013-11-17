@@ -1,0 +1,51 @@
+<%= form_tag new_card_path, method: "get", role: "form", class: "form-horizontal tab-content" do |f| %>
+
+<fieldset class="tab-pane active">
+  <legend></legend>
+  <div class="form-group">
+    <%= label_tag :county_id, "Municipio", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= select_tag :county_code, options_from_collection_for_select( @counties, "code", "name" ), class: "form-control" %>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset class="tab-pane">
+  <legend></legend>
+  <div class="form-group">
+    <%= label_tag :year, "Ano", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= select_tag :year, options_for_select( ["2013","2014"] ), class: "form-control" %>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset class="tab-pane">
+  <legend></legend>
+  <div class="form-group">
+    <%= label_tag :survey_id, "Formulário", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= select_tag :survey_id, options_from_collection_for_select( @surveys, "id", "name" ), class: "form-control" %>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset class="tab-pane">
+  <legend></legend>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-success btn-lg">Ver instrumentos de coleta</button>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend></legend>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <a href='#' class="btn btn-link btn-lg disabled prevTab">Anterior</a>
+      <a href='#' class="btn btn-link btn-lg nextTab" >Próximo</a>
+    </div>
+  </div>
+</fieldset>
+<% end %>

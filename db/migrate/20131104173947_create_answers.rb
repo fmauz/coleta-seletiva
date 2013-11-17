@@ -6,7 +6,17 @@ class CreateAnswers < ActiveRecord::Migration
       t.string :placeholder
       t.string :label_text
       t.string :help_block
+      
+      t.string :css_class
+      t.string :query_string
+      t.string :element_ajax
+      t.string :ajax_url
 
+      t.boolean :required, :default => false
+      t.integer :min_length, :default => 1
+      t.integer :max_length, :default => 25
+      
+      t.boolean :disabled
       t.timestamps
     end
   end

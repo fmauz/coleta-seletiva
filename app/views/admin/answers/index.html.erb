@@ -10,6 +10,7 @@
       <th>Id</th>
       <th>Tipo</th>
       <th>Label</th>
+      <th>Placeholder</th>
       <th class="table-action"></th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <td><%= answer.id %></td>
         <td><%= answer.answer_type.name %></td>
         <td><%= answer.label_text %></td>
+        <td><%= answer.placeholder %></td>
         <td>
           <%= link_to '', [ :admin, @survey, @section, @question, answer], class: "glyphicon glyphicon-eye-open table-icon" %>
           <%= link_to '', edit_admin_survey_section_question_answer_path(@survey, @section, @question, answer), class: "glyphicon glyphicon-pencil table-icon" %>

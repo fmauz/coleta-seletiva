@@ -4,7 +4,12 @@ describe Answer do
   it { should respond_to :help_block }
   it { should respond_to :placeholder }
   it { should respond_to :label_text }
-
+  it { should respond_to :css_class }
+  it { should respond_to :query_string }
+  it { should respond_to :element_ajax }
+  it { should respond_to :ajax_url }
+  it { should respond_to :disabled }
+  
   it { should belong_to :question }
   it { should belong_to :answer_type }
 

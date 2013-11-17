@@ -56,6 +56,6 @@ class Admin::SurveysController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit(:name)
+      params.require(:survey).permit( :name, :disabled )
     end
 end

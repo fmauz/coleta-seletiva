@@ -1,0 +1,56 @@
+
+<%= form_for( @card, html: { role: "form", class: "form-horizontal", "validate-form" => "" } ) do |f| %>
+
+<div class="alert alert-danger hide error">
+      <span class="glyphicon glyphicon-warning-sign"></span>
+
+      <span></span>.<br clear="all" />
+    </div>
+
+  <%= f.object.errors.full_messages.join("<br />").html_safe %>
+  <%= f.hidden_field :county_id %>
+  <%= f.hidden_field :survey_id %>
+  <%= f.hidden_field :year %>
+  
+  <% @card.sections_decorated.each do |section| %>
+    <%= section.title %>
+
+    <% section.questions_decorated.each do |question| %>
+
+      <div class="cf <%= question.css_class %>">
+        <%unless question.multiple_answer %>
+        <h4><%= question.code%>. <%= question.content %></h4>
+        <% end %>
+        
+        <% if question.multiple_answer %>
+          <div id="card_questions">
+        <%end%>
+
+          <%= f.fields_for :card_questions, CardQuestion.new do |cq|%>
+            <%= render :partial => "card_question_fields", :locals => { :f => cq, :question => question } %>
+          <% end %>
+
+        <% if question.multiple_answer %>
+          </div>
+        <% end %>
+
+        <% if question.multiple_answer %>
+          <%= link_to_add_fields_custom "Adicionar", { :f => f, :question => question }, :card_questions, class: "btn btn-lg btn-info margin-bottom" %>
+        <% end %>
+
+      </div>
+
+    <% end %>
+
+  <% end %>
+
+
+  <fieldset class="marginTop">
+  <legend></legend>
+  <div class="form-group">
+    <div class="col-sm-offset-10 col-sm-2">
+      <button type="submit" class="btn btn-success btn-lg">Salvar</button>
+    </div>
+  </div>
+</fieldset>
+<% end %>

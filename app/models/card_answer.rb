@@ -4,6 +4,5 @@ class CardAnswer < ActiveRecord::Base
 
   validates :value,
             :answer,
-            :card_question,
             :presence => true
 end
