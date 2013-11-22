@@ -56,6 +56,8 @@ gem 'will_paginate'
 
 group :development do
   gem 'heroku'
+  gem 'taps'
+  gem 'sqlite3'
 end
 
 group :test do
@@ -63,9 +65,10 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
+  gem 'pg'
+  gem 'mysql'
 end
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end

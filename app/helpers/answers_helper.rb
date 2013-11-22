@@ -41,7 +41,8 @@ module AnswersHelper
   def render_radios( answer, f, options )
     answer.answer_collections.map{|ac|
         ("<div class='radio'>" + 
-                      ("<label>" + 
+                      ("<label>" +
+                        f.hidden_field(:answer_id, value: answer.id ) +
                         f.radio_button(:value, ac.value) + ac.text + 
                         "</label>").html_safe +
                     "</div>").html_safe
@@ -53,6 +54,7 @@ module AnswersHelper
       f.fields_for :card_answers, CardAnswer.new do |fa|
         ("<div class='checkbox'>" + 
                       ("<label>" + 
+                        fa.hidden_field(:answer_id, value: answer.id ) +
                         fa.check_box(:value, {}, ac.value, "") + ac.text + 
                         "</label>").html_safe +
                     "</div>").html_safe

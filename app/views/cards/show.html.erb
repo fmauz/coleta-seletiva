@@ -1,4 +1,17 @@
-<h1><%= @card.survey.name %></h1>
+<div class="cb">
+
+<h1>
+  <%= @card.survey.name %>
+</h1>
+
+  <div class="infos">
+    <span>Ano: <%= @card.year%> - </span>
+    <% unless @card.month.blank? %>
+    <span>Mês: <%= t("date.month_names")[ @card.month.to_i]%> - </span>
+    <% end %>
+    <span><%= @card.county.name%></span>
+  </div>
+</div>
 
 <%section = nil%>
 
@@ -23,11 +36,19 @@
       <div class="<%= ca.answer.css_class %>">
         <% value = nil%>
         <%if ca.answer.answer_collections.length > 0 %>
-          <% value = ca.answer.answer_collections.select{|a| a.value == ca.value }.first.text %>
+          <% obj = ca.answer.answer_collections.select{|a| a.value == ca.value }%>
+          <%if obj.length > 0%>
+          <ul class="marginTop">
+            <%obj.each do |o|%>
+              <li><%= o.text  %></li>
+            <%end%>
+          </ul>
+          <%end%>
         <%else%>
           <% value = ca.value %>
+          <input type="text" value="<%= value%>" class="form-control" readonly="readonly" />
         <%end%>
-        <input type="text" value="<%= value%>" class="form-control" readonly="readonly" />
+        
       </div>
 
     <%if cq.question.multiple_answer && (cq.card_answers.index( ca ) == cq.card_answers.length - 1) %>
@@ -41,5 +62,5 @@
 <% end %>
 
 <div class="cf marginTop">
-  <a href="<%= cards_path %>" class="btn btn-lg btn-info">Inserir Novo</a>
+  <a href="<%= cards_path %>" class="btn btn-lg btn-info marginTop">Inserir Novo</a> <a href="<%= root_path%>" class="btn btn-lg marginTop">Voltar</a>
 </div>

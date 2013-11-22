@@ -35,6 +35,10 @@
     <%= yield %>
   </div><!-- /.container -->
 
+  <div class="footer cb">
+    <%= DateTime.now.year%>
+  </div>
+
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= yield :scripts %>
 </body>
