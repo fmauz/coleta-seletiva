@@ -29,6 +29,12 @@ class CardsController < ApplicationController
     respond_with( @card )
   end
 
+  def destroy
+    @card = Card.find( params[:id] )
+    @card.destroy
+    respond_with( @card )
+  end
+
   def verify
     year = params[:year].to_i
     month = params[:month].to_i
