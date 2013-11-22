@@ -9,7 +9,8 @@
     <% unless @card.month.blank? %>
     <span>Mês: <%= t("date.month_names")[ @card.month.to_i]%> - </span>
     <% end %>
-    <span><%= @card.county.name%></span>
+    <span><%= @card.county.name%> - </span>
+    <span><%= @card.person.name%></span>
   </div>
 </div>
 
