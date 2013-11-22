@@ -9,6 +9,17 @@
       <a class="navbar-brand" href="<%= admin_root_path %>">Coleta Seletiva</a>
     </div>
 
-    <%= render "admin/shared/navbar" %>
+    <% if current_user.is_dev? %>
+      <%= render "admin/shared/navbar" %>
+    <% else %>
+      <div class="collapse navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="<%= cards_path %>">Formulários</a></li>
+          <li class="">
+            <%= link_to "Sair", destroy_user_session_path, method: :delete %>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    <% end %>
   </div>
 </div>

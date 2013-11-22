@@ -51,6 +51,8 @@ gem 'responders'
 
 gem 'active_decorator'
 
+gem 'will_paginate'
+
 group :test do
   gem 'pry'
   gem 'rspec-rails'

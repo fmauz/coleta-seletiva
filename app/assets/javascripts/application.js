@@ -107,7 +107,9 @@ $(function(){
       self.addClass("disabled");
 
     if( tabPanel.next(".tab-pane").length == 0 )
-      self.addClass("disabled")
+      self.addClass("disabled");
+
+    self.trigger("shown.bs.tab", { target: tabPanel } );
   })
 
   $("a.nextTab").click(function(evt){
@@ -122,6 +124,8 @@ $(function(){
 
     if( tabPanel.next(".tab-pane").length == 0 )
       self.addClass("disabled")
+
+    self.trigger("shown.bs.tab", { target: tabPanel } );
   });
 
 })

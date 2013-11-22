@@ -1,0 +1,36 @@
+<%content_for :title do%>
+  <h1>Listagem de <%= I18n.t("resource.user")%>s </h1>
+<%end%>
+
+<%= button_to_new new_admin_user_path %>
+
+<%= flash_notice_render %>
+
+<table class="table table-hover table-bordered <%= "hide" if @users.empty? %>">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th class="table-action"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.person.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.role.name %></td>
+        <td>
+          <%= link_to '', [ :admin, user], class: "glyphicon glyphicon-eye-open table-icon" %>
+          <%= link_to '', edit_admin_user_path(user), class: "glyphicon glyphicon-pencil table-icon" %>
+          <%= link_to '', [ :admin, user ], method: :delete, data: { confirm: 'Tem certeza?' }, class: "glyphicon glyphicon-remove-circle table-icon table-remove" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= empty_array_message @users %>

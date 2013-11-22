@@ -1,4 +1,6 @@
+<%content_for :title do%>
 <h1>Listagem de <%= I18n.t("resource.question")%>s </h1>
+<%end%>
 
 <%= button_to_new new_admin_survey_section_question_path( @survey, @section ) %>
 

@@ -7,5 +7,6 @@ class CreateRoles < ActiveRecord::Migration
     end
 
     Role.create( name: "Desenvolvedor" )
+    Role.create( name: "Entrevistador" )
   end
 end

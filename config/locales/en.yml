@@ -4,6 +4,7 @@ en:
   hello: "Hello world"
 
   resource:
+    user: "Usuário"
     survey: "Formulário"
     section: "Seção"
     question: "Pergunta"

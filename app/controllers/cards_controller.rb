@@ -1,10 +1,12 @@
 class CardsController < ApplicationController
   self.responder = AppResponder
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @counties = County.all
     @surveys = Survey.all
+    @cards = ( current_user.is_dev? ? Card.all : current_person.cards )
+    @cards = @cards.paginate :per_page => 10, :page => params[:page]
   end
 
   def new
@@ -22,14 +24,25 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new( card_params )
-    @card.person = Person.first
+    @card.person = current_person
     @card.save
     respond_with( @card )
   end
 
+  def verify
+    year = params[:year].to_i
+    month = params[:month].to_i
+    
+    county = County.where( :code => params[:county_code] ).first
+    survey = Survey.find( params[:survey_id].to_i )
+
+    
+    render( :json => survey.available_to_fill?( year, month, county ) )
+  end
+
   private
     def card_params
-      params.require(:card).permit( :year, :survey_id, :county_id, card_questions_attributes: [ :question_id, card_answers_attributes: [ :answer_id, :value ]] )
+      params.require(:card).permit( :year, :month, :survey_id, :county_id, card_questions_attributes: [ :question_id, card_answers_attributes: [ :answer_id, :value ]] )
     end
 
 end

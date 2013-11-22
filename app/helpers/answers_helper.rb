@@ -34,7 +34,8 @@ module AnswersHelper
   end
 
   def render_input( answer, f, options )
-    f.text_field :value, {class: "form-control", placeholder: answer.placeholder, readonly: answer.disabled }.merge!(options)
+    (( answer.label_text.blank? ? "" : f.label(:value, answer.label_text) ) +
+    f.text_field(:value, {class: "form-control", placeholder: answer.placeholder, readonly: answer.disabled }.merge!(options) )).html_safe
   end
 
   def render_radios( answer, f, options )

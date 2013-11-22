@@ -1,0 +1,20 @@
+<%content_for :title do%>
+<h1><%= I18n.t("resource.#{@user.class.name.downcase}")%></h1>
+<%end%>
+
+<%= flash_notice_render %>
+
+<p>
+  <strong>Nome:</strong> <%= @user.person.name %>
+</p>
+
+<p>
+  <strong>Email:</strong> <%= @user.email %>
+</p>
+
+<p>
+  <strong>Grupo:</strong> <%= @user.role.name %>
+</p>
+
+<%= link_to 'Editar', edit_admin_user_path(@user), class: "btn btn-lg btn-warning" %> ou
+<%= link_to 'voltar', admin_users_path %>

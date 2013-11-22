@@ -1,0 +1,33 @@
+<ol class="breadcrumb">
+  <%if current_user.is_dev?%>
+    <li><a href="<%= admin_root_path %>">Home</a></li>
+
+    <%if !@survey.nil? || !@surveys.nil? %>
+    <li><a href="<%= admin_surveys_path %>">Formulários</a></li>
+    <%end%>
+
+    <%unless @survey.nil? %>
+    <li><a href="<%= admin_survey_path( @survey ) %>"><%= @survey.name %></a></li>
+    <%end%>
+
+    <%if !@section.nil? || !@sections.nil? %>
+    <li><a href="<%= admin_survey_sections_path( @survey ) %>">Seções</a></li>
+    <%end%>
+
+    <% unless @section.nil? %>
+      <li><a href="<%= admin_survey_section_path( @survey, @section ) %>"><%= @section.name%></a></li>
+    <%end%>
+
+    <%if !@question.nil? || !@questions.nil? %>
+    <li><a href="<%= admin_survey_section_questions_path( @survey, @section ) %>">Perguntas</a></li>
+    <%end%>
+
+    <% unless @question.nil? %>
+      <li><a href="<%= admin_survey_section_question_path( @survey, @section, @question ) %>"><%= @question.code%></a></li>
+
+      <li><a href="<%= admin_survey_section_question_answers_path( @survey, @section, @question ) %>">Respostas</a></li>
+    <%end%>
+  <%else%>
+    <li><a href="<%= root_path %>">Home</a></li>
+  <%end%>
+</ol>

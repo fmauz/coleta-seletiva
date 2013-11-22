@@ -5,7 +5,7 @@ class Admin::SurveysController < Admin::AdminController
   # GET /surveys
   # GET /surveys.json
   def index
-    @surveys = Survey.all
+    @surveys = Survey.unscoped.all
     respond_with( @surveys )
   end
 
@@ -51,11 +51,11 @@ class Admin::SurveysController < Admin::AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_survey
-      @survey = Survey.find(params[:id])
+      @survey = Survey.unscoped.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit( :name, :disabled )
+      params.require(:survey).permit( :name, :form_type, :disabled )
     end
 end

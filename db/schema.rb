@@ -39,6 +39,10 @@ ActiveRecord::Schema.define(version: 20131105164542) do
     t.string   "query_string"
     t.string   "element_ajax"
     t.string   "ajax_url"
+    t.boolean  "required",       default: false
+    t.integer  "min_length",     default: 1
+    t.integer  "max_length",     default: 25
+    t.boolean  "disabled"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -68,6 +72,7 @@ ActiveRecord::Schema.define(version: 20131105164542) do
   add_index "card_questions", ["question_id"], name: "index_card_questions_on_question_id", using: :btree
 
   create_table "cards", force: true do |t|
+    t.string   "year"
     t.integer  "survey_id"
     t.integer  "person_id"
     t.integer  "county_id"
@@ -126,6 +131,7 @@ ActiveRecord::Schema.define(version: 20131105164542) do
 
   create_table "surveys", force: true do |t|
     t.string   "name"
+    t.boolean  "disabled",   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

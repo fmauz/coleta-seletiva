@@ -23,9 +23,9 @@
 <fieldset class="tab-pane">
   <legend></legend>
   <div class="form-group">
-    <%= label_tag :survey_id, "Formulário", class: "col-sm-2 control-label" %>
+    <%= label_tag :month, "Mês", class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= select_tag :survey_id, options_from_collection_for_select( @surveys, "id", "name" ), class: "form-control" %>
+      <%= select_tag :month, options_for_select( t("date.month_names") ), class: "form-control" %>
     </div>
   </div>
 </fieldset>
@@ -33,8 +33,22 @@
 <fieldset class="tab-pane">
   <legend></legend>
   <div class="form-group">
+    <%= label_tag :survey_id, "Formulário", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= select_tag :survey_id, options_from_collection_for_select( @surveys, "id", "name" ), class: "form-control" %>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset class="tab-pane" id="instrumentos">
+  <legend></legend>
+  <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-success btn-lg">Ver instrumentos de coleta</button>
+      <button type="submit" class="btn btn-success btn-lg hide" id="message_btn">Ver instrumentos de coleta</button>
+
+      <div class="hide" id="message_card">
+        <span><%= t("date.month_names") %></span>
+      </div>
     </div>
   </div>
 </fieldset>
@@ -49,3 +63,29 @@
   </div>
 </fieldset>
 <% end %>
+
+<%=content_for :scripts do -%>
+  <script type="text/javascript">
+
+  $(function(){
+    $('.nextTab').on('shown.bs.tab', function (e, obj ) {
+      $("#message_card, #message_btn").addClass("hide");
+      if( obj.target.attr("id") == "instrumentos"){
+        $.ajax({
+          url: "<%= verify_cards_path( :format => :json) %>",
+          data: $(this).parents( "form" ).serialize(),
+          method: "get",
+          type: "json",
+          success: function( object ){
+            if( object.error ){
+              $("#message_card").removeClass("hide").html( object.message );
+            }else{
+              $("#message_btn").removeClass("hide");
+            }
+          }
+        }) 
+      }
+    });
+  })
+  </script>
+<%end%>

@@ -4,6 +4,8 @@ require 'net/http'
 role = Role.first
 user = role.users.build( email: "dev@inventae.com.br", password: "q1w2e3r4", password_confirmation: "q1w2e3r4" )
 raise Exception unless user.save
+person = Person.new( user: user, name: "Desenvolvimento" )
+raise Exception unless person.save
 
 # build counties
 uri = URI( "https://raw.github.com/fmauz/utils/master/seed_data/cidades.txt" )

@@ -26,9 +26,16 @@
   <% end %>
 
   <div class="container">
+    <%= yield :title %>
+    
+    <%unless current_user.nil? %>
+      <%= render "shared/breadcrumb" %>
+    <%end%>
+
     <%= yield %>
   </div><!-- /.container -->
 
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= yield :scripts %>
 </body>
 </html>

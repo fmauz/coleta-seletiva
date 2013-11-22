@@ -1,0 +1,5 @@
+<%content_for :title do%>
+<h1>Editar <%= I18n.t("resource.#{@user.class.name.downcase}")%></h1>
+<%end%>
+
+<%= render 'form' %>

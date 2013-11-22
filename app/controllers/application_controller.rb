@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource_or_scope)
     cards_path
   end
+
+  def current_person
+    current_user.person
+  end
 end
