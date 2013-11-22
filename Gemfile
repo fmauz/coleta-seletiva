@@ -53,9 +53,18 @@ gem 'active_decorator'
 
 gem 'will_paginate'
 
+
+group :development do
+  gem 'heroku'
+end
+
 group :test do
   gem 'pry'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
+end
+
+group :production do
+  gem 'pg'
 end
