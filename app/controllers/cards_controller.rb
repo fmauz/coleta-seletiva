@@ -11,7 +11,7 @@ class CardsController < ApplicationController
 
   def new
     @card = Card.new
-    @card.county = County.where( name: params[:county_code].upcase ).first
+    @card.county = County.where( name: I18n.transliterate( params[:county_code] ).upcase ).first
     @card.survey = Survey.find( params[:survey_id] )
     @card.year = params[:year]
     respond_with( @card )
@@ -44,7 +44,7 @@ class CardsController < ApplicationController
     year = params[:year].to_i
     month = params[:month].to_i
     
-    county = County.where( :name => params[:county_code].upcase ).first
+    county = County.where( :name => I18n.transliterate( params[:county_code] ).upcase ).first
     survey = Survey.find( params[:survey_id].to_i )
 
     
