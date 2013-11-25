@@ -1,7 +1,7 @@
 ColetaSeletiva::Application.routes.draw do
 
   resources :counties, only: [ :index ]
-  resources :cards, only: [ :index, :new, :create, :show, :destroy ] do
+  resources :cards do
     collection do
       get "verify"
     end

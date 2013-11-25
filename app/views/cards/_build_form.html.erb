@@ -2,12 +2,8 @@
 
 <fieldset class="tab-pane active">
   <legend></legend>
-  <div class="form-group">
-    <%= label_tag :county_id, "Municipio", class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= select_tag :county_code, options_from_collection_for_select( @counties, "code", "name" ), class: "form-control" %>
-    </div>
-  </div>
+  <div id="map" class="mapField"></div>
+  <%= hidden_field_tag :county_code, "", :class => "county_name" %>
 </fieldset>
 
 <fieldset class="tab-pane">
@@ -58,7 +54,7 @@
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <a href='#' class="btn btn-link btn-lg disabled prevTab">Anterior</a>
-      <a href='#' class="btn btn-link btn-lg nextTab" >Próximo</a>
+      <a href='#' class="btn btn-link btn-lg disabled nextTab" >Próximo</a>
     </div>
   </div>
 </fieldset>

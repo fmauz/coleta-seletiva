@@ -17,6 +17,8 @@ class CreateAnswers < ActiveRecord::Migration
       t.integer :max_length, :default => 25
       
       t.boolean :disabled
+      t.boolean :number_only
+      t.boolean :currency_only
       t.timestamps
     end
   end

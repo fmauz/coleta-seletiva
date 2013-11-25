@@ -7,7 +7,6 @@
       <span></span>.<br clear="all" />
     </div>
 
-  <%= f.object.errors.full_messages.join("<br />").html_safe %>
   <%= f.hidden_field :county_id %>
   <%= f.hidden_field :survey_id %>
   <%= f.hidden_field :year %>
@@ -16,8 +15,7 @@
     <%= section.title %>
 
     <% section.questions_decorated.each do |question| %>
-
-      <div class="cf <%= question.css_class %>">
+      <div data-question="<%= question.code %>" class="<%= question.css_class %>">
         <%unless question.multiple_answer %>
         <h4><%= question.code%>. <%= question.content %></h4>
         <% end %>
@@ -39,6 +37,10 @@
         <% end %>
 
       </div>
+
+      <% if question.clear_question %>
+        <div class="cf">&nbsp;</div>
+      <% end %>
 
     <% end %>
 

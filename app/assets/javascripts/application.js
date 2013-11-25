@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require jquery.validate.min
+//= require jquery.mask.min
 
 function remove_fields(link) {
   $(link).siblings("input[type=hidden]").val("1");
@@ -128,4 +129,33 @@ $(function(){
     self.trigger("shown.bs.tab", { target: tabPanel } );
   });
 
-})
+  $( "[data-number-only]" ).each(function(){
+    var self = $(this);
+    self.mask("999999999999999999"), {reverse: true, maxlength: false}
+  });
+
+  $( "[data-currency-only]" ).each(function(){
+    var self = $( this );
+    self.mask('#.##0,00', {reverse: true, maxlength: false});
+  });
+
+});
+
+
+function show( code ){
+  find_question( code ).removeClass( "hide" );
+}
+
+function hide( code ){
+  obj = find_question( code );
+  // obj.siblings("[class='cf']").addClass("hide");
+  obj.addClass( "hide" );
+}
+
+function setFocus( code ){
+  find_question( code ).find("input").focus();
+}
+
+function find_question( code ){
+  return $("div[data-question='" + code +  "']");
+}

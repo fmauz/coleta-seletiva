@@ -7,7 +7,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.string :content
       t.string :help_block
       t.string :css_class
-
+      t.boolean :clear_question
       t.timestamps
     end
   end

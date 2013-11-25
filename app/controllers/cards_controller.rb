@@ -11,9 +11,14 @@ class CardsController < ApplicationController
 
   def new
     @card = Card.new
-    @card.county = County.where(code: params[:county_code] ).first
+    @card.county = County.where( name: params[:county_code] ).first
     @card.survey = Survey.find( params[:survey_id] )
     @card.year = params[:year]
+    respond_with( @card )
+  end
+
+  def edit
+    @card = Card.find( params[:id] )
     respond_with( @card )
   end
 
@@ -39,7 +44,7 @@ class CardsController < ApplicationController
     year = params[:year].to_i
     month = params[:month].to_i
     
-    county = County.where( :code => params[:county_code] ).first
+    county = County.where( :name => params[:county_code] ).first
     survey = Survey.find( params[:survey_id].to_i )
 
     

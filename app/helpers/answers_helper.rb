@@ -26,7 +26,15 @@ module AnswersHelper
     if answer.max_length
       options["maxlength"] = answer.max_length
     end
-    
+
+    if answer.number_only
+      options["data-number-only"] = true
+    end
+
+    if answer.currency_only
+      options["data-currency-only"] = true
+    end
+
     return render_input( answer, f, options ) if answer.answer_type.id == 1
     return render_checks( answer, fq, options ) if answer.answer_type.id == 2
     return render_radios( answer, f, options ) if answer.answer_type.id == 3
@@ -43,7 +51,7 @@ module AnswersHelper
         ("<div class='radio'>" + 
                       ("<label>" +
                         f.hidden_field(:answer_id, value: answer.id ) +
-                        f.radio_button(:value, ac.value) + ac.text + 
+                        f.radio_button(:value, ac.value, onchange: ac.event_js) + ac.text + 
                         "</label>").html_safe +
                     "</div>").html_safe
     }.join.html_safe
@@ -55,7 +63,7 @@ module AnswersHelper
         ("<div class='checkbox'>" + 
                       ("<label>" + 
                         fa.hidden_field(:answer_id, value: answer.id ) +
-                        fa.check_box(:value, {}, ac.value, "") + ac.text + 
+                        fa.check_box(:value, {}, ac.value, onchange: ac.event_js ) + ac.text + 
                         "</label>").html_safe +
                     "</div>").html_safe
       end
