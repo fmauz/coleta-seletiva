@@ -18,20 +18,84 @@
 
 <fieldset class="tab-pane">
   <legend></legend>
-  <div class="form-group">
-    <%= label_tag :month, "Mês", class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= select_tag :month, options_for_select( t("date.month_names") ), class: "form-control" %>
-    </div>
-  </div>
+
+  <ul>
+    <li>
+      <h4>Envio do Ofício pela Prefeitura</h4>
+    </li>
+
+    <li>
+      <h4>1° Visita ao Município</h4>
+      <ul>
+        <li><a href="#">Diagnóstico Inicial do Município</a></li>
+        <li><a href="#">Identificação das Cooperativas/Associações existentes no Município</a></li>
+        <li><a href="#">Identificação dos prédios públicos existentes no município</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <h4>1° Visita as Cooperativas/Associações</h4>
+      <ul>
+        <li><a href="#">Diagnóstico Inicial da Cooperativa/Associação</a></li>
+        <li><a href="#">Dados de pessoal da Cooperativa/ Associação</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <h4>1° Levantamento dos Catadores de Cooperativas/ Associação</h4>
+      <ul>
+        <li><a href="#">Diagnóstico Inicial dos Catadores de Cooperativa/Associação</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <h4>1° Levantamento dos Catadores de Cooperativas/ Associação</h4>
+      <ul>
+        <li><a href="#">Diagnóstico Inicial dos Catadores de Cooperativa/Associação</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <h4>￼AÇÕES / ATIVIDADES DO PROGRAMA</h4>
+    </li>
+
+    <li>
+      <h4>LEVANTAMENTOS DE DADOS</h4>
+      <ul>
+        <li><a href="#">1° Levantamento das Escolas Públicas</a></li>
+        <li><a href="#">1° Levantamento dos Órgãos Públicos</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <h4>COLETA DE DADOS MENSAL</h4>
+      <ul>
+        <li><a href="#">Coleta de dados mensais da Cooperativa/Associação</a></li>
+        <li><a href="#">Coleta de dados mensais do Município</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <h4>MONITORAMENTOS ANUAL</h4>
+      <ul>
+        <li><a href="#">Monitoramento Municipal</a></li>
+        <li><a href="#">Monitoramento da Cooperativa/Associação</a></li>
+        <li><a href="#">Monitoramento do Catador de Cooperativa/ Associação</a></li>
+        <li><a href="#">Monitoramento da Escola Pública</a></li>
+        <li><a href="#">Monitoramento do Órgão Público</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <%= hidden_field_tag :survey_id, "1" %>
 </fieldset>
 
 <fieldset class="tab-pane">
   <legend></legend>
   <div class="form-group">
-    <%= label_tag :survey_id, "Formulário", class: "col-sm-2 control-label" %>
+    <%= label_tag :month, "Mês", class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= select_tag :survey_id, options_from_collection_for_select( @surveys, "id", "name" ), class: "form-control" %>
+      <%= select_tag :month, options_for_select( t("date.month_names") ), class: "form-control" %>
     </div>
   </div>
 </fieldset>
