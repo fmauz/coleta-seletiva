@@ -1,0 +1,28 @@
+<%content_for :title do%>
+<h1>Município</h1>
+<%end%>
+
+<%= flash_notice_render %>
+
+<p>
+  <strong>Nome:</strong> <%= @oficio_prefeitura.name %>
+</p>
+
+<p>
+  <strong>Descrição:</strong> <%= @oficio_prefeitura.description %>
+</p>
+
+<p>
+  <strong>Data do Registro:</strong> <%= l @oficio_prefeitura.data_registro %>
+</p>
+
+<p>
+  <strong>Nome do Responsável:</strong> <%= @oficio_prefeitura.name_resp %>
+</p>
+
+<p>
+  <strong>Município:</strong> <%= @oficio_prefeitura.county.name %>
+</p>
+
+<%= link_to 'Editar', edit_admin_oficio_prefeitura_path(@oficio_prefeitura), class: "btn btn-lg btn-warning" %> ou
+<%= link_to 'voltar', admin_oficio_prefeituras_path %>

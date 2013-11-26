@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131105164542) do
+ActiveRecord::Schema.define(version: 20131125230247) do
 
   create_table "answer_collections", force: true do |t|
     t.integer  "answer_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20131105164542) do
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "event_js"
   end
 
   add_index "answer_collections", ["answer_id"], name: "index_answer_collections_on_answer_id", using: :btree
@@ -45,6 +46,8 @@ ActiveRecord::Schema.define(version: 20131105164542) do
     t.boolean  "disabled"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "number_only"
+    t.boolean  "currency_only"
   end
 
   add_index "answers", ["answer_type_id"], name: "index_answers_on_answer_type_id", using: :btree
@@ -78,6 +81,7 @@ ActiveRecord::Schema.define(version: 20131105164542) do
     t.integer  "county_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "month"
   end
 
   add_index "cards", ["county_id"], name: "index_cards_on_county_id", using: :btree
@@ -90,12 +94,41 @@ ActiveRecord::Schema.define(version: 20131105164542) do
     t.string   "cnpj"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "logradouro_prefeitura"
+    t.string   "numero_prefeitura"
+    t.string   "complemento_prefeitura"
+    t.string   "bairro_prefeitura"
+    t.string   "populacao_total_municipio"
+    t.string   "populacao_urbana"
+    t.string   "extensao_territorial"
+    t.string   "indice_destinacao"
+    t.string   "n_bairros"
+  end
+
+  create_table "form_sections", force: true do |t|
+    t.string   "name"
+    t.integer  "form_section_id"
+    t.string   "order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "form_sections", ["form_section_id"], name: "index_form_sections_on_form_section_id", using: :btree
+
+  create_table "oficio_prefeituras", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.date     "data_registro"
+    t.string   "name_resp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "people", force: true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   add_index "people", ["user_id"], name: "index_people_on_user_id", using: :btree
@@ -109,6 +142,7 @@ ActiveRecord::Schema.define(version: 20131105164542) do
     t.string   "css_class"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "clear_question"
   end
 
   add_index "questions", ["section_id"], name: "index_questions_on_section_id", using: :btree
@@ -134,6 +168,7 @@ ActiveRecord::Schema.define(version: 20131105164542) do
     t.boolean  "disabled",   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "form_type"
   end
 
   create_table "users", force: true do |t|

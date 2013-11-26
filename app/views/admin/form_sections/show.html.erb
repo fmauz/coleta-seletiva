@@ -1,0 +1,25 @@
+<%content_for :title do%>
+<h1>Fase</h1>
+<%end%>
+
+<%= flash_notice_render %>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @form_section.name %>
+</p>
+
+<%if @form_section.form_section%>
+<p>
+  <strong>Dependencia:</strong>
+  <%= @form_section.form_section.name %>
+</p>
+<%end%>
+
+<p>
+  <strong>Ordem:</strong>
+  <%= @form_section.order %>
+</p>
+
+<%= link_to 'Editar', edit_admin_form_section_path(@form_section), class: "btn btn-lg btn-warning" %> ou
+<%= link_to 'voltar', admin_form_sections_path %>

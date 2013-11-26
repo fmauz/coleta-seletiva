@@ -14,6 +14,11 @@ class CardsController < ApplicationController
     @card.county = County.where( name: I18n.transliterate( params[:county_code] ).upcase ).first
     @card.survey = Survey.find( params[:survey_id] )
     @card.year = params[:year]
+    
+    if @card.survey.uniq_month?
+      @card.month = params[:month]
+    end
+
     respond_with( @card )
   end
 
@@ -38,6 +43,16 @@ class CardsController < ApplicationController
     @card = Card.find( params[:id] )
     @card.destroy
     respond_with( @card )
+  end
+
+  def form_section
+    @form_sections = FormSection.all
+    @county = County.where( :name => I18n.transliterate( params[:county_code] ).upcase ).first
+    @year = params[:year].to_i
+
+    @oficio = OficioPrefeitura.where( county_id: @county.id ).count == 1
+
+    render :partial => "cards/form_section"
   end
 
   def verify

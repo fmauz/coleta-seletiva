@@ -16,86 +16,20 @@
   </div>
 </fieldset>
 
-<fieldset class="tab-pane">
+<fieldset class="tab-pane" id="form_section">
   <legend></legend>
+  <div id="content">
 
-  <ul>
-    <li>
-      <h4>Envio do Ofício pela Prefeitura</h4>
-    </li>
-
-    <li>
-      <h4>1° Visita ao Município</h4>
-      <ul>
-        <li><a href="#">Diagnóstico Inicial do Município</a></li>
-        <li><a href="#">Identificação das Cooperativas/Associações existentes no Município</a></li>
-        <li><a href="#">Identificação dos prédios públicos existentes no município</a></li>
-      </ul>
-    </li>
-
-    <li>
-      <h4>1° Visita as Cooperativas/Associações</h4>
-      <ul>
-        <li><a href="#">Diagnóstico Inicial da Cooperativa/Associação</a></li>
-        <li><a href="#">Dados de pessoal da Cooperativa/ Associação</a></li>
-      </ul>
-    </li>
-
-    <li>
-      <h4>1° Levantamento dos Catadores de Cooperativas/ Associação</h4>
-      <ul>
-        <li><a href="#">Diagnóstico Inicial dos Catadores de Cooperativa/Associação</a></li>
-      </ul>
-    </li>
-
-    <li>
-      <h4>1° Levantamento dos Catadores de Cooperativas/ Associação</h4>
-      <ul>
-        <li><a href="#">Diagnóstico Inicial dos Catadores de Cooperativa/Associação</a></li>
-      </ul>
-    </li>
-
-    <li>
-      <h4>￼AÇÕES / ATIVIDADES DO PROGRAMA</h4>
-    </li>
-
-    <li>
-      <h4>LEVANTAMENTOS DE DADOS</h4>
-      <ul>
-        <li><a href="#">1° Levantamento das Escolas Públicas</a></li>
-        <li><a href="#">1° Levantamento dos Órgãos Públicos</a></li>
-      </ul>
-    </li>
-
-    <li>
-      <h4>COLETA DE DADOS MENSAL</h4>
-      <ul>
-        <li><a href="#">Coleta de dados mensais da Cooperativa/Associação</a></li>
-        <li><a href="#">Coleta de dados mensais do Município</a></li>
-      </ul>
-    </li>
-
-    <li>
-      <h4>MONITORAMENTOS ANUAL</h4>
-      <ul>
-        <li><a href="#">Monitoramento Municipal</a></li>
-        <li><a href="#">Monitoramento da Cooperativa/Associação</a></li>
-        <li><a href="#">Monitoramento do Catador de Cooperativa/ Associação</a></li>
-        <li><a href="#">Monitoramento da Escola Pública</a></li>
-        <li><a href="#">Monitoramento do Órgão Público</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <%= hidden_field_tag :survey_id, "1" %>
+  </div>
+  <%= hidden_field_tag :survey_id, nil, { class: "survey_field" } %>
 </fieldset>
 
-<fieldset class="tab-pane">
+<fieldset class="tab-pane" id="dates">
   <legend></legend>
   <div class="form-group">
     <%= label_tag :month, "Mês", class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= select_tag :month, options_for_select( t("date.month_names") ), class: "form-control" %>
+      <%= select_tag :month, options_for_select( t("date.month_names").delete_if{|a| a.blank? }.each_with_index.map{|item,i| [ item, i+1 ] } ), class: "form-control" %>
     </div>
   </div>
 </fieldset>
@@ -104,7 +38,7 @@
   <legend></legend>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-success btn-lg hide" id="message_btn">Ver instrumentos de coleta</button>
+      <button type="submit" class="btn btn-success btn-lg hide" id="message_btn">Ver Instrumento de Coleta</button>
 
       <div class="hide" id="message_card">
         <span><%= t("date.month_names") %></span>
@@ -115,22 +49,54 @@
 
 <fieldset>
   <legend></legend>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <a href='#' class="btn btn-link btn-lg disabled prevTab">Anterior</a>
-      <a href='#' class="btn btn-link btn-lg disabled nextTab" >Próximo</a>
+    <div class="container">
+      <ul class="pager">
+        <li><a href="#" class="btn btn-link btn-lg disabled prevTab">Anterior</a></li>
+        <li><a href="#" class="btn btn-link btn-lg disabled nextTab">Próximo</a></li>
+      </ul>
     </div>
-  </div>
+
 </fieldset>
 <% end %>
 
 <%=content_for :scripts do -%>
+  <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+  <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+  <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
+  <script src="/geo.geojson"></script>
+  <script src="/map.js"></script>
   <script type="text/javascript">
 
+  function getFormSection(){
+
+  }
+
+  function verifyDates(obj){
+    if( $("[data-survey='" + $(".survey_field").val() + "']").data("month") != true ){
+          $("."+obj).trigger("click");
+        }
+  }
+
   $(function(){
+    $(".prevTab").on('shown.bs.tab', function (e, obj ) {
+      if ( obj.target.attr("id") == "dates") verifyDates("prevTab")
+    });
+
     $('.nextTab').on('shown.bs.tab', function (e, obj ) {
       $("#message_card, #message_btn").addClass("hide");
-      if( obj.target.attr("id") == "instrumentos"){
+      if( obj.target.attr("id") == "form_section"){
+        
+        $.ajax({
+          url: "<%= form_section_cards_path %>",
+          data: $(this).parents( "form" ).serialize(),
+          method: "get",
+          type: "html",
+          success: function( content ){
+            obj.target.find("#content").html( content );
+          }
+        }) 
+
+      } else if( obj.target.attr("id") == "instrumentos"){
         $.ajax({
           url: "<%= verify_cards_path( :format => :json) %>",
           data: $(this).parents( "form" ).serialize(),
@@ -144,7 +110,10 @@
             }
           }
         }) 
+      }else if ( obj.target.attr("id") == "dates"){
+        verifyDates("nextTab")
       }
+
     });
   })
   </script>

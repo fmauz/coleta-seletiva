@@ -1,0 +1,48 @@
+<div class="container">
+
+  <div class="panel <%=  @oficio == true ? "panel-success" : "panel-warning" %>">
+    <div class="panel-heading">
+      <h2 class="panel-title text-center">Envio do Ofício pela Prefeitura</h2>
+    </div>
+  </div>
+
+  <div class="text-center arrow-connect">
+    <i class="glyphicon glyphicon-arrow-down"></i>
+  </div>
+
+  <% @form_sections.each do |form_section|%>
+
+  <% sectionType = ( @oficio == true && form_section.available_to_fill?( @county ) ? "panel-warning" : "panel-default" ) %>
+  <% if sectionType == "panel-warning" %>
+    <% sectionType = (form_section.all_cards_fill?(@county) ? "panel-success" : "panel-warning" ) %>
+  <% end %>
+  <div class="panel <%= sectionType %>">
+    <div class="panel-heading">
+      <h3 class="panel-title <%= "text-muted" if sectionType == "panel-default"%> text-center"><%= form_section.name %></h3>
+    </div>
+    <%if form_section.surveys.count > 0%>
+    <div class="panel-body">
+      <ul>
+        <% form_section.surveys.all.each do |survey|%>
+        <li><a href="#" data-month="<%= survey.uniq_month?%>" data-survey="<%= survey.id%>" class="<%= "text-muted" if sectionType == "panel-default" || !survey.enable_to_fill?( @county, @year ) %>"><%= survey.name %></a></li>
+        <%end%>
+      </ul>
+    </div>
+    <% end %>
+  </div>
+
+    <% if @form_sections.index( form_section ) < @form_sections.length-1 %>
+    <div class="text-center arrow-connect">
+      <i class="glyphicon glyphicon-arrow-down"></i>
+    </div>
+    <% end %>
+  <%end%>
+</div>
+
+<script>
+$("[data-survey]").click(function(evt){
+  evt.preventDefault();
+  $(".survey_field").val( $(this).data("survey") );
+  $(".nextTab").removeClass("disabled").focus();
+})
+</script>

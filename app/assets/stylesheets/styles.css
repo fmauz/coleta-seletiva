@@ -1,0 +1,43 @@
+.arrow-connect {
+	margin-top: -15px;
+	font-size: 30px;
+	color: #E5E5E5;
+}
+
+.box-content {
+	padding: 20px 0; 
+	background-color: #fffee8;
+	border-top: 1px dashed #DEDEDE;
+	border-bottom: 1px dashed #DEDEDE;
+}
+
+.navbar-brand {
+	padding-top: 8px;
+	padding-bottom: 5px;
+}
+
+.navbar-brand h1 {
+	margin: 0;
+	margin-left: 52px;
+	font-size: 20px;
+	color: #903a3b;
+	
+}
+.navbar-brand small {
+	display: block;
+	margin-left: 52px;
+	color: #809341;
+	font-size: 11px;
+	line-height: 12px;
+}
+.navbar-brand img {
+	float: left;
+}
+
+.footer {
+	padding: 30px 0;
+	border-top: 1px solid #e9e9e9;
+}
+.footer img {
+	margin-left: 30px;
+}

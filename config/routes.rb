@@ -4,6 +4,7 @@ ColetaSeletiva::Application.routes.draw do
   resources :cards do
     collection do
       get "verify"
+      get "form_section"
     end
   end
   
@@ -11,6 +12,8 @@ ColetaSeletiva::Application.routes.draw do
 
   namespace :admin do
     root :to => "dashboard#index"
+    resources :form_sections
+    resources :oficio_prefeituras
     resources :users
     resources :counties
     resources :surveys do

@@ -127,6 +127,7 @@ $(function(){
       self.addClass("disabled")
 
     self.trigger("shown.bs.tab", { target: tabPanel } );
+    $("body").scrollTop(0);
   });
 
   $( "[data-number-only]" ).each(function(){
