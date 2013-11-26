@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div class="panel <%=  @oficio == true ? "panel-success" : "panel-warning" %>">
+  <div class="oficio panel <%=  @oficio == true ? "panel-success" : "panel-warning" %>">
     <div class="panel-heading">
       <h2 class="panel-title text-center">Envio do Ofício pela Prefeitura</h2>
     </div>
@@ -40,9 +40,14 @@
 </div>
 
 <script>
+$(function(){
+  $(".nextTab").addClass("disabled");
+})
 $("[data-survey]").click(function(evt){
   evt.preventDefault();
-  $(".survey_field").val( $(this).data("survey") );
-  $(".nextTab").removeClass("disabled").focus();
+  if( $(".oficio").hasClass("panel-success") ){
+    $(".survey_field").val( $(this).data("survey") );
+    $(".nextTab").removeClass("disabled").focus();
+  }
 })
 </script>
