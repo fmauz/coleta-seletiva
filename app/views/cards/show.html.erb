@@ -47,6 +47,9 @@
           <%end%>
         <%else%>
           <% value = ca.value %>
+          <%unless ca.answer.label_text.blank?%>
+            <label><%= ca.answer.label_text %></label>
+          <%end%>
           <input type="text" value="<%= value%>" class="form-control" readonly="readonly" />
         <%end%>
         

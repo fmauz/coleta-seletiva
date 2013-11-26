@@ -11,7 +11,7 @@ ColetaSeletiva::Application.routes.draw do
   devise_for :users
 
   namespace :admin do
-    root :to => "dashboard#index"
+    root :to => redirect("/cards")
     resources :form_sections
     resources :oficio_prefeituras
     resources :users
