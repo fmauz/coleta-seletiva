@@ -110,11 +110,16 @@ $(function(){
     if( tabPanel.next(".tab-pane").length == 0 )
       self.addClass("disabled");
 
+    if ( tabPanel.attr("id") == "dates") verifyDates("prevTab")
+
+    onTabEvents({ target: tabPanel });
+    
     self.trigger("shown.bs.tab", { target: tabPanel } );
   })
 
   $("a.nextTab").click(function(evt){
     evt.preventDefault();
+
     var self = $(this);
     var tabContent = $( self.parents(".tab-content") );
     var itemActive = tabContent.find(".tab-pane.active");
@@ -126,7 +131,10 @@ $(function(){
     if( tabPanel.next(".tab-pane").length == 0 )
       self.addClass("disabled")
 
+    $("#message_card, #message_btn").addClass("hide");
     self.trigger("shown.bs.tab", { target: tabPanel } );
+    onTabEvents({ target: tabPanel });
+
     $("body").scrollTop(0);
   });
 
@@ -142,6 +150,43 @@ $(function(){
 
 });
 
+  function verifyDates(obj){
+    if( $("[data-survey='" + $(".survey_field").val() + "']").data("month") != true ){
+          $("."+obj).trigger("click");
+        }
+  }
+
+function onTabEvents(obj){
+  if( obj.target.attr("id") == "form_section"){
+    
+    $.ajax({
+      url: obj.target.data("url") ,
+      data: obj.target.parents( "form" ).serialize(),
+      method: "get",
+      type: "html",
+      success: function( content ){
+        obj.target.find("#content").html( content );
+      }
+    }) 
+
+  } else if( obj.target.attr("id") == "instrumentos"){
+    $.ajax({
+      url: obj.target.data("url"),
+      data: obj.target.parents( "form" ).serialize(),
+      method: "get",
+      type: "json",
+      success: function( object ){
+        if( object.error ){
+          $("#message_card").removeClass("hide").html( object.message );
+        }else{
+          $("#message_btn").removeClass("hide");
+        }
+      }
+    }) 
+  }else if ( obj.target.attr("id") == "dates"){
+    verifyDates("nextTab")
+  }
+}
 
 function show( code ){
   find_question( code ).removeClass( "hide" );

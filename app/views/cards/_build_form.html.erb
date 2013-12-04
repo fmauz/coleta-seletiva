@@ -16,7 +16,7 @@
   </div>
 </fieldset>
 
-<fieldset class="tab-pane" id="form_section">
+<fieldset class="tab-pane" id="form_section" data-url="<%= form_section_cards_path %>">
   <legend></legend>
   <div id="content">
 
@@ -34,7 +34,7 @@
   </div>
 </fieldset>
 
-<fieldset class="tab-pane" id="instrumentos">
+<fieldset class="tab-pane" id="instrumentos" data-url="<%= verify_cards_path( :format => :json) %>">
   <legend></legend>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
@@ -65,56 +65,4 @@
   <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
   <script src="/geo.geojson"></script>
   <script src="/map.js"></script>
-  <script type="text/javascript">
-
-  function getFormSection(){
-
-  }
-
-  function verifyDates(obj){
-    if( $("[data-survey='" + $(".survey_field").val() + "']").data("month") != true ){
-          $("."+obj).trigger("click");
-        }
-  }
-
-  $(function(){
-    $(".prevTab").on('shown.bs.tab', function (e, obj ) {
-      if ( obj.target.attr("id") == "dates") verifyDates("prevTab")
-    });
-
-    $('.nextTab').on('shown.bs.tab', function (e, obj ) {
-      $("#message_card, #message_btn").addClass("hide");
-      if( obj.target.attr("id") == "form_section"){
-        
-        $.ajax({
-          url: "<%= form_section_cards_path %>",
-          data: $(this).parents( "form" ).serialize(),
-          method: "get",
-          type: "html",
-          success: function( content ){
-            obj.target.find("#content").html( content );
-          }
-        }) 
-
-      } else if( obj.target.attr("id") == "instrumentos"){
-        $.ajax({
-          url: "<%= verify_cards_path( :format => :json) %>",
-          data: $(this).parents( "form" ).serialize(),
-          method: "get",
-          type: "json",
-          success: function( object ){
-            if( object.error ){
-              $("#message_card").removeClass("hide").html( object.message );
-            }else{
-              $("#message_btn").removeClass("hide");
-            }
-          }
-        }) 
-      }else if ( obj.target.attr("id") == "dates"){
-        verifyDates("nextTab")
-      }
-
-    });
-  })
-  </script>
 <%end%>

@@ -5,6 +5,7 @@ describe CountiesController do
 
   describe "GET 'index'" do
     it "returns http success" do
+      sign_in
       get 'index', code: county.code, format: :json
       response.should be_success
     end

@@ -8,8 +8,13 @@ describe Answer do
   it { should respond_to :query_string }
   it { should respond_to :element_ajax }
   it { should respond_to :ajax_url }
+  it { should respond_to :required }
   it { should respond_to :disabled }
-  
+  it { should respond_to :min_length }
+  it { should respond_to :max_length }
+  it { should respond_to :number_only }
+  it { should respond_to :currency_only }
+
   it { should belong_to :question }
   it { should belong_to :answer_type }
 

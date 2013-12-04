@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Card do
+  it { should respond_to :year }
+  it { should respond_to :month }
 
   it { should belong_to :county }
   it { should belong_to :survey }

@@ -3,28 +3,16 @@ class CardsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @counties = County.all
-    @surveys = Survey.all
-    @cards = ( current_user.is_dev? ? Card.all : current_person.cards )
-    @cards = @cards.paginate :per_page => 10, :page => params[:page]
+    @collection_devices = CollectionDevicesPresenter.new( :page => params[:page] )
+    respond_with( @collection_devices )
   end
 
   def new
-    @card = Card.new
-    @card.county = County.where( name: I18n.transliterate( params[:county_code] ).upcase ).first
-    @card.survey = Survey.find( params[:survey_id] )
-    @card.year = params[:year]
-    
-    if @card.survey.uniq_month?
-      @card.month = params[:month]
-    end
-
-    respond_with( @card )
-  end
-
-  def edit
-    @card = Card.find( params[:id] )
-    respond_with( @card )
+    @collection_devices = CollectionDevicesPresenter.new( :county_code => params[:county_code],
+                                                          :survey_id => params[:survey_id],
+                                                          :year => params[:year],
+                                                          :month => params[:month] )
+    respond_with( @collection_devices )
   end
 
   def show
@@ -49,9 +37,7 @@ class CardsController < ApplicationController
     @form_sections = FormSection.all
     @county = County.where( :name => I18n.transliterate( params[:county_code] ).upcase ).first
     @year = params[:year].to_i
-
     @oficio = OficioPrefeitura.where( county_id: @county.id ).count == 1
-
     render :partial => "cards/form_section"
   end
 

@@ -1,6 +1,6 @@
 module CardDecorator
 
-  def sections_decorated
+  def sections
     self.survey.sections.map{|section| ActiveDecorator::Decorator.instance.decorate( section ) }
   end
 

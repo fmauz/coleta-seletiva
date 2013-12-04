@@ -4,7 +4,7 @@
 
 <h1>Últimos dados coletados</h1>
 
-<% if @cards.count > 0%>
+<% if @collection_devices.cards.count > 0%>
   <table class="table table-hover table-bordered table-margin">
     <thead>
       <tr>
@@ -20,7 +20,7 @@
     </thead>
 
     <tbody>
-      <% @cards.each do |card|%>
+      <% @collection_devices.cards.each do |card|%>
       <tr>
         <td><%= card.id %></td>
         <td><%= card.survey.name %></td>
@@ -50,15 +50,8 @@
   </table>
 <% end %>
 
-<%= empty_array_message @cards %>
+<%= empty_array_message @collection_devices.cards %>
 
 <div class="cb">
-  <%= will_paginate @cards %>
-  <!-- <ul class="pagination">
-    <li class="disabled"><a href="#">&laquo;</a></li>
-    <% 5.times.each do |page|%>
-    <li class="<%= page == 0 ? "active" : "" %>"><a href="#"><%= page+1%> <span class="sr-only">(current)</span></a></li>
-    <% end %>
-    <li ><a href="#">&raquo;</a></li>
-  </ul> -->
+  <%= will_paginate @collection_devices.cards %>
 </div>

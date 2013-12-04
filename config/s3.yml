@@ -1,0 +1,9 @@
+development:
+  access_key_id: AKIAJY2DPDVSVPXVKBGQ
+  secret_access_key: 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
+  bucket: coleta_seletiva
+
+production:
+  access_key_id: AKIAJY2DPDVSVPXVKBGQ
+  secret_access_key: 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
+  bucket: coleta_seletiva

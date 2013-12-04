@@ -53,6 +53,8 @@ gem 'active_decorator'
 
 gem 'will_paginate'
 
+gem 'aws-sdk'
+gem 'paperclip'
 
 group :development do
   gem 'heroku'

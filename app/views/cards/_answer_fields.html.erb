@@ -1,17 +1,10 @@
-<% question.answers.each do |answer|%>
+<%= question.answer_field_decorated do |ans| %>
 
-  <%if question.multiple_answer && question.answers.index( answer ) == 0 %>
-    <div class="form-group <%= "multiple" if question.multiple_answer %> ">
-  <%end%>
-
-  <%= f.fields_for :card_answers, CardAnswer.new do |ca|%>
-    <%= ca.hidden_field :answer_id, value: answer.id %>
-      <div class="<%= answer.css_class %>">
-        <%= render_answer( answer, ca, f ) %>
-      </div>
+  <%= f.fields_for :card_answers, CardAnswer.new do |ca| %>
+    <%= ca.hidden_field :answer_id, value: ans.id %>
+    <div class="<%= ans.css_class %>">
+      <%= render_answer( ans, ca, f ) %>
+    </div>
   <% end %>
 
-  <%if question.multiple_answer && (question.answers.index( answer ) == question.answers.length - 1) %>
-    </div>
-  <%end%>
 <% end %>

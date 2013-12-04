@@ -1,60 +1,49 @@
-
-<%= form_for( @card, html: { role: "form", class: "form-horizontal", "validate-form" => "" } ) do |f| %>
-
-<div class="alert alert-danger hide error">
-      <span class="glyphicon glyphicon-warning-sign"></span>
-
-      <span></span>.<br clear="all" />
-    </div>
+<%= form_for( @collection_devices.card, html: { role: "form", class: "form-horizontal", "validate-form" => "" } ) do |f| %>
+  <div class="alert alert-danger hide error">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    <span></span>.<br clear="all" />
+  </div>
 
   <%= f.hidden_field :county_id %>
   <%= f.hidden_field :survey_id %>
   <%= f.hidden_field :year %>
   <%= f.hidden_field :month %>
   
-  <% @card.sections_decorated.each do |section| %>
+  <% f.object.sections.each do |section| %>
     <%= section.title %>
 
     <% section.questions_decorated.each do |question| %>
       <div data-question="<%= question.code %>" class="<%= question.css_class %>">
-        <%unless question.multiple_answer %>
-        <h4><%= question.code%>. <%= question.content %></h4>
+
+        <% unless question.multiple_answer %>
+          <h4><%= question.code%>. <%= question.content %></h4>
         <% end %>
         
         <% if question.multiple_answer %>
           <div id="card_questions">
-        <%end%>
+        <% end %>
 
-          <%= f.fields_for :card_questions, CardQuestion.new do |cq|%>
-            <%= render :partial => "card_question_fields", :locals => { :f => cq, :question => question } %>
-          <% end %>
-
-        <% if question.multiple_answer %>
-          </div>
+        <%= f.fields_for :card_questions, CardQuestion.new do |cq|%>
+          <%= render :partial => "card_question_fields", :locals => { :f => cq, :question => question } %>
         <% end %>
 
         <% if question.multiple_answer %>
+          </div>
           <%= link_to_add_fields_custom "Adicionar", { :f => f, :question => question }, :card_questions, class: "btn btn-lg btn-info margin-bottom" %>
         <% end %>
 
       </div>
 
-      <% if question.clear_question %>
-        <div class="cf">&nbsp;</div>
-      <% end %>
-
+      <%= question.html_clear %>
     <% end %>
-
-    <div class="cf">&nbsp;</div>
   <% end %>
 
-
   <fieldset class="marginTop">
-  <legend></legend>
-  <div class="form-group">
-    <div class="col-sm-offset-10 col-sm-2">
-      <button type="submit" class="btn btn-success btn-lg">Salvar</button>
+    <legend></legend>
+    <div class="form-group">
+      <div class="col-sm-offset-10 col-sm-2">
+        <button type="submit" class="btn btn-success btn-lg">Salvar</button>
+      </div>
     </div>
-  </div>
-</fieldset>
+  </fieldset>
 <% end %>

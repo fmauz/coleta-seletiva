@@ -6,7 +6,8 @@ describe Question do
   it { should respond_to :content }
   it { should respond_to :help_block }
   it { should respond_to :css_class }
-
+  it { should respond_to :clear_question }
+  
   it { should belong_to :section }
   
   it { should have_many :answers }

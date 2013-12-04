@@ -7,5 +7,4 @@ describe CardQuestion do
   it { should have_many :card_answers }
 
   it { should validate_presence_of :question }
-  it { should validate_presence_of :card }
 end

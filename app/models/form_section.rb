@@ -3,8 +3,12 @@ class FormSection < ActiveRecord::Base
 
   has_many :surveys
 
-  default_scope order( :order )
-  scope :tops, where( form_section_id: nil )
+  default_scope { order( :order ) }
+
+  scope :tops, -> { where( form_section_id: nil ) }
+
+  validates :name,
+            :presence => true
 
   def all_cards_fill?( county )
     return surveys.map{|a| a.cards.where(county_id: county.id ).count == 0 }.delete_if{|a| !a }.length == 0

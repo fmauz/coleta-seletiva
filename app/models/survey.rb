@@ -4,9 +4,10 @@ class Survey < ActiveRecord::Base
 
   belongs_to :form_section
   
-  default_scope where( disabled: false )
+  default_scope { where( disabled: false ) }
 
   validates :name,
+            :form_section,
             :presence => true
 
   def liberado?
