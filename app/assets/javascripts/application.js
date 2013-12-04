@@ -110,10 +110,13 @@ $(function(){
     if( tabPanel.next(".tab-pane").length == 0 )
       self.addClass("disabled");
 
-    if ( tabPanel.attr("id") == "dates") verifyDates("prevTab")
-
-    onTabEvents({ target: tabPanel });
     
+    if ( tabPanel.attr("id") == "dates" ) {
+      verifyDates("prevTab")
+    }else{
+      onTabEvents({ target: tabPanel });
+    }
+
     self.trigger("shown.bs.tab", { target: tabPanel } );
   })
 
@@ -135,6 +138,10 @@ $(function(){
     self.trigger("shown.bs.tab", { target: tabPanel } );
     onTabEvents({ target: tabPanel });
 
+    if ( tabPanel.attr("id") == "dates"){
+      verifyDates("nextTab")
+    }
+
     $("body").scrollTop(0);
   });
 
@@ -150,11 +157,11 @@ $(function(){
 
 });
 
-  function verifyDates(obj){
-    if( $("[data-survey='" + $(".survey_field").val() + "']").data("month") != true ){
-          $("."+obj).trigger("click");
-        }
+function verifyDates(obj){
+  if( $("[data-survey='" + $(".survey_field").val() + "']").data("month") != true ){
+      $("."+obj).trigger("click");
   }
+}
 
 function onTabEvents(obj){
   if( obj.target.attr("id") == "form_section"){
@@ -183,8 +190,6 @@ function onTabEvents(obj){
         }
       }
     }) 
-  }else if ( obj.target.attr("id") == "dates"){
-    verifyDates("nextTab")
   }
 }
 
