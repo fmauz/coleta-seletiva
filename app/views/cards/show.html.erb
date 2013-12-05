@@ -16,7 +16,7 @@
 
 <%section = nil%>
 
-<%@card.card_questions.each do |cq|%>
+<%@card.card_questions.by_section.each do |cq|%>
 
   <%if cq.question.section != section %>
     <% section = cq.question.section %>
