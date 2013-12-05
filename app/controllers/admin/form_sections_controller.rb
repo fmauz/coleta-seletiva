@@ -5,7 +5,7 @@ class Admin::FormSectionsController < Admin::AdminController
   # GET /form_sections
   # GET /form_sections.json
   def index
-    @form_sections = FormSection.unscoped.all
+    @form_sections = FormSection.all
     respond_with( @form_sections )
   end
 

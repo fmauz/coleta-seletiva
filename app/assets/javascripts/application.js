@@ -13,12 +13,23 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require utils
 //= require bootstrap
 //= require jquery.validate.min
 //= require jquery.mask.min
+//= require bootstrap-fileupload
+
+/*
+# =============================================================================
+#   File upload buttons
+# =============================================================================
+*/
+$(function(){
+  $('.fileupload').fileupload();
+});
 
 function remove_fields(link) {
-  $(link).siblings("input[type=hidden]").val("1");
+  $(link).siblings("input[type=hidden]").val("true");
   $(link).parents(".fields").hide();
 }
 
@@ -97,12 +108,12 @@ $(function(){
   $("a.prevTab").click(function(evt){
     evt.preventDefault();
     var self = $(this);
-    var tabContent = $( self.parents(".tab-content") );
+    var tabContent = $( self.parents( ".container" ).find(".tab-content") );
     var itemActive = tabContent.find(".tab-pane.active");
     var tabPanel = itemActive.prev(".tab-pane");
     itemActive.removeClass("active");
     tabPanel.addClass("active");
-    tabContent.find("a.nextTab").removeClass("disabled");
+    self.parents( ".container" ).find("a.nextTab").removeClass("disabled");
 
     if( tabPanel.prev(".tab-pane").length == 0 )
       self.addClass("disabled");
@@ -124,12 +135,12 @@ $(function(){
     evt.preventDefault();
 
     var self = $(this);
-    var tabContent = $( self.parents(".tab-content") );
+    var tabContent = self.parents( ".container" ).find(".tab-content");
     var itemActive = tabContent.find(".tab-pane.active");
     var tabPanel = itemActive.next(".tab-pane");
     itemActive.removeClass("active");
     tabPanel.addClass("active");
-    tabContent.find("a.prevTab").removeClass("disabled");
+    self.parents( ".container" ).find("a.prevTab").removeClass("disabled");
 
     if( tabPanel.next(".tab-pane").length == 0 )
       self.addClass("disabled")
@@ -164,11 +175,12 @@ function verifyDates(obj){
 }
 
 function onTabEvents(obj){
+  var $form = obj.target.parents( ".container" ).find("form");
   if( obj.target.attr("id") == "form_section"){
     
     $.ajax({
       url: obj.target.data("url") ,
-      data: obj.target.parents( "form" ).serialize(),
+      data: $form.serialize(),
       method: "get",
       type: "html",
       success: function( content ){
@@ -179,7 +191,7 @@ function onTabEvents(obj){
   } else if( obj.target.attr("id") == "instrumentos"){
     $.ajax({
       url: obj.target.data("url"),
-      data: obj.target.parents( "form" ).serialize(),
+      data: $form.serialize(),
       method: "get",
       type: "json",
       success: function( object ){

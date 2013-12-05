@@ -5,7 +5,7 @@ class Admin::OficioPrefeiturasController < ApplicationController
   # GET /oficio_prefeituras
   # GET /oficio_prefeituras.json
   def index
-    @oficio_prefeituras = OficioPrefeitura.unscoped.all
+    @oficio_prefeituras = OficioPrefeitura.all
     respond_with( @oficio_prefeitura )
   end
 

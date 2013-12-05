@@ -1,3 +1,10 @@
+<ul class="pager page-control-top-right">
+  <li><a href="#" class="btn btn-link btn-lg disabled prevTab">Anterior</a></li>
+  <li><a href="#" class="btn btn-link btn-lg disabled nextTab">Próximo</a></li>
+</ul>
+
+<div class="cf"></div>
+
 <%= form_tag new_card_path, method: "get", role: "form", class: "form-horizontal tab-content" do |f| %>
 
 <fieldset class="tab-pane active">
@@ -47,16 +54,6 @@
   </div>
 </fieldset>
 
-<fieldset>
-  <legend></legend>
-    <div class="container">
-      <ul class="pager">
-        <li><a href="#" class="btn btn-link btn-lg disabled prevTab">Anterior</a></li>
-        <li><a href="#" class="btn btn-link btn-lg disabled nextTab">Próximo</a></li>
-      </ul>
-    </div>
-
-</fieldset>
 <% end %>
 
 <%=content_for :scripts do -%>

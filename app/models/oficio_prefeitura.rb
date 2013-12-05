@@ -6,6 +6,8 @@ class OficioPrefeitura < ActiveRecord::Base
                     :s3_credentials => "#{Rails.root}/config/s3.yml",
                     :path => "oficios/:id/:filename"
 
+  default_scope -> { joins(:county).order( Arel::Table.new(:counties)[:name] )}
+
   validates :archive, :attachment_presence => true
 
   validates :data_registro,
