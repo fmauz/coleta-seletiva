@@ -65,7 +65,7 @@ function zoomToFeature(e) {
   clicked = layer;
 
   $(".nextTab").removeClass("disabled");
-  $(".county_name").val( layer.feature.properties[ "NAME_2" ] )
+  $(".county_name").val( layer.feature.properties[ "NM_MUNICIP" ] )
 }
 
 function onEachFeature(feature, layer) {
@@ -99,7 +99,7 @@ function addInfo( map ){
   info.update = function (props) {
       this._div.innerHTML = '<h4>Município</h4>' +
         ( props ?
-          '<strong>' + props["NAME_2"] + '</strong>'
+          '<strong>' + props["NM_MUNICIP"] + '</strong>'
           : '<span>Passe o mouse na cidade</span>');
   };
 
