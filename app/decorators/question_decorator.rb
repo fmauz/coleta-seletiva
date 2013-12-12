@@ -8,7 +8,7 @@ module QuestionDecorator
   end
 
   def answers_decorated
-    self.answers.map{|a| ActiveDecorator::Decorator.instance.decorate( a ) }
+    @answers_decorated ||= self.answers.map{|a| ActiveDecorator::Decorator.instance.decorate( a ) }
   end
 
   def answer_field_decorated

@@ -8,7 +8,7 @@
   <%= f.hidden_field :survey_id %>
   <%= f.hidden_field :year %>
   <%= f.hidden_field :month %>
-  
+
   <% f.object.sections.each do |section| %>
     <%= section.title %>
 
@@ -23,7 +23,7 @@
           <div id="card_questions">
         <% end %>
 
-        <%= f.fields_for :card_questions do |cq|%>
+        <%= f.fields_for :card_questions, CardQuestion.new do |cq|%>
           <%= cq.hidden_field :id %>
           <%= render :partial => "card_question_fields", :locals => { :f => cq, :question => question } %>
         <% end %>

@@ -43,7 +43,6 @@ module AnswersHelper
 
   def render_input( answer, f, options )
     (
-      ( f.object.new_record? ? "" : f.hidden_field( :id ) ) +
       ( answer.label_text.blank? ? "" : f.label(:value, answer.label_text) ) +
       f.text_field(:value, {class: "form-control", placeholder: answer.placeholder, readonly: answer.disabled }.merge!(options) )
     ).html_safe
