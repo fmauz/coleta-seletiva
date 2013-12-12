@@ -53,8 +53,7 @@ $(function(){
 })
 $("[data-survey]").click(function(evt){
   evt.preventDefault();
-  if( !$(this).hasClass("text-muted") )
-    if( $(".oficio").hasClass("panel-success") ){
+  if( !$(this).hasClass("text-muted") ){
       $(".survey_field").val( $(this).data("survey") );
       $(".nextTab").removeClass("disabled").trigger("click");
     }
