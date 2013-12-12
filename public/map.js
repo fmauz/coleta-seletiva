@@ -103,7 +103,7 @@ function addInfo( map ){
 }
 
 $(function(){
-  map = new L.Map('map', {center: new L.LatLng(-22.3, -43), zoom: 7.8, scrollWheelZoom: false});
+  map = new L.Map('map', {center: new L.LatLng(-22.1, -43), zoom: 7.6, scrollWheelZoom: false});
   L.geoJson( geoJson, { style: style, onEachFeature: onEachFeature } ).addTo(map);
 
   addInfo( map );

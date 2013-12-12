@@ -1,9 +1,12 @@
 class CollectionDevicesPresenter
   attr_accessor :page
+  attr_accessor :county
   attr_accessor :county_code
   attr_accessor :survey_id
   attr_accessor :year
   attr_accessor :month
+  attr_accessor :card
+  attr_accessor :survey
 
   delegate :name, :to => :survey
 
@@ -41,6 +44,16 @@ class CollectionDevicesPresenter
 
   def cards
     @cards ||= Card.paginate :per_page => 10, :page => ( @page || 1 )
+  end
+
+  def self.build( card )
+    self.new( 
+              survey: card.survey,
+              year: card.year,
+              month: card.month,
+              county: card.county,
+              card: card
+            )
   end
 
   def initialize(attributes = {})

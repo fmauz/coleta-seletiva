@@ -42,36 +42,48 @@ module AnswersHelper
   end
 
   def render_input( answer, f, options )
-    (( answer.label_text.blank? ? "" : f.label(:value, answer.label_text) ) +
-    f.text_field(:value, {class: "form-control", placeholder: answer.placeholder, readonly: answer.disabled }.merge!(options) )).html_safe
+    (
+      ( f.object.new_record? ? "" : f.hidden_field( :id ) ) +
+      ( answer.label_text.blank? ? "" : f.label(:value, answer.label_text) ) +
+      f.text_field(:value, {class: "form-control", placeholder: answer.placeholder, readonly: answer.disabled }.merge!(options) )
+    ).html_safe
   end
 
   def render_radios( answer, f, options )
-    answer.answer_collections.map{|ac|
-        ("<div class='radio'>" + 
-                      ("<label>" +
-                        f.hidden_field(:answer_id, value: answer.id ) +
-                        f.radio_button(:value, ac.value, onchange: ac.event_js) + ac.text + 
-                        "</label>").html_safe +
-                    "</div>").html_safe
-    }.join.html_safe
+    (
+      ( f.object.new_record? ? "" : f.hidden_field( :id ) ) +
+      answer.answer_collections.map{|ac|
+          ("<div class='radio'>" + 
+                        ("<label>" +
+                          f.hidden_field(:answer_id, value: answer.id ) +
+                          f.radio_button(:value, ac.value, onchange: ac.event_js) + ac.text + 
+                          "</label>").html_safe +
+                      "</div>").html_safe
+      }.join
+    ).html_safe
   end
 
   def render_checks( answer, f, options )
-    answer.answer_collections.map{|ac|
-      f.fields_for :card_answers, CardAnswer.new do |fa|
-        ("<div class='checkbox'>" + 
-                      ("<label>" + 
-                        fa.hidden_field(:answer_id, value: answer.id ) +
-                        fa.check_box(:value, {}, ac.value, onchange: ac.event_js ) + ac.text + 
-                        "</label>").html_safe +
-                    "</div>").html_safe
-      end
-    }.join.html_safe
+    (
+      ( f.object.new_record? ? "" : f.hidden_field( :id ) ) +
+        answer.answer_collections.map{|ac|
+        f.fields_for :card_answers, CardAnswer.new do |fa|
+          ("<div class='checkbox'>" + 
+                        ("<label>" + 
+                          fa.hidden_field(:answer_id, value: answer.id ) +
+                          fa.check_box(:value, {}, ac.value, onchange: ac.event_js ) + ac.text + 
+                          "</label>").html_safe +
+                      "</div>").html_safe
+        end
+      }.join
+    ).html_safe
   end
 
   def render_select( answer, f, options )
-    f.select :value, answer.answer_collections.collect{|a| [a.text, a.value] }, {}, class: "form-control"
+    (
+      ( f.object.new_record? ? "" : f.hidden_field( :id ) ) +
+        f.select( :value, answer.answer_collections.collect{|a| [a.text, a.value] }, {}, class: "form-control" )
+    ).html_safe
   end
 end
 

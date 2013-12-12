@@ -41,7 +41,7 @@
 
           <% if current_user.is_dev? %>
           
-         <!--  <a href="<%= edit_card_path( card )%>" class="glyphicon glyphicon-pencil table-icon"><span></span></a> -->
+         <a href="<%= edit_card_path( card )%>" class="glyphicon glyphicon-pencil table-icon"><span></span></a>
 
           <%= link_to '', card_path( card ), method: :delete, data: { confirm: 'Tem certeza?' }, class: "glyphicon glyphicon-remove-circle table-icon table-remove" %>
           <%end%>

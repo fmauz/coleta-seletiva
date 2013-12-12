@@ -1,0 +1,5 @@
+<%= f.fields_for :card_answers do |ca| %>
+  <div class="<%= ca.object.answer.css_class %>">
+    <%= render_answer( ca.object.answer, ca, f ).html_safe %>
+  </div>
+<% end %>

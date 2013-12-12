@@ -15,6 +15,17 @@ class CardsController < ApplicationController
     respond_with( @collection_devices )
   end
 
+  def edit
+    @collection_devices = CollectionDevicesPresenter.build( Card.find( params[:id] ) )
+    respond_with( @collection_devices )
+  end
+
+  def update
+    @card = Card.find( params[:id] )
+    @card.update( card_params )
+    respond_with( @card )
+  end
+
   def show
     @card = Card.find( params[:id] )
     respond_with( @card )
@@ -54,7 +65,7 @@ class CardsController < ApplicationController
 
   private
     def card_params
-      params.require(:card).permit( :year, :month, :survey_id, :county_id, card_questions_attributes: [ :question_id, card_answers_attributes: [ :answer_id, :value ]] )
+      params.require(:card).permit( :year, :month, :survey_id, :county_id, card_questions_attributes: [ :id, :question_id, card_answers_attributes: [ :id, :answer_id, :value ]] )
     end
 
 end

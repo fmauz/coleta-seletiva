@@ -23,7 +23,8 @@
           <div id="card_questions">
         <% end %>
 
-        <%= f.fields_for :card_questions, CardQuestion.new do |cq|%>
+        <%= f.fields_for :card_questions do |cq|%>
+          <%= cq.hidden_field :id %>
           <%= render :partial => "card_question_fields", :locals => { :f => cq, :question => question } %>
         <% end %>
 
