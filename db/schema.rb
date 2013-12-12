@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131212175647) do
+ActiveRecord::Schema.define(version: 20131212183105) do
 
   create_table "answer_collections", force: true do |t|
     t.integer  "answer_id"
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 20131212175647) do
     t.string   "archive_content_type"
     t.integer  "archive_file_size"
     t.datetime "archive_updated_at"
+    t.string   "cargo"
   end
 
   create_table "people", force: true do |t|

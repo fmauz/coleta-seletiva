@@ -4,16 +4,28 @@
     <legend>Dados Básicos</legend>
 
     <div class="form-group">
-      <%= f.label :name, "Nome", class: "col-sm-2 control-label" %>
+      <%= f.label :name, "Nome do pesquisador técnico do PCSS", class: "col-sm-2 control-label" %>
       <div class="col-sm-10">
         <%= f.text_field :name, class: "form-control", placeholder: "nome" %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :description, "Descrição", class: "col-sm-2 control-label" %>
+      <%= f.label :description, "Tipo de ofício", class: "col-sm-2 control-label" %>
       <div class="col-sm-10">
-        <%= f.text_area :description, class: "form-control", placeholder: "description" %>
+        <div class="radio">
+          <label>
+            <%= f.radio_button :description, "Solicitação de assessoria técnica para implantação do PCSS" %>
+            Solicitação de assessoria técnica para implantação do PCSS
+          </label>
+        </div>
+
+        <div class="radio">
+          <label>
+            <%= f.radio_button :description, "Continuidade da assessoria técnica para implantação do PCSS" %>
+            Continuidade da assessoria técnica para implantação do PCSS
+          </label>
+        </div>
       </div>
     </div>
 
@@ -41,16 +53,38 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <%= f.label :cargo, "Cargo", class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <div class="radio">
+          <label>
+            <%= f.radio_button :cargo, "Prefeito" %> Prefeito
+          </label>
+        </div>
+
+        <div class="radio">
+          <label>
+            <%= f.radio_button :cargo, "Secretário" %> Secretário
+          </label>
+        </div>
+
+        <div class="radio">
+          <label>
+            <%= f.radio_button :cargo, "Assessor" %> Assessor
+          </label>
+        </div>
+      </div>
+    </div>
 
     <div class="form-group">
-      <%= f.label :data_registro, "Data do Registro", class: "col-sm-2 control-label" %>
+      <%= f.label :data_registro, "Data do envio do ofício pela prefeitura", class: "col-sm-2 control-label" %>
       <div class="col-sm-10">
         <%= f.date_select :data_registro, class: "form-control"  %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :name_resp, "Nome do Responsável", class: "col-sm-2 control-label" %>
+      <%= f.label :name_resp, "Nome do Responsável pela assinatura do ofício", class: "col-sm-2 control-label" %>
       <div class="col-sm-10">
         <%= f.text_field :name_resp, class: "form-control", placeholder: "nome" %>
       </div>
@@ -60,6 +94,13 @@
       <%= f.label :county_id, "Município", class: "col-sm-2 control-label" %>
       <div class="col-sm-10">
         <%= f.select :county_id, County.all.collect{|a| [ a.name, a.id ]}, {}, class: "form-control", placeholder: "nome" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :created_at, "Data de cadastro", class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <input type="text" readonly value="<%= f.object.created_at.strftime("%d/%m/%Y")%>" class="form-control" />
       </div>
     </div>
 

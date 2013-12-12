@@ -1,3 +1,13 @@
-<h1><%= @collection_devices.name %></h1>
+<div class="cb">
+  <h1><%= @collection_devices.name %></h1>
+
+  <div class="infos">
+      <span>Ano: <%= @collection_devices.year%> - </span>
+      <% unless @collection_devices.month.blank? %>
+      <span>Mês: <%= t("date.month_names")[ @collection_devices.month.to_i-1]%> - </span>
+      <% end %>
+      <span><%= @collection_devices.county.name%></span>
+  </div>
+</div>
 
 <%= render 'form' %>
