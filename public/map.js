@@ -93,7 +93,7 @@ function addInfo( map ){
 
   // method that we will use to update the control based on feature properties passed
   info.update = function (props) {
-      this._div.innerHTML = '<h4>Cidade</h4>' +
+      this._div.innerHTML = '<h4>Município</h4>' +
         ( props ?
           '<strong>' + props["NAME_2"] + '</strong>'
           : '<span>Passe o mouse na cidade</span>');
