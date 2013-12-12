@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131204171241) do
+ActiveRecord::Schema.define(version: 20131212175647) do
 
   create_table "answer_collections", force: true do |t|
     t.integer  "answer_id"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 20131204171241) do
     t.integer  "answer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "event_js"
+    t.string   "text"
   end
 
   add_index "card_answers", ["answer_id"], name: "index_card_answers_on_answer_id", using: :btree
@@ -164,6 +166,7 @@ ActiveRecord::Schema.define(version: 20131204171241) do
     t.string   "help_block"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order"
   end
 
   add_index "sections", ["survey_id"], name: "index_sections_on_survey_id", using: :btree

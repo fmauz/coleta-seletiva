@@ -61,6 +61,6 @@ class Admin::SectionsController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def section_params
-      params.require(:section).permit(:survey_id, :name, :help_block)
+      params.require(:section).permit(:survey_id, :name, :help_block, :order)
     end
 end
