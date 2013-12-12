@@ -27,7 +27,7 @@
       <% @collection_devices.cards.each do |card|%>
       <tr>
         <td><%= card.id %></td>
-        <td><%= card.survey.name %></td>
+        <td><%= card.survey.unscoped.name %></td>
         <td><%= card.county.name %></td>
         <td><%= card.year %></td>
         <td><%= card.person.name %></td>
