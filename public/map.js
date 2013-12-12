@@ -4,7 +4,7 @@ var clicked = null;
 
 function highlightFeature(e) {
   var layer = e.target;
-    if( clicked != layer  ){
+  if( clicked != layer  ){
     layer.setStyle({
       weight: 5,
       color: '#666',
@@ -33,7 +33,11 @@ function resetHighlight(e) {
     });
 
   }
-  info.update(layer.feature.properties);
+
+  if( clicked != null )
+    info.update( clicked.feature.properties );
+  else
+    info.update( null )
 }
 
 function zoomToFeature(e) {
