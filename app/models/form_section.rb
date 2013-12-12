@@ -15,7 +15,7 @@ class FormSection < ActiveRecord::Base
   end
 
   def available_to_fill?( county )
-    if order == 1
+    if order == 1 || order == 0
       return true
     end
 

@@ -1,18 +1,10 @@
 <div class="container">
 
-  <div class="oficio panel <%=  @oficio == true ? "panel-success" : "panel-warning" %>">
-    <div class="panel-heading">
-      <h2 class="panel-title text-center">Envio do Ofício pela Prefeitura</h2>
-    </div>
-  </div>
 
-  <div class="text-center arrow-connect">
-    <i class="glyphicon glyphicon-arrow-down"></i>
-  </div>
 
   <% @form_sections.each do |form_section|%>
 
-  <% sectionType = ( @oficio == true && form_section.available_to_fill?( @county ) ? "panel-warning" : "panel-default" ) %>
+  <% sectionType = ( ( @oficio == true || form_section.order == 0 ) && form_section.available_to_fill?( @county ) ? "panel-warning" : "panel-default" ) %>
   <% if sectionType == "panel-warning" %>
     <% sectionType = (form_section.all_cards_fill?(@county) ? "panel-success" : "panel-warning" ) %>
   <% end %>
@@ -31,12 +23,28 @@
     <% end %>
   </div>
 
-    <% if @form_sections.index( form_section ) < @form_sections.length-1 %>
+  <% if @form_sections.index( form_section ) < @form_sections.length-1 %>
     <div class="text-center arrow-connect">
       <i class="glyphicon glyphicon-arrow-down"></i>
     </div>
-    <% end %>
+  <% end %>
+  
+
+
+  <%if form_section.order == 0 %>
+      <div class="oficio panel <%=  @oficio == true ? "panel-success" : "panel-warning" %>">
+        <div class="panel-heading">
+          <h2 class="panel-title text-center">Envio do Ofício pela Prefeitura</h2>
+        </div>
+      </div>
+
+      <div class="text-center arrow-connect">
+        <i class="glyphicon glyphicon-arrow-down"></i>
+      </div>
   <%end%>
+
+  <%end%>
+
 </div>
 
 <script>
