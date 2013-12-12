@@ -24,19 +24,16 @@
     </thead>
 
     <tbody>
-      <% @collection_devices.cards.each do |card|%>
+      <% @collection_devices.cards.unscoped.each do |card|%>
       <tr>
         <td><%= card.id %></td>
-        <td><%= card.survey.unscoped.name %></td>
+        <td><%= card.survey.name %></td>
         <td><%= card.county.name %></td>
         <td><%= card.year %></td>
         <td><%= card.person.name %></td>
         <td><%= l card.created_at.to_date, :format => :default %></td>
         <td><%= l card.updated_at.to_date, :format => :default %></td>
         <td class="action_two">
-
-
-
           <a href="<%= card_path( card )%>" class="glyphicon glyphicon-eye-open table-icon"><span></span></a>
 
           <% if current_user.is_dev? %>
