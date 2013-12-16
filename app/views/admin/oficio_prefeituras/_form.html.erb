@@ -100,7 +100,7 @@
     <div class="form-group">
       <%= f.label :created_at, "Data de cadastro", class: "col-sm-2 control-label" %>
       <div class="col-sm-10">
-        <input type="text" readonly value="<%= f.object.created_at.strftime("%d/%m/%Y")%>" class="form-control" />
+        <input type="text" readonly value="<%= (f.object.created_at.nil? ? DateTime.now : f.object.created_at).strftime("%d/%m/%Y")%>" class="form-control" />
       </div>
     </div>
 
