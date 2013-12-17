@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131212183105) do
+ActiveRecord::Schema.define(version: 20131217164624) do
 
   create_table "answer_collections", force: true do |t|
     t.integer  "answer_id"
@@ -105,6 +105,9 @@ ActiveRecord::Schema.define(version: 20131212183105) do
     t.string   "extensao_territorial"
     t.string   "indice_destinacao"
     t.string   "n_bairros"
+    t.string   "domicilios_total",          default: "0"
+    t.string   "populacao_rural",           default: "0"
+    t.string   "cep_prefeitura",            default: "0"
   end
 
   create_table "form_sections", force: true do |t|
