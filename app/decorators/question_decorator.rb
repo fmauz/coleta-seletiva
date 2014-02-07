@@ -8,13 +8,10 @@ module QuestionDecorator
   end
 
   def answers_decorated
-    self.answers.map{|a| ActiveDecorator::Decorator.instance.decorate( a ) }
+    @answers ||= self.answers.map{|a| ActiveDecorator::Decorator.instance.decorate( a ) }
   end
 
   def answer_field_decorated
-    @content = "<div class=\"form-group #{ "multiple" if self.multiple_answer}\">"
-    @content += answers_decorated.map{|a| yield(a) }.join
-    @content += "</div>"
-    return @content.html_safe
+    answers_decorated.map{|a| yield(a) }
   end
 end

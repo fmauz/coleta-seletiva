@@ -1,2 +1,11 @@
 <%= f.hidden_field :question_id, value: question.id %>
-<%= render :partial => "answer_fields", :locals => { :question => question, :f => f }%>
+<div class="<%= (!question.multiple_answer ? "" : "multiple cf") %>">
+  <% question.answer_field_decorated do |ans, cssClass| %>
+      <%= f.fields_for :card_answers, CardAnswer.new(answer: ans) do |ca| %>
+        <%= ca.hidden_field :answer_id  %>
+        <div class="<%= ca.object.answer.css_class %>">
+          <%= render_answer( ca.object.answer, ca, f ).html_safe %>
+        </div>
+      <% end %>
+  <% end %>
+</div>

@@ -82,6 +82,7 @@ module AnswersHelper
   def render_select( answer, f, options )
     (
       ( f.object.new_record? ? "" : f.hidden_field( :id ) ) +
+      ( answer.label_text.blank? ? "" : f.label(:value, answer.label_text) ) +
         f.select( :value, answer.answer_collections.collect{|a| [a.text, a.value] }, {}, class: "form-control" )
     ).html_safe
   end
