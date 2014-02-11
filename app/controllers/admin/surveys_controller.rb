@@ -52,6 +52,33 @@ class Admin::SurveysController < Admin::AdminController
     respond_with( [ :admin, @survey] )
   end
 
+  def clone
+    @survey = Survey.unscoped.find( params[:survey_id] )
+    @survey_clone = Survey.unscoped.find( params[:survey_base] )
+
+    @survey_clone.sections.each do |section|
+      sec = section.dup
+      sec.survey_id = @survey.id
+      sec.save
+      section.questions.each do |question|
+        que = question.dup
+        que.section_id = sec.id
+        que.save
+        question.answers.each do |answer|
+          ans = answer.dup
+          ans.question_id = que.id
+          ans.save
+          answer.answer_collections.each do |ans_collection|
+            ansc = ans_collection.dup
+            ansc.answer_id = ans.id
+            ansc.save
+          end
+        end
+      end
+    end
+    respond_with( [ :admin, @survey] )
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_survey

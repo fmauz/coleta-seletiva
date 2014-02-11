@@ -17,6 +17,7 @@ ColetaSeletiva::Application.routes.draw do
     resources :users
     resources :counties
     resources :surveys do
+      post "clone", :action => "clone", as: :clone
       resources :sections do
         resources :questions do
           resources :answers
