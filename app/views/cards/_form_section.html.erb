@@ -5,10 +5,10 @@
       <h2 class="panel-title text-center">Envio do Ofício pela Prefeitura</h2>
     </div>
   </div>
-
+<!-- 
   <div class="text-center arrow-connect">
     <i class="glyphicon glyphicon-arrow-down"></i>
-  </div>
+  </div> -->
 
   <% @form_sections.each do |form_section|%>
 
@@ -32,9 +32,9 @@
   </div>
 
     <% if @form_sections.index( form_section ) < @form_sections.length-1 %>
-    <div class="text-center arrow-connect">
+<!--     <div class="text-center arrow-connect">
       <i class="glyphicon glyphicon-arrow-down"></i>
-    </div>
+    </div> -->
     <% end %>
   <%end%>
 </div>

@@ -66,6 +66,6 @@ class Admin::QuestionsController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:section_id, :multiple_answer, :code, :content, :help_block, :css_class)
+      params.require(:question).permit(:section_id, :multiple_answer, :code, :content, :help_block, :css_class, :clear_question)
     end
 end

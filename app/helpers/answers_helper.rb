@@ -42,10 +42,14 @@ module AnswersHelper
   end
 
   def render_input( answer, f, options )
+    help_block = answer.help_block.blank? ? "" : "<span class='input-group-addon'>#{answer.help_block}</span>"
     (
       ( f.object.new_record? ? "" : f.hidden_field( :id ) ) +
       ( answer.label_text.blank? ? "" : f.label(:value, answer.label_text) ) +
-      f.text_field(:value, {class: "form-control", placeholder: answer.placeholder, readonly: answer.disabled }.merge!(options) )
+      ( help_block.blank? ? "" : "<div class='input-group'>" ) +
+      help_block +
+      f.text_field(:value, {class: "form-control", placeholder: answer.placeholder, readonly: answer.disabled }.merge!(options) ) +
+      ( help_block.blank? ? "" : "</div>" )
     ).html_safe
   end
 
@@ -66,6 +70,7 @@ module AnswersHelper
   def render_checks( answer, f, options )
     (
       ( f.object.new_record? ? "" : f.hidden_field( :id ) ) +
+      ( answer.label_text.blank? ? "" : f.label(:value, answer.label_text) ) +
         answer.answer_collections.map{|ac|
         f.fields_for :card_answers, CardAnswer.new do |fa|
           ("<div class='checkbox'>" + 

@@ -222,3 +222,12 @@ function setFocus( code ){
 function find_question( code ){
   return $("div[data-question='" + code +  "']");
 }
+
+$(function(){
+  $("[data-save-add-other]").click(function(){
+    var $button = $( this ),
+        $input = $("<input type='hidden' name='add_new' value='true' />");
+
+    $button.parents( "form" ).append( $input );
+  })
+});

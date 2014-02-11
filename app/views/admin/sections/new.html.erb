@@ -2,4 +2,6 @@
 <h1>Novo <%= I18n.t("resource.#{@section.class.name.downcase}")%></h1>
 <%end%>
 
+<%= flash_notice_render %>
+
 <%= render 'form' %>
