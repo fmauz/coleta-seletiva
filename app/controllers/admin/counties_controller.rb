@@ -41,6 +41,6 @@ class Admin::CountiesController < Admin::AdminController
     end
 
     def county_params
-      params.require(:county).permit(:name, :code, :cnpj)
+      params.require(:county).permit(:name, :code, :cnpj, :logradouro_prefeitura, :numero_prefeitura, :complemento_prefeitura, :bairro_prefeitura, :populacao_total_municipio, :populacao_urbana, :extensao_territorial, :indice_destinacao, :n_bairros)
     end
 end

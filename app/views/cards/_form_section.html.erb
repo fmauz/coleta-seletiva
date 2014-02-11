@@ -1,4 +1,8 @@
 <div class="container">
+  <div class="cb">
+  <strong>Cidade: <%= @county.name %> - Ano: <%= @year %></strong>
+</div>
+<div class="cf"><br /></div>
 
   <div class="oficio panel <%=  @oficio == true ? "panel-success" : "panel-warning" %>">
     <div class="panel-heading">
@@ -10,9 +14,11 @@
     <i class="glyphicon glyphicon-arrow-down"></i>
   </div> -->
 
+<div class="container">
+
   <% @form_sections.each do |form_section|%>
 
-  <% sectionType = ( @oficio == true && form_section.available_to_fill?( @county ) ? "panel-warning" : "panel-default" ) %>
+  <% sectionType = ( ( @oficio == true || form_section.order == 0 ) && form_section.available_to_fill?( @county ) ? "panel-warning" : "panel-default" ) %>
   <% if sectionType == "panel-warning" %>
     <% sectionType = (form_section.all_cards_fill?(@county) ? "panel-success" : "panel-warning" ) %>
   <% end %>
@@ -31,12 +37,15 @@
     <% end %>
   </div>
 
+
     <% if @form_sections.index( form_section ) < @form_sections.length-1 %>
 <!--     <div class="text-center arrow-connect">
       <i class="glyphicon glyphicon-arrow-down"></i>
     </div> -->
     <% end %>
+
   <%end%>
+
 </div>
 
 <script>
@@ -45,8 +54,7 @@ $(function(){
 })
 $("[data-survey]").click(function(evt){
   evt.preventDefault();
-  if( !$(this).hasClass("text-muted") )
-    if( $(".oficio").hasClass("panel-success") ){
+  if( !$(this).hasClass("text-muted") ){
       $(".survey_field").val( $(this).data("survey") );
       $(".nextTab").removeClass("disabled").trigger("click");
     }

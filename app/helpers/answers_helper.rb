@@ -42,14 +42,13 @@ module AnswersHelper
   end
 
   def render_input( answer, f, options )
-    help_block = answer.help_block.blank? ? "" : "<span class='input-group-addon'>#{answer.help_block}</span>"
+    help_block = answer.help_block.blank? ? "" : "<span class='input-group-addon'>#{answer.help_block}</span>".html_safe
     (
-      ( f.object.new_record? ? "" : f.hidden_field( :id ) ) +
       ( answer.label_text.blank? ? "" : f.label(:value, answer.label_text) ) +
-      ( help_block.blank? ? "" : "<div class='input-group'>" ) +
+      ( help_block.blank? ? "" : "<div class='input-group'>" ).html_safe +
       help_block +
       f.text_field(:value, {class: "form-control", placeholder: answer.placeholder, readonly: answer.disabled }.merge!(options) ) +
-      ( help_block.blank? ? "" : "</div>" )
+      ( help_block.blank? ? "" : "</div>" ).html_safe
     ).html_safe
   end
 

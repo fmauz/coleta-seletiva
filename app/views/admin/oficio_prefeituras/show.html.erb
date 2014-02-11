@@ -5,19 +5,23 @@
 <%= flash_notice_render %>
 
 <p>
-  <strong>Nome:</strong> <%= @oficio_prefeitura.name %>
+  <strong>Nome do pesquisador técnico do PCSS:</strong> <%= @oficio_prefeitura.name %>
 </p>
 
 <p>
-  <strong>Descrição:</strong> <%= @oficio_prefeitura.description %>
+  <strong>Tipo de ofício:</strong> <%= @oficio_prefeitura.description %>
 </p>
 
 <p>
-  <strong>Data do Registro:</strong> <%= l @oficio_prefeitura.data_registro %>
+  <strong>Cargo:</strong> <%= @oficio_prefeitura.cargo %>
 </p>
 
 <p>
-  <strong>Nome do Responsável:</strong> <%= @oficio_prefeitura.name_resp %>
+  <strong>Data do envio do ofício pela prefeitura:</strong> <%= l @oficio_prefeitura.data_registro %>
+</p>
+
+<p>
+  <strong>Nome do Responsável pela assinatura do ofício:</strong> <%= @oficio_prefeitura.name_resp %>
 </p>
 
 <p>

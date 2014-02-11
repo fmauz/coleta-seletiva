@@ -56,6 +56,6 @@ class Admin::OficioPrefeiturasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def oficio_prefeitura_params
-      params.require( :oficio_prefeitura ).permit( :name, :description, :data_registro, :name_resp, :county_id, :archive )
+      params.require( :oficio_prefeitura ).permit( :name, :description, :data_registro, :name_resp, :county_id, :archive, :cargo )
     end
 end

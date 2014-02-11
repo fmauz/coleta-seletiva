@@ -11,7 +11,8 @@
     <tr>
       <th>Id</th>
       <th>Nome</th>
-      <th>Seções</th>
+      <th>Ordem</th>
+      <th></th>
       <th class="table-action"></th>
     </tr>
   </thead>
@@ -21,6 +22,7 @@
       <tr>
         <td><%= section.id %></td>
         <td><%= section.name %></td>
+        <td><%= section.order %></td>
         <td><%= section.link_to_questions %></td>
         <td>
           <%= link_to '', [ :admin, @survey, section], class: "glyphicon glyphicon-eye-open table-icon" %>
