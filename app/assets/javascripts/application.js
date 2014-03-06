@@ -36,7 +36,13 @@ function remove_fields(link) {
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g");
-  $( link ).prevAll("#" + association).append( content.replace(regexp, new_id) );
+  var cf = $( link ).parents(".cf");
+  if( cf.length <= 0 )
+    cf = $( link );
+  
+  cf.prevAll("#" + association).append( content.replace(regexp, new_id) );
+
+
 }
 
 function getParameterByName(name) {
