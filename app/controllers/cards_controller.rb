@@ -45,7 +45,9 @@ class CardsController < ApplicationController
   end
 
   def form_section
-    @form_sections = FormSection.all
+    @form_sections_first = FormSection.where( FormSection.arel_table[:order].eq(0) ).all
+    @form_sections = FormSection.where( FormSection.arel_table[:order].gt(0) ).all
+
     @county = County.where( :name => I18n.transliterate( params[:county_code] ).upcase ).first
     @year = params[:year].to_i
     @oficio = OficioPrefeitura.where( county_id: @county.id ).count == 1

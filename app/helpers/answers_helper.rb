@@ -47,7 +47,7 @@ module AnswersHelper
       ( answer.label_text.blank? ? "" : f.label(:value, answer.label_text) ) +
       ( help_block.blank? ? "" : "<div class='input-group'>" ).html_safe +
       help_block +
-      f.text_field(:value, {class: "form-control", placeholder: answer.placeholder, readonly: answer.disabled }.merge!(options) ) +
+      f.text_field(:value, { class: "form-control", placeholder: answer.placeholder, readonly: answer.disabled }.merge!(options) ) +
       ( help_block.blank? ? "" : "</div>" ).html_safe
     ).html_safe
   end

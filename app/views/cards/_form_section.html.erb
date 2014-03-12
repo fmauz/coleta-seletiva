@@ -4,6 +4,29 @@
 </div>
 <div class="cf"><br /></div>
 
+<div class="container">
+
+  <% @form_sections_first.each do |form_section|%>
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h3 class="panel-title text-center"><%= form_section.name %></h3>
+    </div>
+    <%if form_section.surveys.count > 0%>
+    <div class="panel-body">
+      <ul>
+        <% form_section.surveys.all.each do |survey|%>
+        <li><a href="#" data-month="<%= survey.uniq_month?%>" data-survey="<%= survey.id%>" class="<%= "text-muted" if !survey.enable_to_fill?( @county, @year ) %>"><%= survey.name %></a></li>
+        <%end%>
+      </ul>
+    </div>
+    <% end %>
+  </div>
+
+  <%end%>
+
+</div>
+  
+
   <div class="oficio panel <%=  @oficio == true ? "panel-success" : "panel-warning" %>">
     <div class="panel-heading">
       <h2 class="panel-title text-center">Envio do Ofício pela Prefeitura</h2>
@@ -36,13 +59,6 @@
     </div>
     <% end %>
   </div>
-
-
-    <% if @form_sections.index( form_section ) < @form_sections.length-1 %>
-<!--     <div class="text-center arrow-connect">
-      <i class="glyphicon glyphicon-arrow-down"></i>
-    </div> -->
-    <% end %>
 
   <%end%>
 
