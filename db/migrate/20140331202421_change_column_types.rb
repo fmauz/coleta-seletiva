@@ -1,15 +1,6 @@
 class ChangeColumnTypes < ActiveRecord::Migration
   def change
-    execute %q{
-      alter table cards
-      alter column year
-      type int using cast(year as int)
-    }
-
-    execute %q{
-      alter table cards
-      alter column month
-      type int using cast(month as int)
-    }
+    change_column :cards, :year, 'integer USING CAST(column_name AS integer)'
+    change_column :cards, :month, 'integer USING CAST(column_name AS integer)'
   end
 end
