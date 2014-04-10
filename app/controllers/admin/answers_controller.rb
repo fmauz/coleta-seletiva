@@ -4,7 +4,7 @@ class Admin::AnswersController < Admin::AdminController
   before_action :set_question
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
   respond_to :html
-  
+
   # GET /answers
   # GET /answers.json
   def index
@@ -72,6 +72,6 @@ class Admin::AnswersController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.require(:answer).permit(:min_length, :max_length, :number_only, :currency_only, :answer_type_id, :placeholder, :label_text, :help_block, :css_class, :disabled, :required, :query_string, :element_ajax, :ajax_url, answer_collections_attributes: [ :id, :text, :value, :_destroy, :event_js ])
+      params.require(:answer).permit(:is_cpf,:is_cnpj, :is_cep, :is_telefone, :is_percent, :is_short_date, :is_kilos, :min_length, :max_length, :number_only, :currency_only, :answer_type_id, :placeholder, :label_text, :help_block, :css_class, :disabled, :required, :query_string, :element_ajax, :ajax_url, answer_collections_attributes: [ :id, :text, :value, :_destroy, :event_js ])
     end
 end

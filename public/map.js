@@ -111,5 +111,5 @@ $(function(){
   L.geoJson( geoJson, { style: style, onEachFeature: onEachFeature } ).addTo(map);
 
   addInfo( map );
-  
+
 })

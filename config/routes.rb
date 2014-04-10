@@ -7,7 +7,7 @@ ColetaSeletiva::Application.routes.draw do
       get "form_section"
     end
   end
-  
+
   devise_for :users
 
   namespace :admin do
@@ -20,6 +20,8 @@ ColetaSeletiva::Application.routes.draw do
       post "clone", :action => "clone", as: :clone
       resources :sections do
         resources :questions do
+          post "up", :action => "up_question", as: :up_question
+          post "down", :action => "down_question", as: :down_question
           resources :answers
         end
       end

@@ -1,4 +1,5 @@
 <%= form_for([:admin, @survey, @section, @question], html: { role: "form", class: "form-horizontal"}) do |f| %>
+  <%= f.hidden_field :order, value: (f.object.order == 0 ? @section.questions.count : f.object.order) %>
 
   <fieldset>
     <legend>Dados Básicos</legend>
@@ -51,8 +52,8 @@
     <legend></legend>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-success">Salvar</button> ou 
-        <button type="submit" data-save-add-other class="btn btn-success">Salvar e adicionar outro</button> ou 
+        <button type="submit" class="btn btn-success">Salvar</button> ou
+        <button type="submit" data-save-add-other class="btn btn-success">Salvar e adicionar outro</button> ou
         <a href="<%= admin_survey_section_questions_path( @survey, @section )%>">cancelar</a>
       </div>
     </div>

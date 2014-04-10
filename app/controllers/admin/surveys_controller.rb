@@ -31,11 +31,7 @@ class Admin::SurveysController < Admin::AdminController
   def create
     @survey = Survey.new(survey_params)
     @survey.save
-    if params[:add_new] == "false"
-      respond_with( [ :admin, @survey] )
-    else
-      redirect_to admin_surveys_new_path
-    end
+    respond_with( [ :admin, @survey] )
   end
 
   # PATCH/PUT /surveys/1

@@ -58,7 +58,7 @@
     </div>
 
   </div>
-  
+
 
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-12">
@@ -74,7 +74,7 @@
 
 <fieldset class="margin-bottom">
   <legend>Validações</legend>
-  
+
 
 
   <div class="form-group">
@@ -92,6 +92,18 @@
   </div>
 
   <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-12">
+        <div class="checkbox">
+          <label><%= f.check_box :required  %> Obrigatório ?</label>
+        </div>
+      </div>
+    </div>
+</fieldset>
+
+<fieldset class="margin-bottom">
+  <legend>Máscaras</legend>
+
+  <div class="form-group">
     <div class="col-sm-offset-2 col-sm-12">
       <div class="checkbox">
         <label><%= f.check_box :number_only  %> Somente números ?</label>
@@ -107,16 +119,64 @@
     </div>
   </div>
 
-
   <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-12">
-        <div class="checkbox">
-          <label><%= f.check_box :required  %> Obrigatório ?</label>
-        </div>
+    <div class="col-sm-offset-2 col-sm-12">
+      <div class="checkbox">
+        <label><%= f.check_box :is_cpf  %> CPF ?</label>
       </div>
     </div>
+  </div>
 
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-12">
+      <div class="checkbox">
+        <label><%= f.check_box :is_cnpj  %> CNPJ ?</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-12">
+      <div class="checkbox">
+        <label><%= f.check_box :is_cep  %> CEP ?</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-12">
+      <div class="checkbox">
+        <label><%= f.check_box :is_telefone  %> Telefone ?</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-12">
+      <div class="checkbox">
+        <label><%= f.check_box :is_percent  %> Porcentagem ?</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-12">
+      <div class="checkbox">
+        <label><%= f.check_box :is_kilos  %> Kilos ?</label>
+      </div>
+    </div>
+  </div>
+
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-12">
+    <div class="checkbox">
+      <label><%= f.check_box :is_short_date  %> Data ?</label>
+    </div>
+  </div>
+</div>
 </fieldset>
+
+
 
 <fieldset class="margin-bottom">
   <legend>Collection</legend>
@@ -138,8 +198,8 @@
   <legend></legend>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-success">Salvar</button> ou 
-      <button type="submit" data-save-add-other class="btn btn-success">Salvar e adicionar outro</button> ou 
+      <button type="submit" class="btn btn-success">Salvar</button> ou
+      <button type="submit" data-save-add-other class="btn btn-success">Salvar e adicionar outro</button> ou
       <a href="<%= admin_survey_section_question_answers_path( @survey, @section, @question )%>">cancelar</a>
     </div>
   </div>

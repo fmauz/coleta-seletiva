@@ -13,6 +13,8 @@
       <th>Código</th>
       <th>Pergunta</th>
       <th>Respostas</th>
+      <th>Ordem</th>
+      <th class="table-action"></th>
       <th class="table-action"></th>
     </tr>
   </thead>
@@ -24,6 +26,16 @@
         <td><%= question.code %></td>
         <td><%= question.content %></td>
         <td><%= question.link_to_answers %></td>
+        <td><%= question.order %></td>
+        <td>
+          <%if question.order > 0%>
+            <%= link_to "", admin_survey_section_question_up_question_path( @survey, @section, question ), class: "glyphicon glyphicon-arrow-up", method: :post %>
+          <% end %>
+
+          <%if @questions.index(question) < @questions.length-1 %>
+          <%= link_to "", admin_survey_section_question_down_question_path( @survey, @section, question ), class: "glyphicon glyphicon-arrow-down", method: :post %>
+          <% end %>
+        </td>
         <td>
           <%= link_to '', [ :admin, @survey, @section, question], class: "glyphicon glyphicon-eye-open table-icon" %>
           <%= link_to '', edit_admin_survey_section_question_path(@survey, @section, question), class: "glyphicon glyphicon-pencil table-icon" %>

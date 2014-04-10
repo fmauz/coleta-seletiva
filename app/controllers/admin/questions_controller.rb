@@ -50,6 +50,20 @@ class Admin::QuestionsController < Admin::AdminController
     respond_with( [ :admin, @survey, @section, @question ] )
   end
 
+  def up_question
+    @question = @section.questions.find( params[:question_id] )
+    @question.down_order
+    @question.save
+    redirect_to admin_survey_section_questions_path( @survey, @section )
+  end
+
+  def down_question
+    @question = @section.questions.find( params[:question_id] )
+    @question.up_order
+    @question.save
+    redirect_to admin_survey_section_questions_path( @survey, @section )
+  end
+
   private
     def set_survey
       @survey = Survey.find( params[:survey_id] )
@@ -66,6 +80,6 @@ class Admin::QuestionsController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:section_id, :multiple_answer, :code, :content, :help_block, :css_class, :clear_question)
+      params.require(:question).permit(:section_id, :multiple_answer, :code, :content, :help_block, :css_class, :clear_question, :order)
     end
 end

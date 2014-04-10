@@ -11,3 +11,12 @@ raise Exception unless person.save
 uri = URI( "https://raw.github.com/fmauz/utils/master/seed_data/cidades.txt" )
 cities = Net::HTTP.get(uri).split("\n").map{|a| a.split("|") }
 cities.each{|a| County.create( name: a.last, code: a[1], cnpj: "00.000.000/0000-00" ) }
+
+
+# Section.all.each do |section|
+#   questions = section.questions.all
+#   questions.each do |question|
+#     question.order = questions.index( question )
+#     question.save
+#   end
+# end

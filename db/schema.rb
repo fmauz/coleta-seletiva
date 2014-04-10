@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217164624) do
+ActiveRecord::Schema.define(version: 20140410180113) do
 
   create_table "answer_collections", force: true do |t|
     t.integer  "answer_id"
@@ -48,6 +48,13 @@ ActiveRecord::Schema.define(version: 20131217164624) do
     t.datetime "updated_at"
     t.boolean  "number_only"
     t.boolean  "currency_only"
+    t.boolean  "is_cpf",         default: false
+    t.boolean  "is_cnpj",        default: false
+    t.boolean  "is_cep",         default: false
+    t.boolean  "is_telefone",    default: false
+    t.boolean  "is_percent",     default: false
+    t.boolean  "is_kilos"
+    t.boolean  "is_short_date"
   end
 
   add_index "answers", ["answer_type_id"], name: "index_answers_on_answer_type_id", using: :btree
@@ -75,13 +82,13 @@ ActiveRecord::Schema.define(version: 20131217164624) do
   add_index "card_questions", ["question_id"], name: "index_card_questions_on_question_id", using: :btree
 
   create_table "cards", force: true do |t|
-    t.string   "year"
+    t.integer  "year"
     t.integer  "survey_id"
     t.integer  "person_id"
     t.integer  "county_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "month"
+    t.integer  "month"
   end
 
   add_index "cards", ["county_id"], name: "index_cards_on_county_id", using: :btree
@@ -152,6 +159,7 @@ ActiveRecord::Schema.define(version: 20131217164624) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "clear_question"
+    t.integer  "order",           default: 0
   end
 
   add_index "questions", ["section_id"], name: "index_questions_on_section_id", using: :btree

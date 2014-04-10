@@ -28,6 +28,10 @@ $(function(){
   $('.fileupload').fileupload();
 });
 
+var SaoPauloCelphoneMask = function(phone, e, currentField, options){
+  return phone.match(/^(\(?11\)? ?9(5[0-9]|6[0-9]|7[01234569]|8[0-9]|9[0-9])[0-9]{1})/g) ? '(00) 00000-0000' : '(00) 0000-0000';
+};
+
 function remove_fields(link) {
   $(link).siblings("input[type=hidden]").val("true");
   $(link).parents(".fields").hide();
@@ -39,7 +43,7 @@ function add_fields(link, association, content) {
   var cf = $( link ).parents(".cf");
   if( cf.length <= 0 )
     cf = $( link );
-  
+
   cf.prevAll("#" + association).append( content.replace(regexp, new_id) );
 
 
@@ -56,7 +60,7 @@ function getElementFromJson( data, nodes ){
   names = ""
   for( key in data ){
     nodes.push( key )
-    
+
     if( typeof( data[key] ) != "object" || Object.keys( data[key] ).length == 0 ){
       names = nodes.join(".");
     }else{
@@ -127,7 +131,7 @@ $(function(){
     if( tabPanel.next(".tab-pane").length == 0 )
       self.addClass("disabled");
 
-    
+
     if ( tabPanel.attr("id") == "dates" ) {
       verifyDates("prevTab")
     }else{
@@ -164,12 +168,48 @@ $(function(){
 
   $( "[data-number-only]" ).each(function(){
     var self = $(this);
-    self.mask("999999999999999999"), {reverse: true, maxlength: false}
+    var format = self.data( "mask-format" ).toString();
+    self.mask( format ), {reverse: true, maxlength: false}
   });
 
   $( "[data-currency-only]" ).each(function(){
     var self = $( this );
     self.mask('#.##0,00', {reverse: true, maxlength: false});
+  });
+
+  $( "[data-cpf-only]" ).each(function(){
+    var self = $( this );
+    self.mask('000.000.000-00', {reverse: true});
+  });
+
+  $( "[data-cnpj-only]" ).each(function(){
+    var self = $( this );
+    self.mask('00.000.000/0000-00', {reverse: true});
+  });
+
+  $( "[data-cep-only]" ).each(function(){
+    var self = $( this );
+    self.mask('00000-000', {reverse: true});
+  });
+
+  $( "[data-telefone-only]" ).each(function(){
+    var self = $( this );
+    self.mask('(00) 00009-0000');
+  });
+
+  $( "[data-porcentagem-only]" ).each(function(){
+    var self = $( this );
+    self.mask('##0,00%', {reverse: true});
+  });
+
+  $( "[data-kilos-only]" ).each(function(){
+    var self = $( this );
+    self.mask('########0,000', {reverse: true});
+  });
+
+  $( "[data-shortdate-only]" ).each(function(){
+    var self = $( this );
+    self.mask('99/9999' );
   });
 
 });
@@ -183,7 +223,7 @@ function verifyDates(obj){
 function onTabEvents(obj){
   var $form = obj.target.parents( ".container" ).find("form");
   if( obj.target.attr("id") == "form_section"){
-    
+
     $.ajax({
       url: obj.target.data("url") ,
       data: $form.serialize(),
@@ -192,7 +232,7 @@ function onTabEvents(obj){
       success: function( content ){
         obj.target.find("#content").html( content );
       }
-    }) 
+    })
 
   } else if( obj.target.attr("id") == "instrumentos"){
     $.ajax({
@@ -207,7 +247,7 @@ function onTabEvents(obj){
           $("#message_btn").removeClass("hide");
         }
       }
-    }) 
+    })
   }
 }
 
@@ -222,7 +262,7 @@ function hide( code ){
 }
 
 function setFocus( code ){
-  find_question( code ).find("input").focus();
+  find_question( code ).find("input[type!='hidden']:first").focus();
 }
 
 function find_question( code ){
