@@ -46,7 +46,7 @@ function add_fields(link, association, content) {
 
   cf.prevAll("#" + association).append( content.replace(regexp, new_id) );
 
-
+  setMasks( cf.prevAll("#" + association) );
 }
 
 function getParameterByName(name) {
@@ -166,53 +166,58 @@ $(function(){
     $("body").scrollTop(0);
   });
 
-  $( "[data-number-only]" ).each(function(){
+  setMasks( document );
+});
+
+function setMasks( object ){
+  // console.log( object );
+  
+  $(object).find( "[data-number-only]" ).each(function(){
     var self = $(this);
     var format = self.data( "mask-format" ).toString();
     self.mask( format ), {reverse: true, maxlength: false}
   });
 
-  $( "[data-currency-only]" ).each(function(){
+  $(object).find( "[data-currency-only]" ).each(function(){
     var self = $( this );
     self.mask('#.##0,00', {reverse: true, maxlength: false});
   });
 
-  $( "[data-cpf-only]" ).each(function(){
+  $(object).find( "[data-cpf-only]" ).each(function(){
     var self = $( this );
     self.mask('000.000.000-00', {reverse: true});
   });
 
-  $( "[data-cnpj-only]" ).each(function(){
+  $(object).find( "[data-cnpj-only]" ).each(function(){
     var self = $( this );
     self.mask('00.000.000/0000-00', {reverse: true});
   });
 
-  $( "[data-cep-only]" ).each(function(){
+  $(object).find( "[data-cep-only]" ).each(function(){
     var self = $( this );
     self.mask('00000-000', {reverse: true});
   });
 
-  $( "[data-telefone-only]" ).each(function(){
+  $(object).find( "[data-telefone-only]" ).each(function(){
     var self = $( this );
     self.mask('(00) 00009-0000');
   });
 
-  $( "[data-porcentagem-only]" ).each(function(){
+  $(object).find( "[data-porcentagem-only]" ).each(function(){
     var self = $( this );
     self.mask('##0,00%', {reverse: true});
   });
 
-  $( "[data-kilos-only]" ).each(function(){
+  $(object).find( "[data-kilos-only]" ).each(function(){
     var self = $( this );
     self.mask('########0,000', {reverse: true});
   });
 
-  $( "[data-shortdate-only]" ).each(function(){
+  $(object).find( "[data-shortdate-only]" ).each(function(){
     var self = $( this );
     self.mask('99/9999' );
   });
-
-});
+}
 
 function verifyDates(obj){
   if( $("[data-survey='" + $(".survey_field").val() + "']").data("month") != true ){
