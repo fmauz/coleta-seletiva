@@ -52,6 +52,7 @@ gem 'responders'
 gem 'active_decorator'
 
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 gem 'aws-sdk'
 gem 'paperclip'

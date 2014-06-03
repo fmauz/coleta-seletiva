@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140410180113) do
+ActiveRecord::Schema.define(version: 20140527173931) do
 
   create_table "answer_collections", force: true do |t|
     t.integer  "answer_id"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 20140410180113) do
     t.string   "domicilios_total",          default: "0"
     t.string   "populacao_rural",           default: "0"
     t.string   "cep_prefeitura",            default: "0"
+    t.string   "color"
   end
 
   create_table "form_sections", force: true do |t|
@@ -183,11 +184,15 @@ ActiveRecord::Schema.define(version: 20140410180113) do
 
   create_table "surveys", force: true do |t|
     t.string   "name"
-    t.boolean  "disabled",        default: false
+    t.boolean  "disabled",             default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "form_type"
     t.integer  "form_section_id"
+    t.string   "archive_file_name"
+    t.string   "archive_content_type"
+    t.integer  "archive_file_size"
+    t.datetime "archive_updated_at"
   end
 
   create_table "users", force: true do |t|

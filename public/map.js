@@ -24,7 +24,7 @@ function resetHighlight(e) {
   var layer = e.target;
   if( clicked != layer  ){
     layer.setStyle({
-      fillColor: "#555",
+      fillColor: getColor( layer.feature ),
       weight: 2,
       opacity: 1,
       color: 'white',
@@ -54,7 +54,7 @@ function zoomToFeature(e) {
 
   if( clicked != null )
     clicked.setStyle({
-      fillColor: "#555",
+      fillColor: getColor(e),
       weight: 2,
       opacity: 1,
       color: 'white',
@@ -78,14 +78,21 @@ function onEachFeature(feature, layer) {
 
 function style(e) {
   var layer = e.target;
+
   return {
-    fillColor: "#555",
+    fillColor: getColor(e),
     weight: 2,
     opacity: 1,
     color: 'white',
     dashArray: '3',
     fillOpacity: 0.7
   };
+}
+
+function getColor( e ){
+  var color = muns[ e.properties.CD_GEOCODM ];
+  if( color == "" ) color = "#555";
+  return color;
 }
 
 function addInfo( map ){

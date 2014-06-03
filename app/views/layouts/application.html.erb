@@ -25,11 +25,15 @@
     <%= render :partial => "shared/navbar" %>
   <% end %>
 
-  <div class="container">
+  <%= yield :before_container %>
+
+  <div class="container paddingTop">
     <%= yield :title %>
     
     <%unless current_user.nil? %>
-      <%= render "shared/breadcrumb" %>
+      <% unless controller_name == "home" %>
+        <%= render "shared/breadcrumb" %>
+      <% end %>
     <%end%>
 
     <%= yield %>

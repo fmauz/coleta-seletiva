@@ -1,4 +1,6 @@
 class Survey < ActiveRecord::Base
+  has_attached_file :archive
+
   has_many :cards, :dependent => :destroy
   has_many :sections, :dependent => :destroy
 

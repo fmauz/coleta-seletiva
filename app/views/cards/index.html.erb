@@ -54,5 +54,5 @@
 <%= empty_array_message @collection_devices.cards %>
 
 <div class="cb">
-  <%= will_paginate @collection_devices.cards %>
+  <%= will_paginate @collection_devices.cards, renderer: BootstrapPagination::Rails %>
 </div>

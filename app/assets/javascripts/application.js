@@ -18,6 +18,7 @@
 //= require jquery.validate.min
 //= require jquery.mask.min
 //= require bootstrap-fileupload
+//= require chromoselector.demo.min
 
 /*
 # =============================================================================
@@ -26,6 +27,8 @@
 */
 $(function(){
   $('.fileupload').fileupload();
+
+  $('.color').chromoselector()
 });
 
 var SaoPauloCelphoneMask = function(phone, e, currentField, options){

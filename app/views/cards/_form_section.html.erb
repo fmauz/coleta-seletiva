@@ -15,7 +15,11 @@
     <div class="panel-body">
       <ul>
         <% form_section.surveys.all.each do |survey|%>
-        <li><a href="#" data-month="<%= survey.uniq_month?%>" data-survey="<%= survey.id%>" class="<%= "text-muted" if !survey.enable_to_fill?( @county, @year ) %>"><%= survey.name %></a></li>
+        <li><a href="#" data-month="<%= survey.uniq_month?%>" data-survey="<%= survey.id%>" class="<%= "text-muted" if !survey.enable_to_fill?( @county, @year ) %>"><%= survey.name %></a>
+          <% unless survey.archive_file_name.nil? %>
+            <a class="btn btn-sm btn-link documentLink  <%= "disabled" if !survey.enable_to_fill?( @county, @year ) %>" href="<%= survey.archive.url %>">Fazer download</a>
+          <% end %>
+        </li>
         <%end%>
       </ul>
     </div>
@@ -53,7 +57,13 @@
     <div class="panel-body">
       <ul>
         <% form_section.surveys.all.each do |survey|%>
-        <li><a href="#" data-month="<%= survey.uniq_month?%>" data-survey="<%= survey.id%>" class="<%= "text-muted" if sectionType == "panel-default" || !survey.enable_to_fill?( @county, @year ) %>"><%= survey.name %></a></li>
+        <li><a href="#" data-month="<%= survey.uniq_month?%>" data-survey="<%= survey.id%>" class="<%= "text-muted" if sectionType == "panel-default" || !survey.enable_to_fill?( @county, @year ) %>"><%= survey.name %></a>
+
+          <% unless survey.archive_file_name.nil? %>
+            <a class="btn btn-sm btn-link documentLink <%= "disabled" if sectionType == "panel-default" || !survey.enable_to_fill?( @county, @year ) %>" href="<%= survey.archive.url %>">Fazer download (XLS)</a>
+          <% end %>
+
+        </li>
         <%end%>
       </ul>
     </div>

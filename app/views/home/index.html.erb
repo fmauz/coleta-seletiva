@@ -1,0 +1,41 @@
+<%= content_for :before_container do %>
+<header class="navbar navbar-default navbar-fixed-top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<%= root_path %>">
+        <img src="<%= image_path("logo-observatorio.png") %>" />
+        <small>&nbsp;</small>
+        <h1>OBSERVATÓRIO DA COLETA SELETIVA</h1>
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-right" role="navigation">
+      <div class="collapse navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+          <li><a href="<%= new_user_session_path %>">Entrar</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+
+    </div><!--/.nav-collapse -->
+  </div>
+</header>
+<% end %>
+
+<div class="col-lg-6">
+  <%3.times.each do %><p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </p><%end%>
+</div>
+<div class="col-lg-6 text-center">
+  <a href="http://boiling-taiga-4463.herokuapp.com/" class="btn btn-lg btn-default">Clique aqui para acessar o Observatório</a>
+</div>
