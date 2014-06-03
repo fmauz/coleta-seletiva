@@ -28,7 +28,7 @@
 $(function(){
   $('.fileupload').fileupload();
 
-  $('.color').chromoselector()
+  $('.color').chromoselector();
 });
 
 var SaoPauloCelphoneMask = function(phone, e, currentField, options){
