@@ -7,6 +7,11 @@ class CardsController < ApplicationController
     respond_with( @collection_devices )
   end
 
+  def last_cards
+    @collection_devices = CollectionDevicesPresenter.new( :page => params[:page] )
+    respond_with( @collection_devices )
+  end
+
   def new
     @collection_devices = CollectionDevicesPresenter.new( :county_code => params[:county_code],
                                                           :survey_id => params[:survey_id],

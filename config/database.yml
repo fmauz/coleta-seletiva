@@ -11,7 +11,7 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: coleta_seletiva_development
+  database: coleta_seletiva
   pool: 5
   username: root
   password:

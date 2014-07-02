@@ -6,53 +6,8 @@
 <h1 class="title-coleta">Iniciar Instrumento de Coleta</h1>
 <%= render "build_form" %>
 
-<h1>Últimos dados coletados</h1>
-
-<% if @collection_devices.cards.count > 0%>
-  <table class="table table-hover table-bordered table-margin">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Questionário</th>
-        <th>Município</th>
-        <th>Ano</th>
-        <th>Usuário‎</th>
-        <th>Data de cadastro</th>
-        <th>Data de alteração</th>
-        <th class="table-action"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @collection_devices.cards.unscoped.each do |card|%>
-      <tr>
-        <td><%= card.id %></td>
-        <td><%= card.survey.nil? ? "-" : card.survey.name %></td>
-        <td><%= card.county.name %></td>
-        <td><%= card.year %></td>
-        <td><%= card.person.name %></td>
-        <td><%= l card.created_at.to_date, :format => :default %></td>
-        <td><%= l card.updated_at.to_date, :format => :default %></td>
-        <td class="action_two">
-          <a href="<%= card_path( card )%>" class="glyphicon glyphicon-eye-open table-icon"><span></span></a>
-
-          <% if current_user.is_dev? %>
-          
-         <!-- <a href="<%= edit_card_path( card )%>" class="glyphicon glyphicon-pencil table-icon"><span></span></a> -->
-
-          <%= link_to '', card_path( card ), method: :delete, data: { confirm: 'Tem certeza?' }, class: "glyphicon glyphicon-remove-circle table-icon table-remove" %>
-          <%end%>
-          </td>
-
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
-
-<%= empty_array_message @collection_devices.cards %>
-
-<div class="cb">
-  <%= will_paginate @collection_devices.cards, renderer: BootstrapPagination::Rails %>
+<div class="text-center" style="margin-top:20px;">
+  <p>
+    <a href="/cards/last_cards" class="btn btn-lg btn-default">Ver últimos dados coletados</a>
+  </p>
 </div>

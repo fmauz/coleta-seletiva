@@ -3,6 +3,7 @@ ColetaSeletiva::Application.routes.draw do
   resources :counties, only: [ :index ]
   resources :cards do
     collection do
+      get "last_cards", :action => :last_cards
       get "verify"
       get "form_section"
     end
