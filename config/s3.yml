@@ -1,9 +1,9 @@
 development:
-  access_key_id: AKIAJY2DPDVSVPXVKBGQ
-  secret_access_key: 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
-  bucket: coleta_seletiva
+  access_key_id: AKIAJGSNPC3HFDO5MXWQ
+  secret_access_key: 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
+  bucket: coleta_seletiva_production
 
 production:
-  access_key_id: AKIAJY2DPDVSVPXVKBGQ
-  secret_access_key: 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
-  bucket: coleta_seletiva
+  access_key_id: AKIAJGSNPC3HFDO5MXWQ
+  secret_access_key: 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
+  bucket: coleta_seletiva_production
