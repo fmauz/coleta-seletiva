@@ -4,7 +4,17 @@
 
 <fieldset class="tab-pane active">
   <legend></legend>
-  <div id="map" class="mapField"></div>
+  <div class="col-sm-3">
+    <input type="text" class="form-control" placeholder="Digite o nome do municipio" />
+    <br />
+    <ul class="list-unstyle" style="height:335px; overflow-y:scroll">
+    <% County.all.each do |county|%>
+      <li><a href="#"><%= county.name%></a></li>
+    <% end %>
+  </ul>
+  </div>
+
+  <div id="map" class="col-sm-9 mapField"></div>
   <%= hidden_field_tag :county_code, "", :class => "county_name" %>
 </fieldset>
 

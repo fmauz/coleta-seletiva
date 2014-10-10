@@ -16,6 +16,8 @@
     <div class="collapse navbar-collapse navbar-right" role="navigation">
       <div class="collapse navbar-collapse" role="navigation">
         <ul class="nav navbar-nav">
+
+          <li><a href="/cards/last_cards">Ver últimos dados coletados</a></li>
           <li class="<%= controller_name == "cards" ? "active" : "" %>"><a href="<%= cards_path %>">Iniciar Instrumento de Coleta</a></li>
           <% if current_user.is_dev? %>
             <%= render "admin/shared/navbar" %>
