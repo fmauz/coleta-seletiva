@@ -1,4 +1,4 @@
-class CollectionDevicesPresenter
+  class CollectionDevicesPresenter
   attr_accessor :page
   attr_accessor :county
   attr_accessor :county_code
@@ -7,6 +7,8 @@ class CollectionDevicesPresenter
   attr_accessor :month
   attr_accessor :card
   attr_accessor :survey
+  attr_accessor :query
+  attr_accessor :ransack_obj
 
   delegate :name, :to => :survey
 
@@ -43,7 +45,7 @@ class CollectionDevicesPresenter
   end
 
   def cards
-    @cards ||= Card.paginate :per_page => 10, :page => ( @page || 1 )
+    @ransack_obj.result.order(:county_id).paginate :per_page => 10, :page => ( @page || 1 )
   end
 
   def self.build( card )
@@ -58,6 +60,7 @@ class CollectionDevicesPresenter
 
   def initialize(attributes = {})
     attributes.each{|k,v| self.send("#{k}=", v) }
+    @ransack_obj = Card.search( @query )
   end
 
 end

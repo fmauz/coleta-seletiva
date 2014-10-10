@@ -8,7 +8,7 @@ class CardsController < ApplicationController
   end
 
   def last_cards
-    @collection_devices = CollectionDevicesPresenter.new( :page => params[:page] )
+    @collection_devices = CollectionDevicesPresenter.new( :page => params[:page], :query => params[:q] )
     respond_with( @collection_devices )
   end
 

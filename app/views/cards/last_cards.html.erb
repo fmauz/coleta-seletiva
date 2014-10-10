@@ -1,5 +1,34 @@
 <h1>Últimos dados coletados</h1>
 
+<%= search_form_for @collection_devices.ransack_obj, url: last_cards_cards_path do |f| %>
+  <div class="form-group col-md-3">
+    <%= f.label :survey_id_eq, "Questionário" %>
+    <%= f.select :survey_id_eq, Survey.order(:name).all.collect{|a| [ a.name, a.id ] }, {include_blank: "Selecione"}, class: "form-control" %>
+  </div>
+
+
+  <div class="form-group col-md-3">
+    <%= f.label :county_id_eq, "Município" %>
+    <%= f.select :county_id_eq, County.order(:name).all.collect{|a| [ a.name, a.id ] }, {include_blank: "Selecione"}, class: "form-control" %>
+  </div>
+
+  <div class="form-group col-md-1">
+    <%= f.label :year_eq, "Ano" %>
+    <%= f.select :year_eq, (2010..Time.now.year+1).collect{|a| [ a, a ] }, {include_blank: "Selecione"}, class: "form-control" %>
+  </div>
+
+  <div class="form-group col-md-3">
+    <%= f.label :person_id_eq, "Usuário" %>
+    <%= f.select :person_id_eq, Person.order(:name).all.collect{|a| [ a.name, a.id ] }, {include_blank: "Selecione"}, class: "form-control" %>
+  </div>
+
+  <div class="form-group col-md-1">
+    <label style="display:block;">&nbsp;</label>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+  </div>
+
+<% end %>
+
 <% if @collection_devices.cards.count > 0%>
   <table class="table table-hover table-bordered table-margin">
     <thead>
@@ -16,7 +45,7 @@
     </thead>
 
     <tbody>
-      <% @collection_devices.cards.unscoped.each do |card|%>
+      <% @collection_devices.cards.each do |card|%>
       <tr>
         <td><%= card.id %></td>
         <td><%= card.survey.nil? ? "-" : card.survey.name %></td>
