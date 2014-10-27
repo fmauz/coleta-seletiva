@@ -1,3 +1,62 @@
-<h1><%= @collection_devices.name %></h1>
+<div class="cb">
+  <h1><%= @collection_devices.name %></h1>
 
-<%= render 'form_edit' %>
+  <div class="infos">
+      <span>Ano: <%= @collection_devices.year%> - </span>
+      <% unless @collection_devices.month.blank? %>
+      <span>Mês: <%= t("date.month_names")[ @collection_devices.month.to_i-1]%> - </span>
+      <% end %>
+      <span><%= @collection_devices.county.name%></span>
+  </div>
+</div>
+
+<%= render 'form' %>
+
+<% content_for :scripts do %>
+<script type='text/javascript'>
+$(function(){
+  
+  $.getJSON("/cards/<%= params[:id] %>.json", function(data){
+    
+    $(data.card_questions).each(function(i, el){
+      var questionDiv = $("div[data-question='" + el.question.code + "']");
+
+      if( el.question.code == "DGE04")
+        console.log( el.answers );
+
+      $( el.answers ).each(function(i, an){
+        var answerDiv = questionDiv.find( "div[data-code='"+an.answer_id+"']" );
+
+        switch( answerDiv.data( "type" ) ){
+          case 1: //INPUT TEXT
+            answerDiv.find( "input[type='text']").val( an.value );
+            break;
+
+          case 2: //CHECKBOXES
+            var checkField = answerDiv.find( "input[type='checkbox'][value='" + an.value + "']" );
+            checkField.attr("checked", true);
+            break;
+
+          case 3:
+            var radioField = answerDiv.find( "input[type='radio'][value='" + an.value + "']" );
+            radioField.attr("checked", true);
+            break;
+
+          case 4:
+            var select = answerDiv.find( "select" );
+            select.find("option[value='" + an.value + "']").attr("selected", true);
+          
+          default:
+            break;
+        }
+
+
+      });
+
+    });
+
+  });
+
+});
+</script>
+<% end %>

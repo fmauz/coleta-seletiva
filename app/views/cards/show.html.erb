@@ -65,6 +65,10 @@
 
 <% end %>
 
-<div class="cf marginTop">
-  <a href="<%= cards_path %>" class="btn btn-lg btn-info marginTop">Inserir Novo</a> <a href="<%= root_path%>" class="btn btn-lg marginTop">Voltar</a>
+<div class="row">
+  <div class="cf marginTop text-center">
+    <a href="<%= cards_path %>" class="btn btn-lg btn-info marginTop">Inserir Novo</a> 
+    <a href="<%= edit_card_path( @card ) %>" class="btn btn-lg btn-warning marginTop">Editar</a>
+    <a href="<%= root_path%>" class="btn btn-lg marginTop">Voltar</a>
+  </div>
 </div>

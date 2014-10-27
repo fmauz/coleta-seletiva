@@ -21,13 +21,29 @@ class CardsController < ApplicationController
   end
 
   def edit
-    @collection_devices = CollectionDevicesPresenter.build( Card.find( params[:id] ) )
+    card = Card.find( params[:id] )
+
+    @collection_devices = CollectionDevicesPresenter.new( :county_code => card.county.name,
+                                                          :survey_id => card.survey_id,
+                                                          :year => card.year,
+                                                          :month => card.month )
     respond_with( @collection_devices )
   end
 
   def update
     @card = Card.find( params[:id] )
-    @card.update( card_params )
+    @card.destroy
+
+    @card = Card.new( card_params )
+    @card.person = current_person
+    if @card.save
+      lastId = params[:id].to_i
+      currentId = @card.id
+      Card.where( id: currentId ).update_all( "cards.id=#{lastId}" )
+      CardQuestion.where( card_id: currentId ).update_all( "card_questions.card_id=#{lastId}" )
+    end
+
+    @card.id = params[:id].to_i
     respond_with( @card )
   end
 

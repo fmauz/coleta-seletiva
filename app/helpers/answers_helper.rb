@@ -93,7 +93,7 @@ module AnswersHelper
                           f.radio_button(:value, ac.value, onchange: ac.event_js) + ac.text +
                           "</label>").html_safe +
                       "</div>").html_safe
-      }.join
+      }.join.html_safe
     ).html_safe
   end
 
@@ -110,7 +110,7 @@ module AnswersHelper
                           "</label>").html_safe +
                       "</div>").html_safe
         end
-      }.join
+      }.join.html_safe
     ).html_safe
   end
 

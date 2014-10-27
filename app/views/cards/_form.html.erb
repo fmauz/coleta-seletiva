@@ -1,4 +1,4 @@
-<%= form_for( @collection_devices.card, html: { role: "form", class: "form-horizontal", "validate-form" => "" } ) do |f| %>
+<%= form_for( @collection_devices.card, method: (params[:id].blank? ? :post : :put ), url: (params[:id].blank? ? cards_path : card_path( params[:id] ) ), html: { role: "form", class: "form-horizontal", "validate-form" => "" } ) do |f| %>
   <div class="alert alert-danger hide error">
     <span class="glyphicon glyphicon-warning-sign"></span>
     <span></span>.<br clear="all" />
