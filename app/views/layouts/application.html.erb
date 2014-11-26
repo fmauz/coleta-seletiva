@@ -21,11 +21,10 @@
 
 </head>
 <body>
-  <% if user_signed_in? %>
-    <%= render :partial => "shared/navbar" %>
-  <% end %>
 
-  <%= yield :before_container %>
+    <%= render :partial => "shared/navbar" %>
+
+  
 
   <div class="container paddingTop">
     <%= yield :title %>
@@ -42,9 +41,8 @@
   <div class="cf"></div>
 
   <footer class="footer cb">
-    <div class="container text-right">
-      <img src="<%= image_path "logo-inea.gif" %>" />
-      <img src="<%= image_path "logo-ceperj-1.jpg" %>" width="35" style="margin-top:5px;" />
+    <div class="container text-center">
+      <%= image_tag "footer.jpg", width:445 %>  
     </div>
   </footer>
 

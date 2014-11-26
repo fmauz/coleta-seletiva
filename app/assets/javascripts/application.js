@@ -18,6 +18,7 @@
 //= require jquery.validate.min
 //= require jquery.mask.min
 //= require bootstrap-fileupload
+//= require jquery.xcolor.min
 
 /*
 # =============================================================================
@@ -174,8 +175,26 @@ function setMasks( object ){
   
   $(object).find( "[data-number-only]" ).each(function(){
     var self = $(this);
-    var format = self.data( "mask-format" ).toString();
-    self.mask( format ), {reverse: true, maxlength: false}
+    var format = self.data( "mask-format" ).toString(),
+        maskBehavior = function(val){
+          return format;
+        },
+        options = {
+          onKeyPress: function(val,e,field,options){
+            console.log( field.val() );
+            if( field.val() == "" ){
+              field.mask("-"+format);
+              // field.val("-");
+            }else{
+              field.mask( maskBehavior.apply({}, arguments), options );
+            }
+          },
+          reverse: true,
+          maxlength: false
+        }
+
+    
+    self.mask( maskBehavior , options );
   });
 
   $(object).find( "[data-currency-only]" ).each(function(){

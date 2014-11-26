@@ -6,9 +6,9 @@ function highlightFeature(e) {
   var layer = e.target;
   if( clicked != layer  ){
     layer.setStyle({
-      weight: 5,
+      weight: 2,
       color: '#666',
-      dashArray: '',
+      dashArray: '3',
       fillOpacity: 0.7
     });
 
@@ -90,8 +90,14 @@ function style(e) {
 }
 
 function getColor( e ){
+  if ( e.properties == undefined )
+    e = e.target.feature;
+
+  if( e.properties["color"] == undefined )
+    e.properties["color"] = $.xcolor.lighten($.xcolor.random(), 6);
+
   var color = muns[ e.properties.CD_GEOCODM ];
-  if( color == "" ) color = "#555";
+  if( color == "" ) color = e.properties["color"];
   return color;
 }
 
