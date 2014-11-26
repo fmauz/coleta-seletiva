@@ -1,0 +1,271 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+*/
+
+/*
+ *= require bootstrap
+ *= require_self
+*/
+
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+  padding-bottom: 40px;
+  color: #003b6c;
+  font-family: "Helvetica Neue";
+  font-weight: 300;
+
+}
+
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper > .container {
+  padding-right: 0;
+  padding-left: 0;
+
+}
+.navbar-wrapper .navbar {
+  padding-right: 15px;
+  padding-left: 15px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 0px;
+  border-bottom: 1px solid #c0c0c0;
+}
+.navbar-wrapper .navbar .container {
+  width: auto;
+}
+
+.navbar-brand {
+  float: left;
+  height: 100%;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.navbar-toggle .icon-bar {
+    background-color: black;
+}
+.navbar-nav li a {
+ line-height: 72px;
+}
+.navbar-nav li a:hover {
+ background-color: transparent; 
+ color: #000;
+}
+
+
+
+
+
+
+/* Carousel base class */
+.carousel {
+  height: 500px;
+  margin-bottom: 60px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+  background-color: rgba(84, 113, 147, 0.78);
+  width: 100%;
+  margin: 0;
+  left: 0;
+  bottom: 0;
+  padding: 10px 20px;
+  text-align: left;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 500px;
+  background-color: #777;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+}
+
+
+/* contents
+------------------------- */
+
+.title-about {
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 30px;
+  color: #003b6c;
+  background-image: url("<%= image_path 'bg_titulo.jpg' %>");
+  background-repeat: no-repeat;
+  width: 335px;
+  height: 83px;
+  display: block;
+  line-height: 83px;
+  padding-left: 30px;
+  margin-top: 0;
+}
+
+.big-text {
+  font-size: 18px;
+  line-height: 30px;
+}
+.features {
+  list-style-type: none;
+  padding-top: 40px; 
+}
+.features li {
+  margin-bottom: 20px;
+}
+.features h4 {
+  text-transform: uppercase;
+}
+
+
+.prints {
+  position: relative;
+  height:600px; 
+
+}
+.prints .first {
+  position: absolute;
+  top: 10%;
+  left: 0;
+}
+.prints .second {
+  position: absolute;
+  top: 40%;
+  right: 0;
+}
+
+.prints .img-responsive {
+    max-width: 90%;
+  }
+
+.icon-block {
+    display: block;
+    margin-top: 10px;
+} 
+
+.video { background-color: #000; }
+
+
+.newsletter  {
+  background-color: #8e6b4b;
+  color: #fff;
+  padding-top: 80px; 
+  padding-bottom: 27px;
+}
+.newsletter .title {
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 26px;
+  color: #ffffff;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+.form-inline .form-group {
+  width: 80%;
+}
+.form-group input {
+  background-color: transparent;
+  border-bottom:3px solid #ffffff;
+  border-top: 0; 
+  border-left: 0;
+  border-right: 0;
+  box-shadow: none;
+}
+.form-control { 
+  width: 100% !important; 
+  color: #ffffff;
+}
+.form-group input:focus {
+  box-shadow: none;
+}
+
+.btn-default {
+  background-color: transparent;
+  border: 3px solid #ffffff;
+  padding: 15px 17px;
+  color: #ffffff;
+  margin-top: -20px; 
+  margin-left: 10px;
+  text-transform: uppercase;
+}
+
+.partners {
+  padding-top: 20px;
+  margin-top: 40px;
+  border-top: 1px solid #f0f0f0;
+}
+
+footer p { padding-top: 40px; }
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+  }
+  .navbar-wrapper .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .navbar-wrapper .navbar {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 0px;
+  }
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 992px) {
+  .featurette-heading {
+    margin-top: 120px;
+  }
+}
+
+@media (max-width: 768px){
+  .navbar-brand .img-responsive {
+    max-width: 50%;
+  }
+  
+}

@@ -1,16 +1,149 @@
-<div class="col-lg-6" style="text-align: justify;">
-  <p>
-    O OBSERVATÓRIO DA COLETA SELETIVA DO ESTADO DO RIO DE JANEIRO (OCS), construído pelo CEPERJ/ INEA, consiste em um BANCO DE DADOS contendo informações com interfaces de consulta, retratados em forma de textos, dados estatísticos e mapas dos municípios construído a partir de pesquisas primárias coordenadas pelo PROGRAMA COLETA SELETIVA SOLIDÁRIA (PCSS) DO INEA.
-  </p>
+    <div class="navbar-wrapper">
+      <div class="container">
 
-  <p>
-    O OCS armazena inúmeros dados referentes a gestão dos resíduos sólidos com ênfase nos dados sobre a coleta seletiva de materiais recicláveis nos municípios fluminenses.
-  </p>
+        <nav class="navbar navbar-fixed-top" role="navigation">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">
+                <img class="img-responsive" alt="Observatório da Coleta Seletiva Solidária" src="<%= image_path 'logo-ocss.png' %>">
+              </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav pull-right">
+                <li><a href="#about">SOBRE O PROJETO</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
 
-  <p>
-    O OCS apresenta informações que permitem traçar características e processos dos agentes que fazem parte dos Programas Municipais de Coleta Seletiva – catador, gestão municipal, cooperativa, escolas públicas e órgãos públicos.
-  </p> 
-</div>
-<div class="col-lg-6 text-center">
-  <a href="http://boiling-taiga-4463.herokuapp.com/" class="btn btn-lg btn-default">Clique aqui para acessar o Observatório</a>
-</div>
+      </div>
+    </div>
+
+
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+     
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img src="<%= image_path 'img-01-carrosel.jpg' %>" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>OBSERVATÓRIO DA COLETA SELETIVA</h1>
+              <p>Conheça o OCSS e veja o avanço do promagrama no Estado do Rio de Janeiro.</p>
+              <p><a class="btn btn-lg btn-success" href="http://boiling-taiga-4463.herokuapp.com/" role="button">Ir para o observatório</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+    </div><!-- /.carousel -->
+
+
+    <!-- Sections
+    ================================================== -->
+
+    <div id="about" class="container-fluid">
+
+      <div class="row about">
+        <div class="col-md-6">
+          <h2 class="title-about">Sobre o projeto</h2>
+          <div class="prints">
+            <img src="<%= image_path 'print-01.png'%>" alt="" class="img-responsive first" />
+            <img src="<%= image_path 'print-02.png'%>" alt="" class="img-responsive second" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p class="big-text">O Observatório da Coleta Seletiva Solidária do Estado do Rio de Janeiro (OCSS), construído pelo CEPERJ / INEA, consiste em um BANCO DE DADOS contendo informações com interfaces de consulta, retratados em forma de textos, dados estatísticos e mapas dos municípios construído a partir de pesquisas primárias coordenadas pelo PROGRAMA COLETA SELETIVA SOLIDÁRIA (PCSS) DO INEA.</p>
+          <ul class="features">
+            <li class="row">
+              <div class="col-md-3 icone">
+                <span class="icon-block"><img src="<%= image_path 'icone-banco-de-dados.jpg'%>" class="img-responsive"></span>
+              </div>
+              <div class="col-md-9 text">
+                <h4>Armazenamento de dados</h4>
+                <p>O OCSS armazena inúmeros dados referentes a gestão dos resíduos sólidos com ênfase nos dados sobre a coleta seletiva de materiais recicláveis nos municípios fluminenses.</p>
+              </div>
+            </li>
+            <li class="row">
+              <div class="col-md-3 icone">
+                <span class="icon-block"><img src="<%= image_path 'icone-pesquisa.jpg'%>" class="img-responsive"></span>
+              </div>
+              <div class="col-md-9 text">
+                <h4>Monte sua pesquisa</h4>
+                <p>O OCSS apresenta informações que permitem traçar características e processos dos agentes que fazem parte dos Programas Municipais de Coleta Seletiva – catador, gestão municipal, cooperativa, escolas públicas e órgãos públicos.</p>
+              </div>
+            </li>
+            <li class="row">
+              <div class="col-md-3 icone">
+                <span class="icon-block"><img src="<%= image_path 'icone-mapas.jpg'%>" class="img-responsive"></span>
+              </div>
+              <div class="col-md-9 text">
+                <h4>Mapas consolidados</h4>
+                <p>O OCSS apresenta uma série de mapas com dados consolidados das principais atividades  do programa no Estado do Rio de Janeiro.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+     
+      <div class="row video">
+        <div class="col-md-12">
+          <iframe width="100%" height="500" src="//www.youtube.com/embed/UaJzhi12HyE?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      
+
+      <div class="row newsletter">
+        <div class="col-md-12">
+
+          <h2 class="title">INSCREVA-SE E RECEBA AS NOVIDADES DO OBSERVATÓRIO</h2>
+          <form class="form-inline newsletter_form" action="<%= newsletters_path %>" role="form">
+            <div class="form-group">
+              <input type="email" name="newsletter[email]" class="form-control" id="exampleInputEmail1" placeholder="Escreva seu email aqui">
+            </div>
+            <button type="submit" class="btn btn-default">Cadastrar e-mail</button>
+          </form>
+
+        </div>
+      </div>
+
+      <!-- /end of sections -->
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="text-center">OBSERVATÓRIO DA COLETA SELETIVA SOLIDÁRIA DO ESTADO DO RIO DE JANEIRO - Rua Sacadura Cabral 103, Saúde, Rio de Janeiro, RJ - CEP: 20081-261 </p>
+        <div class="partners text-center">
+           <img src="<%= image_path 'rodape-obseravtorio.jpg'%>" class="img-responsive" alt="">
+        </div>
+      </footer>
+
+    </div><!-- /.container -->
+
+
+<% content_for :scripts do %>
+<script type="text/javascript">$(function(){
+$(".newsletter_form").submit(function(evt){
+  var $form = $(this);
+  evt.preventDefault();
+  $.post( $form.attr("action") , $form.serialize()).then(function(data){
+      alert("O seu email foi inscrito na newsletter com sucesso!")
+    })
+    .fail(function(data){
+      console.log( arguments );
+      alert("Este email ja está inscrito.")
+    }).always(function(){
+      $form.find(":input").val("");
+    });
+})
+});</script>
+<% end %>

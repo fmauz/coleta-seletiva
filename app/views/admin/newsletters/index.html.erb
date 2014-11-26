@@ -1,0 +1,32 @@
+<%content_for :title do%>
+  <h1>Listagem de Newsletters </h1>
+<%end%>
+
+<div class="text-right">
+  <a class="btn btn-large btn-link" href="<%=admin_newsletters_path( format: :xls )%>">Exportar para xls</a>
+</div>
+
+<table class="table table-hover table-bordered <%= "hide" if @newsletters.empty? %>">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Email</th>
+      <th>Data de criação</th>
+      <th class="table-action"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @newsletters.each do |newsletter| %>
+      <tr>
+        <td><%= newsletter.id %></td>
+        <td><%= newsletter.email %></td>
+        <td><%= l newsletter.created_at, format: :long %></td>
+        <td>
+          <%= link_to '', [ :admin, newsletter ], method: :delete, data: { confirm: 'Tem certeza?' }, class: "glyphicon glyphicon-remove-circle table-icon table-remove" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= empty_array_message @newsletters %>

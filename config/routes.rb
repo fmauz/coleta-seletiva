@@ -1,5 +1,7 @@
 ColetaSeletiva::Application.routes.draw do
 
+  resources :newsletters, only: [ :create ]
+
   resources :counties, only: [ :index ]
   resources :cards do
     collection do
@@ -13,6 +15,7 @@ ColetaSeletiva::Application.routes.draw do
 
   namespace :admin do
     root :to => redirect("/cards")
+    resources :newsletters
     resources :form_sections
     resources :oficio_prefeituras
     resources :users

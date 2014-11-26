@@ -4,13 +4,17 @@
   <title>Coleta Seletiva</title>
     
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
 
   <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+  <%if controller_name != "home"%>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+  <%else%>
+    <%= stylesheet_link_tag    "observatorio", media: "all", "data-turbolinks-track" => true %>
+  <%end%>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,10 +26,8 @@
 </head>
 <body>
 
+<%if controller_name != "home"%>
     <%= render :partial => "shared/navbar" %>
-
-  
-
   <div class="container paddingTop">
     <%= yield :title %>
     
@@ -45,8 +47,17 @@
       <%= image_tag "footer.jpg", width:445 %>  
     </div>
   </footer>
+<%else%>
+  <%= yield%>
+<% end %>
 
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+  <%if controller_name != "home"%>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%else%>
+    <%= javascript_include_tag "observatorio", "data-turbolinks-track" => true %>
+  <%end%>
+  
   <%= yield :scripts %>
 </body>
 </html>
