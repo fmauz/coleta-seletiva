@@ -173,29 +173,27 @@ $(function(){
 function setMasks( object ){
   // console.log( object );
   
-  $(object).find( "[data-number-only]" ).each(function(){
-    var self = $(this);
-    var format = self.data( "mask-format" ).toString(),
-        maskBehavior = function(val){
-          return format;
-        },
-        options = {
-          onKeyPress: function(val,e,field,options){
-            console.log( field.val() );
-            if( field.val() == "" ){
-              field.mask("-"+format);
-              // field.val("-");
-            }else{
-              field.mask( maskBehavior.apply({}, arguments), options );
-            }
-          },
-          reverse: true,
-          maxlength: false
+  $(object).find( "[data-number-only]" ).keydown(function (e) {
+        console.log( e.keyCode );
+        if( e.keyCode == 189 ){
+          $(this).val("-");
+          e.preventDefault();
+        }else{
+          // Allow: backspace, delete, tab, escape, enter and .
+          if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+               // Allow: Ctrl+A
+              (e.keyCode == 65 && e.ctrlKey === true) || 
+               // Allow: home, end, left, right
+              (e.keyCode >= 35 && e.keyCode <= 39)) {
+                   // let it happen, don't do anything
+                   return;
+          }
+          // Ensure that it is a number and stop the keypress
+          if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+              e.preventDefault();
+          }
         }
-
-    
-    self.mask( maskBehavior , options );
-  });
+    });
 
   $(object).find( "[data-currency-only]" ).each(function(){
     var self = $( this );
