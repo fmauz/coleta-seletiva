@@ -173,14 +173,19 @@ $(function(){
 function setMasks( object ){
   // console.log( object );
   
-  $(object).find( "[data-number-only]" ).keydown(function (e) {
-        console.log( e.keyCode );
+  $(object).find( "[data-number-only],[data-currency-only],[data-kilos-only]" ).keydown(function (e) {
         if( e.keyCode == 189 ){
           $(this).val("-");
           e.preventDefault();
         }else{
-          // Allow: backspace, delete, tab, escape, enter and .
-          if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+          if( e.keyCode == 188 ){
+            if( $(this).val().split(",").length > 1 ){
+              e.preventDefault();
+              return;
+            }
+          }
+
+          if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190,188]) !== -1 ||
                // Allow: Ctrl+A
               (e.keyCode == 65 && e.ctrlKey === true) || 
                // Allow: home, end, left, right
@@ -188,17 +193,17 @@ function setMasks( object ){
                    // let it happen, don't do anything
                    return;
           }
-          // Ensure that it is a number and stop the keypress
+
           if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
               e.preventDefault();
           }
         }
     });
 
-  $(object).find( "[data-currency-only]" ).each(function(){
-    var self = $( this );
-    self.mask('#.##0,00', {reverse: true, maxlength: false});
-  });
+  // $(object).find( "[data-currency-only]" ).each(function(){
+  //   var self = $( this );
+  //   self.mask('#.##0,00', {reverse: true, maxlength: false});
+  // });
 
   $(object).find( "[data-cpf-only]" ).each(function(){
     var self = $( this );
@@ -225,10 +230,10 @@ function setMasks( object ){
     self.mask('##0,00%', {reverse: true});
   });
 
-  $(object).find( "[data-kilos-only]" ).each(function(){
-    var self = $( this );
-    self.mask('########0,000', {reverse: true});
-  });
+  // $(object).find( "[data-kilos-only]" ).each(function(){
+  //   var self = $( this );
+  //   self.mask('########0,000', {reverse: true});
+  // });
 
   $(object).find( "[data-shortdate-only]" ).each(function(){
     var self = $( this );
