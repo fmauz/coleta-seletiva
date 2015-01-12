@@ -39,8 +39,8 @@ class CardsController < ApplicationController
     if @card.save
       lastId = params[:id].to_i
       currentId = @card.id
-      Card.where( id: currentId ).update_all( "cards.id=#{lastId}" )
-      CardQuestion.where( card_id: currentId ).update_all( "card_questions.card_id=#{lastId}" )
+      Card.where( id: currentId ).update_all( "id=#{lastId}" )
+      CardQuestion.where( card_id: currentId ).update_all( "card_id=#{lastId}" )
     end
 
     @card.id = params[:id].to_i
