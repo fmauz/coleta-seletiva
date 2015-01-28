@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Coleta Seletiva</title>
-    
+  <title>OCSS</title>
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
@@ -30,7 +30,7 @@
     <%= render :partial => "shared/navbar" %>
   <div class="container paddingTop">
     <%= yield :title %>
-    
+
     <%unless current_user.nil? %>
       <% unless controller_name == "home" %>
         <%= render "shared/breadcrumb" %>
@@ -44,7 +44,7 @@
 
   <footer class="footer cb">
     <div class="container text-center">
-      <%= image_tag "footer.jpg", width:445 %>  
+      <%= image_tag "footer.jpg", width:445 %>
     </div>
   </footer>
 <%else%>
@@ -57,7 +57,7 @@
   <%else%>
     <%= javascript_include_tag "observatorio", "data-turbolinks-track" => true %>
   <%end%>
-  
+
   <%= yield :scripts %>
 </body>
 </html>
