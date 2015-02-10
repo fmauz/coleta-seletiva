@@ -21,7 +21,7 @@
       <tr>
         <td><%= newsletter.id %></td>
         <td><%= newsletter.email %></td>
-        <td><%= l newsletter.created_at, format: :long %></td>
+        <td><%= l newsletter.created_at, format: "%d/%m/%Y" %></td>
         <td>
           <%= link_to '', [ :admin, newsletter ], method: :delete, data: { confirm: 'Tem certeza?' }, class: "glyphicon glyphicon-remove-circle table-icon table-remove" %></td>
       </tr>
