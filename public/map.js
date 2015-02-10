@@ -94,7 +94,7 @@ function getColor( e ){
     e = e.target.feature;
 
   if( e.properties["color"] == undefined )
-    e.properties["color"] = $.xcolor.lighten($.xcolor.random(), 6);
+    e.properties["color"] = "#F5A056"; //$.xcolor.lighten($.xcolor.random(), 6);
 
   var color = muns[ e.properties.CD_GEOCODM ];
   if( color == "" ) color = e.properties["color"];
