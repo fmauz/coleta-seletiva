@@ -10,7 +10,7 @@ class NewslettersController < ApplicationController
   end
 
   def newsletter_params
-    params.require(:newsletter).permit(:email)
+    params.require(:newsletter).permit(:name, :profissao, :instituicao, :email)
   end
 
 end
