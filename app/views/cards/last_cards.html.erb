@@ -49,9 +49,9 @@
       <tr>
         <td><%= card.id %></td>
         <td><%= card.survey.nil? ? "-" : card.survey.name %></td>
-        <td><%= card.county.name %></td>
+        <td><%= card.county.name unless card.county.nil? %></td>
         <td><%= card.year %></td>
-        <td><%= card.person.name %></td>
+        <td><%= card.person.name unless card.person.nil? %></td>
         <td><%= l card.created_at.to_date, :format => :default %></td>
         <td><%= l card.updated_at.to_date, :format => :default %></td>
         <td class="action_two">
