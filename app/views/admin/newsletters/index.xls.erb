@@ -8,11 +8,17 @@
     <Table>
       <Row>
           <Cell><Data ss:Type="String">Id</Data></Cell>
+          <Cell><Data ss:Type="String">Nome</Data></Cell>
+          <Cell><Data ss:Type="String">Profissão</Data></Cell>
+          <Cell><Data ss:Type="String">Instituição</Data></Cell>
           <Cell><Data ss:Type="String">Email</Data></Cell>
       </Row>
       <% @newsletters.each do |newsletter|%>
       <Row>
         <Cell><Data ss:Type="Number"><%= newsletter.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= newsletter.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= newsletter.profissao %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= newsletter.instituicao %></Data></Cell>
         <Cell><Data ss:Type="String"><%= newsletter.email %></Data></Cell>
       </Row>
       <% end %>

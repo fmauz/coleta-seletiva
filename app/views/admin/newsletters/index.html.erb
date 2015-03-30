@@ -10,6 +10,9 @@
   <thead>
     <tr>
       <th>Id</th>
+      <th>Nome</th>
+      <th>Profissão</th>
+      <th>Instituição</th>
       <th>Email</th>
       <th>Data de criação</th>
       <th class="table-action"></th>
@@ -20,6 +23,9 @@
     <% @newsletters.each do |newsletter| %>
       <tr>
         <td><%= newsletter.id %></td>
+        <td><%= newsletter.name %></td>
+        <td><%= newsletter.profissao %></td>
+        <td><%= newsletter.instituicao %></td>
         <td><%= newsletter.email %></td>
         <td><%= l newsletter.created_at, format: "%d/%m/%Y" %></td>
         <td>

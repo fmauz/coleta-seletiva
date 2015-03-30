@@ -16,6 +16,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav pull-right">
+                <li><a href="http://www.coletaseletivasolidaria.com.br/">SOBRE O PCSS</a></li>
                 <li><a href="#about">SOBRE O SISTEMA</a></li>
               </ul>
             </div>
@@ -107,10 +108,37 @@
 
           <h2 class="title">INSCREVA-SE E RECEBA AS NOVIDADES DO OBSERVATÓRIO</h2>
           <form class="form-inline newsletter_form" action="<%= newsletters_path %>" role="form">
-            <div class="form-group">
-              <input type="email" name="newsletter[email]" class="form-control" id="exampleInputEmail1" placeholder="Escreva seu email aqui">
+            <div class="row clearfix">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Nome</label>
+                  <input type="text" name="newsletter[name]" class="form-control" id="exampleInputEmail1" placeholder="Escreva seu Nome">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Profissão</label>
+                  <input type="text" name="newsletter[profissao]" class="form-control" id="exampleInputEmail1" placeholder="Escreva sua Profissão">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Instituição</label>
+                  <input type="text" name="newsletter[instituicao]" class="form-control" id="exampleInputEmail1" placeholder="Escreva sua Instituição">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>E-mail</label>
+                  <input type="email" name="newsletter[email]" class="form-control" id="exampleInputEmail1" placeholder="Escreva seu Email">
+                </div>
+              </div>
             </div>
-            <button type="submit" class="btn btn-default">Cadastrar e-mail</button>
+            <div class="row" style="margin-top:35px;">
+              <div class="col-md-12 text-right">
+                <button type="submit" class="btn btn-default">Cadastrar e-mail</button>
+              </div>
+            </div>
           </form>
 
         </div>
