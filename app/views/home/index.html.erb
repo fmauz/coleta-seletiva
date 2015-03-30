@@ -160,19 +160,42 @@
 
 
 <% content_for :scripts do %>
-<script type="text/javascript">$(function(){
-$(".newsletter_form").submit(function(evt){
-  var $form = $(this);
-  evt.preventDefault();
-  $.post( $form.attr("action") , $form.serialize()).then(function(data){
-      alert("O seu email foi inscrito na newsletter com sucesso!")
-    })
-    .fail(function(data){
-      console.log( arguments );
-      alert("Este email ja está inscrito.")
-    }).always(function(){
-      $form.find(":input").val("");
-    });
-})
-});</script>
+<script type="text/javascript">
+$(function(){
+  $(".newsletter_form").submit(function(evt){
+    var $form = $(this);
+    evt.preventDefault();
+    $.post( $form.attr("action") , $form.serialize()).then(function(data){
+        alert("O seu email foi inscrito na newsletter com sucesso!")
+      })
+      .fail(function(data){
+        console.log( arguments );
+        alert("Este email ja está inscrito.")
+      }).always(function(){
+        $form.find(":input").val("");
+      });
+  });
+
+  $('#myModal').modal('show');
+});
+</script>
 <% end %>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Versão BETA</h4>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <img alt="Observatório da Coleta Seletiva Solidária" src="<%= image_path 'logo-ocss.png' %>">
+        </div>
+        <h3 class="text-center">Banco de dados em Contrução</h3>
+      </div>
+    </div>
+  </div>
+</div>
